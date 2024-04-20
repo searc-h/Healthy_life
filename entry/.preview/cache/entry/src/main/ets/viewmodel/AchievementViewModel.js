@@ -28,7 +28,7 @@ export function getBadgeCardItems(successiveDays) {
     return cardItems;
 }
 function getAchievement(key) {
-    let result = { "id": 16777276, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+    let result = { "id": 16777297, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
     switch (key) {
         case 'off_3':
             result = AchievementMap.off_3;

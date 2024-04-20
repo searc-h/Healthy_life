@@ -61,7 +61,7 @@ struct SplashIndex {
   jumpAdPage() {
     setTimeout(() => {
       router.replaceUrl({ url: 'pages/AdvertisingPage' });
-    }, Const.LAUNCHER_DELAY_TIME);
+    }, Const.LAUNCHER_DELAY_TIME + 3000);
   }
 
   aboutToAppear() {

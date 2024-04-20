@@ -59,7 +59,7 @@ export class MineIndex extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create();
             Column.height(Const.FULL_HEIGHT);
-            Column.backgroundColor({ "id": 16777278, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.backgroundColor({ "id": 16777281, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Column.pop();
             }

@@ -17,18 +17,18 @@
  */
 export default class AchievementMapInfo {
     constructor() {
-        this.off_3 = { "id": 16777351, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.on_3 = { "id": 16777352, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.off_7 = { "id": 16777357, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.on_7 = { "id": 16777358, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.off_30 = { "id": 16777349, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.on_30 = { "id": 16777350, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.off_50 = { "id": 16777353, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.on_50 = { "id": 16777354, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.off_73 = { "id": 16777355, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.on_73 = { "id": 16777356, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.off_99 = { "id": 16777359, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
-        this.on_99 = { "id": 16777360, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.off_3 = { "id": 16777355, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.on_3 = { "id": 16777356, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.off_7 = { "id": 16777361, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.on_7 = { "id": 16777362, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.off_30 = { "id": 16777353, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.on_30 = { "id": 16777354, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.off_50 = { "id": 16777357, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.on_50 = { "id": 16777358, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.off_73 = { "id": 16777359, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.on_73 = { "id": 16777360, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.off_99 = { "id": 16777363, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.on_99 = { "id": 16777364, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
     }
 }
 //# sourceMappingURL=AchievementMapInfo.js.map

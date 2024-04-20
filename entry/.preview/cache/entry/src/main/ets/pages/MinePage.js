@@ -12,14 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import router from '@ohos:router';
 import { ListInfo } from '@bundle:com.example.healthy_life/entry/ets/view/ListInfo';
 import { UserBaseInfo } from '@bundle:com.example.healthy_life/entry/ets/view/UserBaseInfo';
 import { CommonConstants as Const } from '@bundle:com.example.healthy_life/entry/ets/common/constants/CommonConstants';
+import { GlobalContext } from '@bundle:com.example.healthy_life/entry/ets/common/utils/GlobalContext';
 export class MineIndex extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1) {
         super(parent, __localStorage, elmtId);
         this.__nickname = new ObservedPropertySimplePU(Const.NICK_NAME, this, "nickname");
         this.__signature = new ObservedPropertySimplePU(Const.SIGNATURE, this, "signature");
+        this.__isLogin = new ObservedPropertySimplePU(false, this, "isLogin");
         this.setInitiallyProvidedValue(params);
     }
     setInitiallyProvidedValue(params) {
@@ -29,16 +32,21 @@ export class MineIndex extends ViewPU {
         if (params.signature !== undefined) {
             this.signature = params.signature;
         }
+        if (params.isLogin !== undefined) {
+            this.isLogin = params.isLogin;
+        }
     }
     updateStateVars(params) {
     }
     purgeVariableDependenciesOnElmtId(rmElmtId) {
         this.__nickname.purgeDependencyOnElmtId(rmElmtId);
         this.__signature.purgeDependencyOnElmtId(rmElmtId);
+        this.__isLogin.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
         this.__nickname.aboutToBeDeleted();
         this.__signature.aboutToBeDeleted();
+        this.__isLogin.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
     }
@@ -54,13 +62,25 @@ export class MineIndex extends ViewPU {
     set signature(newValue) {
         this.__signature.set(newValue);
     }
+    get isLogin() {
+        return this.__isLogin.get();
+    }
+    set isLogin(newValue) {
+        this.__isLogin.set(newValue);
+    }
+    aboutToAppear() {
+        this.isLogin = GlobalContext.getContext().getObject("isLogin");
+    }
+    loginOut() {
+        router.pushUrl({ url: 'pages/LoginPage' });
+    }
     initialRender() {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create();
-            Column.debugLine("pages/MinePage.ets(26:5)");
+            Column.debugLine("pages/MinePage.ets(37:5)");
             Column.height(Const.FULL_HEIGHT);
-            Column.backgroundColor({ "id": 16777258, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.backgroundColor({ "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Column.pop();
             }
@@ -102,4 +122,7 @@ export class MineIndex extends ViewPU {
         this.updateDirtyElements();
     }
 }
+ViewStackProcessor.StartGetAccessRecordingFor(ViewStackProcessor.AllocateNewElmetIdForNextComponent());
+loadDocument(new MineIndex(undefined, {}));
+ViewStackProcessor.StopGetAccessRecording();
 //# sourceMappingURL=MinePage.js.map

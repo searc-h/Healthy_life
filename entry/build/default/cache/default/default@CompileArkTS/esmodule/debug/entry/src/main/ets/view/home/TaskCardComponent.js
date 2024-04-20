@@ -17,7 +17,7 @@ import HealthText from '@bundle:com.example.healthy_life/entry/ets/view/HealthTe
 import { CommonConstants as Const } from '@bundle:com.example.healthy_life/entry/ets/common/constants/CommonConstants';
 import TaskInfo from '@bundle:com.example.healthy_life/entry/ets/viewmodel/TaskInfo';
 function __Text__labelTextStyle() {
-    Text.fontSize({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontSize({ "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
     Text.fontWeight(Const.FONT_WEIGHT_500);
     Text.opacity(Const.OPACITY_6);
     Text.fontFamily({ "id": 16777222, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
@@ -82,7 +82,7 @@ export class TaskCard extends ViewPU {
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                             if (isInitialRender) {
-                                ViewPU.create(new HealthText(this, { title: '', titleResource: { "id": 16777260, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } }, undefined, elmtId));
+                                ViewPU.create(new HealthText(this, { title: '', titleResource: { "id": 16777263, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } }, undefined, elmtId));
                             }
                             else {
                                 this.updateStateVarsOfChildByElmtId(elmtId, {
@@ -110,7 +110,7 @@ export class TaskCard extends ViewPU {
                             if (isInitialRender) {
                                 ViewPU.create(new HealthText(this, {
                                     title: this.taskInfo.finValue || `--`,
-                                    fontSize: { "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                                    fontSize: { "id": 16777315, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
                                 }, undefined, elmtId));
                             }
                             else {
@@ -149,9 +149,9 @@ export class TaskCard extends ViewPU {
             Row.width(Const.THOUSANDTH_1000);
             Row.height(Const.THOUSANDTH_1000);
             Row.justifyContent(FlexAlign.SpaceBetween);
-            Row.borderRadius({ "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.borderRadius({ "id": 16777315, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Row.padding({ left: Const.THOUSANDTH_50, right: Const.THOUSANDTH_33 });
-            Row.backgroundColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.backgroundColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Row.onClick(() => this.clickAction(true));
             Gesture.create(GesturePriority.Low);
             LongPressGesture.create();
@@ -174,8 +174,8 @@ export class TaskCard extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Image.create(TaskMapById[this.taskInfo.taskID - 1].icon);
-            Image.width({ "id": 16777317, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Image.height({ "id": 16777317, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.width({ "id": 16777320, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.height({ "id": 16777320, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.objectFit(ImageFit.Contain);
             if (!isInitialRender) {
                 Image.pop();

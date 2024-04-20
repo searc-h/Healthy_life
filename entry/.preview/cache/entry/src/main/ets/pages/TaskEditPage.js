@@ -35,7 +35,7 @@ class TaskEdit extends ViewPU {
             Row.create();
             Row.debugLine("pages/TaskEditPage.ets(23:5)");
             Row.height(Const.THOUSANDTH_1000);
-            Row.backgroundColor({ "id": 16777261, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.backgroundColor({ "id": 16777272, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Row.pop();
             }

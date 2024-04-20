@@ -80,6 +80,7 @@ export default class TaskDetail extends ViewPU {
     set frequency(newValue) {
         this.__frequency.set(newValue);
     }
+    // 从路径参数中拿到 可编辑任务
     parseRouterParams() {
         let params = router.getParams();
         const routerParams = JSON.parse(params.params);
@@ -95,6 +96,7 @@ export default class TaskDetail extends ViewPU {
         if (this.isChanged) {
             let context = getContext(this);
             let taskInfo = new TaskInfo(Const.ZERO, Const.GLOBAL_KEY, this.settingParams.taskID, this.settingParams.targetValue, this.settingParams.isAlarm, this.settingParams.startTime, this.settingParams.endTime, this.settingParams.frequency, false, '', this.settingParams.isOpen);
+            console.info("taskInfo : ", JSON.stringify(taskInfo));
             addTask(taskInfo, context).then((res) => {
                 GlobalContext.getContext().setObject('taskListChange', true);
                 router.back({
@@ -125,7 +127,7 @@ export default class TaskDetail extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Row.create();
-            Row.debugLine("view/task/TaskDetailComponent.ets(100:5)");
+            Row.debugLine("view/task/TaskDetailComponent.ets(103:5)");
             if (!isInitialRender) {
                 Row.pop();
             }
@@ -134,7 +136,7 @@ export default class TaskDetail extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create();
-            Column.debugLine("view/task/TaskDetailComponent.ets(101:7)");
+            Column.debugLine("view/task/TaskDetailComponent.ets(104:7)");
             Column.width(Const.THOUSANDTH_1000);
             if (!isInitialRender) {
                 Column.pop();
@@ -144,7 +146,7 @@ export default class TaskDetail extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             List.create({ space: Const.LIST_ITEM_SPACE });
-            List.debugLine("view/task/TaskDetailComponent.ets(102:9)");
+            List.debugLine("view/task/TaskDetailComponent.ets(105:9)");
             List.width(Const.THOUSANDTH_940);
             if (!isInitialRender) {
                 List.pop();
@@ -156,11 +158,11 @@ export default class TaskDetail extends ViewPU {
             const itemCreation = (elmtId, isInitialRender) => {
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
-                ListItem.debugLine("view/task/TaskDetailComponent.ets(103:11)");
+                ListItem.debugLine("view/task/TaskDetailComponent.ets(106:11)");
                 if (!isInitialRender) {
                     ListItem.pop();
                 }
@@ -216,7 +218,7 @@ export default class TaskDetail extends ViewPU {
                 var _a, _b, _c;
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
@@ -226,7 +228,7 @@ export default class TaskDetail extends ViewPU {
                 ListItem.onClick(() => {
                     this.broadCast.emit(BroadCastType.SHOW_TARGET_SETTING_DIALOG);
                 });
-                ListItem.debugLine("view/task/TaskDetailComponent.ets(108:11)");
+                ListItem.debugLine("view/task/TaskDetailComponent.ets(111:11)");
                 if (!isInitialRender) {
                     ListItem.pop();
                 }
@@ -282,12 +284,12 @@ export default class TaskDetail extends ViewPU {
                 var _a;
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
                 ListItem.enabled((_a = this.settingParams) === null || _a === void 0 ? void 0 : _a.isOpen);
-                ListItem.debugLine("view/task/TaskDetailComponent.ets(122:11)");
+                ListItem.debugLine("view/task/TaskDetailComponent.ets(125:11)");
                 if (!isInitialRender) {
                     ListItem.pop();
                 }
@@ -343,7 +345,7 @@ export default class TaskDetail extends ViewPU {
                 var _a, _b;
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
@@ -351,7 +353,7 @@ export default class TaskDetail extends ViewPU {
                 ListItem.onClick(() => {
                     this.broadCast.emit(BroadCastType.SHOW_REMIND_TIME_DIALOG);
                 });
-                ListItem.debugLine("view/task/TaskDetailComponent.ets(128:11)");
+                ListItem.debugLine("view/task/TaskDetailComponent.ets(131:11)");
                 if (!isInitialRender) {
                     ListItem.pop();
                 }
@@ -407,7 +409,7 @@ export default class TaskDetail extends ViewPU {
                 var _a, _b;
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
@@ -415,7 +417,7 @@ export default class TaskDetail extends ViewPU {
                 ListItem.onClick(() => {
                     this.broadCast.emit(BroadCastType.SHOW_FREQUENCY_DIALOG);
                 });
-                ListItem.debugLine("view/task/TaskDetailComponent.ets(137:11)");
+                ListItem.debugLine("view/task/TaskDetailComponent.ets(140:11)");
                 if (!isInitialRender) {
                     ListItem.pop();
                 }
@@ -469,10 +471,10 @@ export default class TaskDetail extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Button.createWithChild();
-            Button.debugLine("view/task/TaskDetailComponent.ets(149:9)");
+            Button.debugLine("view/task/TaskDetailComponent.ets(152:9)");
             Button.width(Const.THOUSANDTH_800);
             Button.height(Const.DEFAULT_48);
-            Button.backgroundColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Button.backgroundColor({ "id": 16777250, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Button.onClick(() => {
                 this.finishTaskEdit();
             });
@@ -487,10 +489,10 @@ export default class TaskDetail extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777363, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.debugLine("view/task/TaskDetailComponent.ets(150:11)");
-            Text.fontSize({ "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777321, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.debugLine("view/task/TaskDetailComponent.ets(153:11)");
+            Text.fontSize({ "id": 16777376, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Text.pop();
             }

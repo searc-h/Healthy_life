@@ -25,7 +25,7 @@ export class AchievementDialog extends ViewPU {
         this.__opacityValue = new ObservedPropertySimplePU(0, this, "opacityValue");
         this.__angle = new ObservedPropertySimplePU(0, this, "angle");
         this.__scaleValue = new ObservedPropertySimplePU(0, this, "scaleValue");
-        this.__achievementMapValue = new ObservedPropertyObjectPU({ "id": 16777237, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }, this, "achievementMapValue");
+        this.__achievementMapValue = new ObservedPropertyObjectPU({ "id": 16777238, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }, this, "achievementMapValue");
         this.setInitiallyProvidedValue(params);
     }
     setInitiallyProvidedValue(params) {
@@ -166,12 +166,12 @@ export class AchievementDialog extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777257, "type": 10003, params: [this.achievementLevel], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777260, "type": 10003, params: [this.achievementLevel], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777315, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(Const.FONT_WEIGHT_500);
-            Text.fontColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontFamily({ "id": 16777222, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.margin({ top: { "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Text.margin({ top: { "id": 16777306, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 Text.pop();
             }

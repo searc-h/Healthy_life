@@ -18,7 +18,7 @@ export class BadgeCard extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1) {
         super(parent, __localStorage, elmtId);
         this.__content = new SynchedPropertySimpleOneWayPU(params.content, this, "content");
-        this.imgSrc = { "id": 16777237, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.imgSrc = { "id": 16777238, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
         this.setInitiallyProvidedValue(params);
     }
     setInitiallyProvidedValue(params) {
@@ -73,10 +73,10 @@ export class BadgeCard extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777257, "type": 10003, params: [Number(this.content)], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.lineHeight({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777260, "type": 10003, params: [Number(this.content)], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.lineHeight({ "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777306, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Text.pop();
             }

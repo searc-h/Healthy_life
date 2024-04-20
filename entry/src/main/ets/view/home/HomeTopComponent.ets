@@ -27,7 +27,7 @@ import HealthText from '../../view/HealthTextComponent';
 }
 
 @Component
-export default struct HomeTopView {
+export default struct HomeTopComponent {
   @Link homeStore: HomeStore;
 
   build() {

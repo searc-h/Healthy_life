@@ -6,18 +6,6 @@ export class UserBaseInfo extends ViewPU {
         this.setInitiallyProvidedValue(params);
     }
     setInitiallyProvidedValue(params) {
-        if (params.nickname !== undefined) {
-            this.__nickname.set(params.nickname);
-        }
-        else {
-            this.__nickname.set('');
-        }
-        if (params.signature !== undefined) {
-            this.__signature.set(params.signature);
-        }
-        else {
-            this.__signature.set('');
-        }
     }
     updateStateVars(params) {
         this.__nickname.reset(params.nickname);
@@ -63,11 +51,11 @@ export class UserBaseInfo extends ViewPU {
             // userIcon
             Image.objectFit(ImageFit.Contain);
             // userIcon
-            Image.height({ "id": 16777328, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.height({ "id": 16777395, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             // userIcon
-            Image.width({ "id": 16777328, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.width({ "id": 16777395, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             // userIcon
-            Image.margin({ top: { "id": 16777330, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Image.margin({ top: { "id": 16777397, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 // userIcon
                 Image.pop();
@@ -78,11 +66,11 @@ export class UserBaseInfo extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create();
             Column.debugLine("view/UserBaseInfo.ets(30:7)");
-            Column.width({ "id": 16777321, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Column.height({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Column.margin({ top: { "id": 16777333, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
-            Column.border({ radius: { "id": 16777324, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
-            Column.backgroundColor({ "id": 16777255, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.width({ "id": 16777388, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.height({ "id": 16777374, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.margin({ top: { "id": 16777400, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Column.border({ radius: { "id": 16777391, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Column.backgroundColor({ "id": 16777261, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Column.justifyContent(FlexAlign.Center);
             if (!isInitialRender) {
                 Column.pop();
@@ -93,9 +81,9 @@ export class UserBaseInfo extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create('LV.7');
             Text.debugLine("view/UserBaseInfo.ets(31:9)");
-            Text.fontSize({ "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777370, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(FontWeight.Bolder);
-            Text.fontColor({ "id": 16777256, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777262, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Text.pop();
             }
@@ -109,15 +97,15 @@ export class UserBaseInfo extends ViewPU {
             Text.create(this.nickname);
             Text.debugLine("view/UserBaseInfo.ets(44:7)");
             // nickname
-            Text.fontSize({ "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777376, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             // nickname
-            Text.fontFamily({ "id": 16777354, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontFamily({ "id": 16777312, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             // nickname
-            Text.margin({ bottom: { "id": 16777326, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Text.margin({ bottom: { "id": 16777393, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             // nickname
             Text.fontWeight(FontWeight.Normal);
             // nickname
-            Text.fontColor({ "id": 16777247, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 // nickname
                 Text.pop();
@@ -132,13 +120,13 @@ export class UserBaseInfo extends ViewPU {
             Text.create(this.signature);
             Text.debugLine("view/UserBaseInfo.ets(52:7)");
             // signature
-            Text.fontSize({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777374, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             // signature
             Text.fontWeight(FontWeight.Normal);
             // signature
-            Text.fontFamily({ "id": 16777355, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontFamily({ "id": 16777313, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             // signature
-            Text.fontColor({ "id": 16777265, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777281, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 // signature
                 Text.pop();

@@ -31,6 +31,10 @@
     {
       "name": "empty",
       "value": "empty"
+    },
+    {
+      "name": "http_error_message",
+      "value": "Network request failed, please try later!"
     }
   ]
 }

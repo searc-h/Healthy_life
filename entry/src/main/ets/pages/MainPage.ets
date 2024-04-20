@@ -36,12 +36,25 @@ import { GlobalContext } from '../common/utils/GlobalContext';
 @Entry
 @Component
 struct Index {
-  @State currentPage: number = 0;
+  /**
+   * @description 当前Tab页面下标：number
+   */
+  @State currentTab: number = 0;
+  /**
+   *
+   * @description 当前编辑的任务
+   */
   @State editedTaskInfo: ITaskItem = router.getParams() ? (router.getParams() as Record<string, Object>).editTask as ITaskItem : {} as ITaskItem;
+
   @State editedTaskID: string = '0';
+  /**
+   * Home页面的整体状态机
+   */
   @State homeStore: HomeStore = new HomeStore(new Date());
+
   private tabController: TabsController = new TabsController();
 
+  // 检测通知权限
   aboutToAppear() {
     notificationManager.requestEnableNotification().then(() => {
       Logger.info('onPageShow', `requestEnableNotification success`);
@@ -56,7 +69,7 @@ struct Index {
     let result = params.editTask ? params.editTask as string : '{}';
     this.editedTaskInfo = JSON.parse(result);
     this.editedTaskID = JSON.stringify(this.editedTaskInfo);
-    console.log(this.editedTaskInfo.taskID + "")
+
     if ((GlobalContext.getContext().getObject('isForeground') as boolean)) {
       GlobalContext.getContext().setObject('isForeground', false);
       if (this.homeStore.currentDate.getDate() !== (new Date()).getDate()) {
@@ -99,17 +112,18 @@ struct Index {
 
   @Builder TabBuilder(index: number) {
     Column() {
-      Image(index === this.currentPage ? NavList[index].icon_selected : NavList[index].icon)
+      Image(index === this.currentTab ? NavList[index].icon_selected : NavList[index].icon)
         .width($r('app.float.default_24'))
         .height($r('app.float.default_24'))
         .objectFit(ImageFit.Contain);
       Text(NavList[index].text)
         .fontSize($r('app.float.default_10'))
         .fontWeight(Const.FONT_WEIGHT_500)
-        .fontColor(this.currentPage === index ? $r('app.color.blueColor') : $r('app.color.tabTitleColor'))
+        .fontColor(this.currentTab === index ? $r('app.color.blueColor') : $r('app.color.tabTitleColor'))
         .margin({ top: $r('app.float.default_4') })
     }.justifyContent(FlexAlign.Center).allSize()
   }
+
 
   build() {
     Tabs({ barPosition: BarPosition.End, controller: this.tabController }) {
@@ -139,7 +153,7 @@ struct Index {
     .barMode(BarMode.Fixed)
     .vertical(false)
     .onChange((index) => {
-      this.currentPage = index;
+      this.currentTab = index;
     })
   }
 }

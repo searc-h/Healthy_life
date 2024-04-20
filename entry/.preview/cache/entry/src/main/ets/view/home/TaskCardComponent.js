@@ -17,10 +17,10 @@ import HealthText from '@bundle:com.example.healthy_life/entry/ets/view/HealthTe
 import { CommonConstants as Const } from '@bundle:com.example.healthy_life/entry/ets/common/constants/CommonConstants';
 import TaskInfo from '@bundle:com.example.healthy_life/entry/ets/viewmodel/TaskInfo';
 function __Text__labelTextStyle() {
-    Text.fontSize({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontSize({ "id": 16777374, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
     Text.fontWeight(Const.FONT_WEIGHT_500);
     Text.opacity(Const.OPACITY_6);
-    Text.fontFamily({ "id": 16777351, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontFamily({ "id": 16777309, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
 }
 export class TaskCard extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1) {
@@ -82,7 +82,7 @@ export class TaskCard extends ViewPU {
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                             if (isInitialRender) {
-                                ViewPU.create(new HealthText(this, { title: '', titleResource: { "id": 16777387, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } }, undefined, elmtId));
+                                ViewPU.create(new HealthText(this, { title: '', titleResource: { "id": 16777345, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } }, undefined, elmtId));
                             }
                             else {
                                 this.updateStateVarsOfChildByElmtId(elmtId, {
@@ -111,7 +111,7 @@ export class TaskCard extends ViewPU {
                             if (isInitialRender) {
                                 ViewPU.create(new HealthText(this, {
                                     title: this.taskInfo.finValue || `--`,
-                                    fontSize: { "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                                    fontSize: { "id": 16777379, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
                                 }, undefined, elmtId));
                             }
                             else {
@@ -152,9 +152,9 @@ export class TaskCard extends ViewPU {
             Row.width(Const.THOUSANDTH_1000);
             Row.height(Const.THOUSANDTH_1000);
             Row.justifyContent(FlexAlign.SpaceBetween);
-            Row.borderRadius({ "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.borderRadius({ "id": 16777379, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Row.padding({ left: Const.THOUSANDTH_50, right: Const.THOUSANDTH_33 });
-            Row.backgroundColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.backgroundColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Row.onClick(() => this.clickAction(true));
             Gesture.create(GesturePriority.Low);
             LongPressGesture.create();
@@ -179,8 +179,8 @@ export class TaskCard extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Image.create(TaskMapById[this.taskInfo.taskID - 1].icon);
             Image.debugLine("view/home/TaskCardComponent.ets(62:9)");
-            Image.width({ "id": 16777317, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Image.height({ "id": 16777317, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.width({ "id": 16777384, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.height({ "id": 16777384, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.objectFit(ImageFit.Contain);
             if (!isInitialRender) {
                 Image.pop();
@@ -194,7 +194,7 @@ export class TaskCard extends ViewPU {
                     ViewPU.create(new HealthText(this, {
                         title: '',
                         titleResource: TaskMapById[this.taskInfo.taskID - 1].taskName,
-                        fontFamily: { "id": 16777351, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                        fontFamily: { "id": 16777309, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
                     }, undefined, elmtId));
                 }
                 else {

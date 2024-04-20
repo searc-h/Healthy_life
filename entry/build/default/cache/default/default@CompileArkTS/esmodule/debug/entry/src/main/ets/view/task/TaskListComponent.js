@@ -69,7 +69,7 @@ export default class TaskList extends ViewPU {
                                 }
                             });
                         });
-                        ListItem.backgroundColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                        ListItem.backgroundColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                         if (!isInitialRender) {
                             ListItem.pop();
                         }
@@ -116,7 +116,7 @@ export default class TaskList extends ViewPU {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                             Text.create(item === null || item === void 0 ? void 0 : item.taskName);
                             Text.fontSize(Const.DEFAULT_20);
-                            Text.fontColor({ "id": 16777289, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             if (!isInitialRender) {
                                 Text.pop();
                             }
@@ -146,7 +146,7 @@ export default class TaskList extends ViewPU {
                                         Text.flexGrow(1);
                                         Text.align(Alignment.End);
                                         Text.margin({ right: Const.DEFAULT_8 });
-                                        Text.fontColor({ "id": 16777289, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                                        Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                                         if (!isInitialRender) {
                                             Text.pop();
                                         }
@@ -166,7 +166,7 @@ export default class TaskList extends ViewPU {
                         If.pop();
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                            Image.create({ "id": 16777380, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.create({ "id": 16777384, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             Image.width(Const.DEFAULT_8);
                             Image.height(Const.DEFAULT_16);
                             if (!isInitialRender) {
@@ -215,7 +215,7 @@ export default class TaskList extends ViewPU {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                             Text.create(item === null || item === void 0 ? void 0 : item.taskName);
                             Text.fontSize(Const.DEFAULT_20);
-                            Text.fontColor({ "id": 16777289, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             if (!isInitialRender) {
                                 Text.pop();
                             }
@@ -245,7 +245,7 @@ export default class TaskList extends ViewPU {
                                         Text.flexGrow(1);
                                         Text.align(Alignment.End);
                                         Text.margin({ right: Const.DEFAULT_8 });
-                                        Text.fontColor({ "id": 16777289, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                                        Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                                         if (!isInitialRender) {
                                             Text.pop();
                                         }
@@ -265,7 +265,7 @@ export default class TaskList extends ViewPU {
                         If.pop();
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                            Image.create({ "id": 16777380, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.create({ "id": 16777384, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             Image.width(Const.DEFAULT_8);
                             Image.height(Const.DEFAULT_16);
                             if (!isInitialRender) {

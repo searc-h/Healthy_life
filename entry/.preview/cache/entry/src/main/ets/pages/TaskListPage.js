@@ -40,7 +40,7 @@ class TaskIndex extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Row.create();
             Row.debugLine("pages/TaskListPage.ets(37:5)");
-            Row.backgroundColor({ "id": 16777261, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.backgroundColor({ "id": 16777272, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Row.height(Const.THOUSANDTH_1000);
             if (!isInitialRender) {
                 Row.pop();

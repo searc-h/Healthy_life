@@ -34,13 +34,13 @@ export class ListInfo extends ViewPU {
             List.create();
             List.border({
                 radius: {
-                    topLeft: { "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
-                    topRight: { "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                    topLeft: { "id": 16777315, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
+                    topRight: { "id": 16777315, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
                 }
             });
-            List.backgroundColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            List.margin({ top: { "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
-            List.padding({ top: { "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            List.backgroundColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            List.margin({ top: { "id": 16777315, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            List.padding({ top: { "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             List.flexGrow(1);
             List.clip(true);
             if (!isInitialRender) {
@@ -58,15 +58,15 @@ export class ListInfo extends ViewPU {
                     const itemCreation = (elmtId, isInitialRender) => {
                         ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                         ListItem.create(deepRenderFunction, isLazyCreate);
-                        ListItem.backgroundColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                        ListItem.backgroundColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                         ListItem.margin({
-                            left: { "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
-                            right: { "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                            left: { "id": 16777315, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
+                            right: { "id": 16777315, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
                         });
-                        ListItem.height({ "id": 16777323, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                        ListItem.height({ "id": 16777326, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                         ListItem.border({
-                            width: { bottom: { "id": 16777300, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } },
-                            color: { "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                            width: { bottom: { "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } },
+                            color: { "id": 16777272, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
                         });
                         if (!isInitialRender) {
                             ListItem.pop();
@@ -90,8 +90,8 @@ export class ListInfo extends ViewPU {
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                             Text.create(item.title);
-                            Text.fontSize({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-                            Text.height({ "id": 16777319, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Text.fontSize({ "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Text.height({ "id": 16777322, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             if (!isInitialRender) {
                                 Text.pop();
                             }
@@ -100,10 +100,10 @@ export class ListInfo extends ViewPU {
                         Text.pop();
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                            Image.create({ "id": 16777380, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.create({ "id": 16777384, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             Image.objectFit(ImageFit.Contain);
-                            Image.height({ "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-                            Image.width({ "id": 16777329, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.height({ "id": 16777306, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.width({ "id": 16777332, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             if (!isInitialRender) {
                                 Image.pop();
                             }
@@ -126,8 +126,8 @@ export class ListInfo extends ViewPU {
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                             Text.create(item.title);
-                            Text.fontSize({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-                            Text.height({ "id": 16777319, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Text.fontSize({ "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Text.height({ "id": 16777322, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             if (!isInitialRender) {
                                 Text.pop();
                             }
@@ -136,10 +136,10 @@ export class ListInfo extends ViewPU {
                         Text.pop();
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                            Image.create({ "id": 16777380, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.create({ "id": 16777384, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             Image.objectFit(ImageFit.Contain);
-                            Image.height({ "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-                            Image.width({ "id": 16777329, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.height({ "id": 16777306, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.width({ "id": 16777332, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             if (!isInitialRender) {
                                 Image.pop();
                             }

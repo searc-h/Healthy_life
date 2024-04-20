@@ -22,7 +22,7 @@ const DEFAULT_SCROLL_PERCENT = 0.934; // default calendar width percent
 export class WeekCalendar extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1) {
         super(parent, __localStorage, elmtId);
-        this.__selectedDate = new ObservedPropertyObjectPU(new Date(), this, "selectedDate");
+        this.selectDate = new Date();
         this.__homeStore = new SynchedPropertyObjectTwoWayPU(params.homeStore, this, "homeStore");
         this.currentPage = 1;
         this.scrollWidth = DEFAULT_SCROLL_WIDTH;
@@ -30,11 +30,10 @@ export class WeekCalendar extends ViewPU {
         this.isLoadMore = false;
         this.isPageScroll = false;
         this.setInitiallyProvidedValue(params);
-        this.declareWatch("selectedDate", this.changeSelectedDate);
     }
     setInitiallyProvidedValue(params) {
-        if (params.selectedDate !== undefined) {
-            this.selectedDate = params.selectedDate;
+        if (params.selectDate !== undefined) {
+            this.selectDate = params.selectDate;
         }
         if (params.currentPage !== undefined) {
             this.currentPage = params.currentPage;
@@ -55,20 +54,12 @@ export class WeekCalendar extends ViewPU {
     updateStateVars(params) {
     }
     purgeVariableDependenciesOnElmtId(rmElmtId) {
-        this.__selectedDate.purgeDependencyOnElmtId(rmElmtId);
         this.__homeStore.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
-        this.__selectedDate.aboutToBeDeleted();
         this.__homeStore.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
-    }
-    get selectedDate() {
-        return this.__selectedDate.get();
-    }
-    set selectedDate(newValue) {
-        this.__selectedDate.set(newValue);
     }
     get homeStore() {
         return this.__homeStore.get();
@@ -88,33 +79,33 @@ export class WeekCalendar extends ViewPU {
     }
     // 日期更改的回调
     changeSelectedDate() {
-        // 系统日期
-        this.homeStore.setSelectedShowDate(this.selectedDate.getTime());
-        // 任务列表数据
+        this.homeStore.setSelectedShowDate(this.selectDate.getTime());
+        // 更新任务列表数据
     }
     getProgressImg(item) {
         var _a, _b;
         let finNum = ((_a = item.dayInfo) === null || _a === void 0 ? void 0 : _a.finTaskNum) || 0;
         if (finNum === 0) {
-            return { "id": 16777349, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+            return { "id": 16777475, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
         }
         if (finNum === (((_b = item.dayInfo) === null || _b === void 0 ? void 0 : _b.targetTaskNum) || 0)) {
-            return { "id": 16777345, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+            return { "id": 16777471, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
         }
-        return { "id": 16777281, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        return { "id": 16777303, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
     }
     ArrowIcon(isRight, parent = null) {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Row.create();
             Row.debugLine("view/home/WeekCalendarComponent.ets(73:5)");
-            Row.width({ "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Row.height({ "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.width({ "id": 16777376, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.height({ "id": 16777376, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Row.rotate({ z: 1, angle: isRight ? 0 : Const.DEFAULT_180 });
             Row.justifyContent(FlexAlign.Center);
             Row.onClick(() => {
                 // 回到今日
-                this.selectedDate = new Date();
+                this.selectDate = new Date();
+                this.changeSelectedDate();
             });
             if (!isInitialRender) {
                 Row.pop();
@@ -123,10 +114,10 @@ export class WeekCalendar extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Image.create({ "id": 16777394, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.create({ "id": 16777480, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.debugLine("view/home/WeekCalendarComponent.ets(74:7)");
-            Image.width({ "id": 16777326, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Image.height({ "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.width({ "id": 16777393, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.height({ "id": 16777370, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Image.pop();
             }
@@ -138,7 +129,7 @@ export class WeekCalendar extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Row.create();
-            Row.debugLine("view/home/WeekCalendarComponent.ets(89:5)");
+            Row.debugLine("view/home/WeekCalendarComponent.ets(90:5)");
             Row.width(Const.THOUSANDTH_1000);
             Row.height(Const.THOUSANDTH_400);
             Row.padding(Const.THOUSANDTH_33);
@@ -150,9 +141,9 @@ export class WeekCalendar extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create();
-            Column.debugLine("view/home/WeekCalendarComponent.ets(90:7)");
-            Column.borderRadius({ "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Column.backgroundColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.debugLine("view/home/WeekCalendarComponent.ets(91:7)");
+            Column.borderRadius({ "id": 16777379, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.backgroundColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Column.width(Const.THOUSANDTH_1000);
             Column.height(Const.THOUSANDTH_1000);
             Column.padding({ top: Const.THOUSANDTH_50, bottom: Const.THOUSANDTH_120 });
@@ -164,7 +155,7 @@ export class WeekCalendar extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Row.create();
-            Row.debugLine("view/home/WeekCalendarComponent.ets(91:9)");
+            Row.debugLine("view/home/WeekCalendarComponent.ets(92:9)");
             Row.justifyContent(FlexAlign.Center);
             if (!isInitialRender) {
                 Row.pop();
@@ -174,16 +165,16 @@ export class WeekCalendar extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             __Common__.create();
-            __Common__.margin({ "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            __Common__.margin({ "id": 16777370, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             __Common__.onClick(() => {
                 DatePickerDialog.show({
                     start: new Date("2024-01-01"),
                     end: new Date(),
-                    selected: this.selectedDate,
+                    selected: this.selectDate,
                     onAccept: (value) => {
                         // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-                        this.selectedDate.setFullYear(value.year, value.month, value.day);
-                        console.info("DatePickerDialog:onAccept()" + JSON.stringify(value));
+                        this.selectDate.setFullYear(value.year, value.month, value.day);
+                        this.changeSelectedDate();
                     },
                     onCancel: () => {
                         console.info("DatePickerDialog:onCancel()");
@@ -202,7 +193,7 @@ export class WeekCalendar extends ViewPU {
             this.observeComponentCreation((elmtId, isInitialRender) => {
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 if (isInitialRender) {
-                    ViewPU.create(new HealthText(this, { title: this.homeStore.dateTitle, fontSize: { "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } }, undefined, elmtId));
+                    ViewPU.create(new HealthText(this, { title: this.homeStore.dateTitle, fontSize: { "id": 16777376, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } }, undefined, elmtId));
                 }
                 else {
                     this.updateStateVarsOfChildByElmtId(elmtId, {
@@ -218,7 +209,7 @@ export class WeekCalendar extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Row.create();
-            Row.debugLine("view/home/WeekCalendarComponent.ets(116:9)");
+            Row.debugLine("view/home/WeekCalendarComponent.ets(117:9)");
             if (!isInitialRender) {
                 Row.pop();
             }
@@ -226,8 +217,8 @@ export class WeekCalendar extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777365, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.debugLine("view/home/WeekCalendarComponent.ets(117:11)");
+            Text.create({ "id": 16777323, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.debugLine("view/home/WeekCalendarComponent.ets(118:11)");
             if (!isInitialRender) {
                 Text.pop();
             }
@@ -237,8 +228,8 @@ export class WeekCalendar extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create("70");
-            Text.debugLine("view/home/WeekCalendarComponent.ets(118:11)");
-            Text.margin({ left: { "id": 16777332, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Text.debugLine("view/home/WeekCalendarComponent.ets(119:11)");
+            Text.margin({ left: { "id": 16777399, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             Text.fontColor(Color.Green);
             if (!isInitialRender) {
                 Text.pop();
@@ -249,8 +240,8 @@ export class WeekCalendar extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create('%');
-            Text.debugLine("view/home/WeekCalendarComponent.ets(121:11)");
-            Text.margin({ left: { "id": 16777332, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Text.debugLine("view/home/WeekCalendarComponent.ets(122:11)");
+            Text.margin({ left: { "id": 16777399, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 Text.pop();
             }

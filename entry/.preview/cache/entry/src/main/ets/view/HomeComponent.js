@@ -16,7 +16,7 @@ import router from '@ohos:router';
 import HealthText from '@bundle:com.example.healthy_life/entry/ets/view/HealthTextComponent';
 import AddBtn from '@bundle:com.example.healthy_life/entry/ets/view/home/AddBtnComponent';
 import { TaskCard } from '@bundle:com.example.healthy_life/entry/ets/view/home/TaskCardComponent';
-import HomeTopView from '@bundle:com.example.healthy_life/entry/ets/view/home/HomeTopComponent';
+import HomeTopComponent from '@bundle:com.example.healthy_life/entry/ets/view/home/HomeTopComponent';
 import { CustomDialogView } from '@bundle:com.example.healthy_life/entry/ets/view/dialog/CustomDialogView';
 import { TaskMapById } from '@bundle:com.example.healthy_life/entry/ets/model/TaskInitList';
 import { HealthDataSrcMgr } from '@bundle:com.example.healthy_life/entry/ets/common/utils/HealthDataSrcMgr';
@@ -24,10 +24,10 @@ import { BroadCastType } from '@bundle:com.example.healthy_life/entry/ets/common
 import { CommonConstants as Const } from '@bundle:com.example.healthy_life/entry/ets/common/constants/CommonConstants';
 const WHITE_COLOR_0X = 255;
 function __Text__titleTextStyle() {
-    Text.fontSize({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontSize({ "id": 16777374, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
     Text.fontWeight(Const.FONT_WEIGHT_500);
     Text.width(Const.THOUSANDTH_1000);
-    Text.fontFamily({ "id": 16777353, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontFamily({ "id": 16777311, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
     Text.fontColor($r(`app.element.color.titleColor`));
     Text.padding({
         top: Const.THOUSANDTH_15,
@@ -170,10 +170,10 @@ export default class HomeIndex extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Stack.create();
-            Stack.debugLine("view/HomeComponent.ets(121:5)");
+            Stack.debugLine("view/HomeComponent.ets(122:5)");
             Stack.width(Const.THOUSANDTH_1000);
             Stack.height(Const.THOUSANDTH_1000);
-            Stack.backgroundColor({ "id": 16777261, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Stack.backgroundColor({ "id": 16777272, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Stack.pop();
             }
@@ -182,7 +182,7 @@ export default class HomeIndex extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Scroll.create(this.scroller);
-            Scroll.debugLine("view/HomeComponent.ets(122:7)");
+            Scroll.debugLine("view/HomeComponent.ets(123:7)");
             Scroll.scrollBar(BarState.Off);
             Scroll.width(Const.THOUSANDTH_1000);
             Scroll.height(Const.THOUSANDTH_1000);
@@ -198,7 +198,7 @@ export default class HomeIndex extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create();
-            Column.debugLine("view/HomeComponent.ets(123:9)");
+            Column.debugLine("view/HomeComponent.ets(124:9)");
             if (!isInitialRender) {
                 Column.pop();
             }
@@ -208,7 +208,7 @@ export default class HomeIndex extends ViewPU {
             this.observeComponentCreation((elmtId, isInitialRender) => {
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 if (isInitialRender) {
-                    ViewPU.create(new HomeTopView(this, { homeStore: this.__homeStore }, undefined, elmtId));
+                    ViewPU.create(new HomeTopComponent(this, { homeStore: this.__homeStore }, undefined, elmtId));
                 }
                 else {
                     this.updateStateVarsOfChildByElmtId(elmtId, {});
@@ -218,8 +218,8 @@ export default class HomeIndex extends ViewPU {
         }
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777388, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.debugLine("view/HomeComponent.ets(125:11)");
+            Text.create({ "id": 16777346, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.debugLine("view/HomeComponent.ets(126:11)");
             __Text__titleTextStyle();
             if (!isInitialRender) {
                 Text.pop();
@@ -235,7 +235,7 @@ export default class HomeIndex extends ViewPU {
                     this.observeComponentCreation((elmtId, isInitialRender) => {
                         ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                         Column.create({ space: Const.DEFAULT_8 });
-                        Column.debugLine("view/HomeComponent.ets(127:13)");
+                        Column.debugLine("view/HomeComponent.ets(128:13)");
                         Column.onAppear(() => {
                             this.scroller.scrollTo({ xOffset: 0, yOffset: this.yOffset });
                         });
@@ -259,7 +259,7 @@ export default class HomeIndex extends ViewPU {
                                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                                 __Common__.create();
                                 __Common__.margin({ bottom: Const.DEFAULT_12 });
-                                __Common__.height({ "id": 16777327, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                                __Common__.height({ "id": 16777394, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                                 if (!isInitialRender) {
                                     __Common__.pop();
                                 }
@@ -299,7 +299,7 @@ export default class HomeIndex extends ViewPU {
                     this.observeComponentCreation((elmtId, isInitialRender) => {
                         ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                         Column.create({ space: Const.DEFAULT_8 });
-                        Column.debugLine("view/HomeComponent.ets(147:13)");
+                        Column.debugLine("view/HomeComponent.ets(148:13)");
                         Column.margin({ top: Const.DEFAULT_48 });
                         if (!isInitialRender) {
                             Column.pop();
@@ -308,10 +308,10 @@ export default class HomeIndex extends ViewPU {
                     });
                     this.observeComponentCreation((elmtId, isInitialRender) => {
                         ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                        Image.create({ "id": 16777400, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-                        Image.debugLine("view/HomeComponent.ets(148:15)");
-                        Image.width({ "id": 16777305, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-                        Image.height({ "id": 16777302, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                        Image.create({ "id": 16777487, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                        Image.debugLine("view/HomeComponent.ets(149:15)");
+                        Image.width({ "id": 16777372, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                        Image.height({ "id": 16777369, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                         if (!isInitialRender) {
                             Image.pop();
                         }
@@ -330,7 +330,7 @@ export default class HomeIndex extends ViewPU {
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                             if (isInitialRender) {
-                                ViewPU.create(new HealthText(this, { title: '', titleResource: { "id": 16777372, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }, fontSize: { "id": 16777306, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } }, undefined, elmtId));
+                                ViewPU.create(new HealthText(this, { title: '', titleResource: { "id": 16777330, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }, fontSize: { "id": 16777373, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } }, undefined, elmtId));
                             }
                             else {
                                 this.updateStateVarsOfChildByElmtId(elmtId, {
@@ -356,9 +356,10 @@ export default class HomeIndex extends ViewPU {
             this.observeComponentCreation((elmtId, isInitialRender) => {
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 if (isInitialRender) {
-                    ViewPU.create(new AddBtn(this, { clickAction: () => {
-                            this.editTaskAction();
-                        } }, undefined, elmtId));
+                    ViewPU.create(new AddBtn(this, {
+                        clickAction: () => { this.editTaskAction(); },
+                        homeStore: this.__homeStore
+                    }, undefined, elmtId));
                 }
                 else {
                     this.updateStateVarsOfChildByElmtId(elmtId, {});
@@ -366,33 +367,6 @@ export default class HomeIndex extends ViewPU {
                 ViewStackProcessor.StopGetAccessRecording();
             });
         }
-        this.observeComponentCreation((elmtId, isInitialRender) => {
-            ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Row.create();
-            Row.debugLine("view/HomeComponent.ets(168:7)");
-            Row.width(Const.THOUSANDTH_1000);
-            Row.height(Const.DEFAULT_56);
-            Row.position({ x: 0, y: 0 });
-            Row.backgroundColor(`rgba(${WHITE_COLOR_0X},${WHITE_COLOR_0X},${WHITE_COLOR_0X},${this.naviAlpha})`);
-            if (!isInitialRender) {
-                Row.pop();
-            }
-            ViewStackProcessor.StopGetAccessRecording();
-        });
-        this.observeComponentCreation((elmtId, isInitialRender) => {
-            ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777272, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.debugLine("view/HomeComponent.ets(169:9)");
-            __Text__titleTextStyle();
-            Text.fontSize({ "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.padding({ left: Const.THOUSANDTH_66 });
-            if (!isInitialRender) {
-                Text.pop();
-            }
-            ViewStackProcessor.StopGetAccessRecording();
-        });
-        Text.pop();
-        Row.pop();
         {
             this.observeComponentCreation((elmtId, isInitialRender) => {
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);

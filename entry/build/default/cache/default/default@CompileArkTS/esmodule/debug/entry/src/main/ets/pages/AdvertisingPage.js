@@ -52,7 +52,7 @@ class AdvertisingPage extends ViewPU {
     aboutToAppear() {
         this.intervalId = setInterval(() => {
             if (this.duration > 0) {
-                this.duration -= 1;
+                this.duration += 1;
             }
             else {
                 this.goToHomePage();
@@ -65,9 +65,10 @@ class AdvertisingPage extends ViewPU {
             Column.create();
             Column.width('100%');
             Column.height('100%');
-            Column.backgroundImagePosition({ x: 0, y: 0 });
-            Column.backgroundImage({ "id": 16777348, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Column.backgroundImageSize({ width: '100%', height: '100%' });
+            Column.backgroundImagePosition({ x: -300, y: 0 });
+            Column.backgroundImage({ "id": 16777350, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.backgroundImageSize({ height: '100%' });
+            Column.backgroundBlurStyle(BlurStyle.Regular);
             Column.justifyContent(FlexAlign.SpaceBetween);
             if (!isInitialRender) {
                 Column.pop();
@@ -86,16 +87,16 @@ class AdvertisingPage extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777240, "type": 10003, params: [this.duration], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.borderRadius({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777242, "type": 10003, params: [this.duration], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777306, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.borderRadius({ "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.letterSpacing(Const.LETTER_1);
-            Text.height({ "id": 16777317, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.height({ "id": 16777320, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.backgroundColor('rgba(0,0,0,0.20)');
-            Text.border({ color: { "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }, width: { "id": 16777300, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
-            Text.margin({ top: { "id": 16777317, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
-            Text.padding({ "id": 16777332, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.border({ color: { "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }, width: { "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Text.margin({ top: { "id": 16777320, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Text.padding({ "id": 16777335, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.onClick(() => this.goToHomePage());
             if (!isInitialRender) {
                 Text.pop();
@@ -107,7 +108,7 @@ class AdvertisingPage extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Row.create();
-            Row.height({ "id": 16777302, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.height({ "id": 16777318, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Row.width('100%');
             Row.justifyContent(FlexAlign.Center);
             if (!isInitialRender) {
@@ -117,9 +118,61 @@ class AdvertisingPage extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Image.create({ "id": 16777396, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Image.width({ "id": 16777325, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Image.height({ "id": 16777325, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.create({ space: Const.SPACE_4 });
+            Column.alignItems(HorizontalAlign.Start);
+            Column.margin({ left: { "id": 16777306, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            if (!isInitialRender) {
+                Column.pop();
+            }
+            ViewStackProcessor.StopGetAccessRecording();
+        });
+        this.observeComponentCreation((elmtId, isInitialRender) => {
+            ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
+            Text.create("毕业设计成果展示");
+            Text.fontFamily({ "id": 16777223, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777316, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontWeight(Const.FONT_WEIGHT_700);
+            Text.letterSpacing(Const.LETTER_1);
+            if (!isInitialRender) {
+                Text.pop();
+            }
+            ViewStackProcessor.StopGetAccessRecording();
+        });
+        Text.pop();
+        this.observeComponentCreation((elmtId, isInitialRender) => {
+            ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
+            Text.create("邓洪 2020211849");
+            Text.fontFamily({ "id": 16777222, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontWeight(Const.FONT_WEIGHT_400);
+            Text.letterSpacing(Const.LETTER_34);
+            Text.opacity(Const.OPACITY_4);
+            Text.fontSize({ "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            if (!isInitialRender) {
+                Text.pop();
+            }
+            ViewStackProcessor.StopGetAccessRecording();
+        });
+        Text.pop();
+        Column.pop();
+        Row.pop();
+        this.observeComponentCreation((elmtId, isInitialRender) => {
+            ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
+            Row.create();
+            Row.height({ "id": 16777305, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Row.width('100%');
+            Row.justifyContent(FlexAlign.Center);
+            if (!isInitialRender) {
+                Row.pop();
+            }
+            ViewStackProcessor.StopGetAccessRecording();
+        });
+        this.observeComponentCreation((elmtId, isInitialRender) => {
+            ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
+            Image.create({ "id": 16777400, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.width({ "id": 16777328, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.height({ "id": 16777328, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.objectFit(ImageFit.Contain);
             if (!isInitialRender) {
                 Image.pop();
@@ -130,7 +183,7 @@ class AdvertisingPage extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create({ space: Const.SPACE_4 });
             Column.alignItems(HorizontalAlign.Start);
-            Column.margin({ left: { "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Column.margin({ left: { "id": 16777306, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 Column.pop();
             }
@@ -140,8 +193,8 @@ class AdvertisingPage extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create({ "id": 16777219, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontFamily({ "id": 16777223, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777313, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777289, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777316, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(Const.FONT_WEIGHT_700);
             Text.letterSpacing(Const.LETTER_1);
             if (!isInitialRender) {
@@ -154,11 +207,11 @@ class AdvertisingPage extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create({ "id": 16777218, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontFamily({ "id": 16777222, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777289, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(Const.FONT_WEIGHT_400);
             Text.letterSpacing(Const.LETTER_34);
             Text.opacity(Const.OPACITY_4);
-            Text.fontSize({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Text.pop();
             }

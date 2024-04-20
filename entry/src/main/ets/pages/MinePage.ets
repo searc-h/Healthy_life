@@ -12,15 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import router from '@ohos.router';
 import { ListInfo } from '../view/ListInfo';
 import { UserBaseInfo } from '../view/UserBaseInfo';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
+import { GlobalContext } from '../common/utils/GlobalContext';
 
+@Entry
 @Component
 export struct MineIndex {
   @State nickname: string = Const.NICK_NAME;
   @State signature: string = Const.SIGNATURE;
+  @State isLogin : boolean = false;
+
+  aboutToAppear(){
+    this.isLogin = GlobalContext.getContext().getObject("isLogin") as boolean
+  }
+
+  loginOut(){
+    router.pushUrl({url : 'pages/LoginPage'})
+  }
 
   build() {
     Column() {
@@ -30,6 +41,7 @@ export struct MineIndex {
       });
 
       ListInfo();
+
     }
     .height(Const.FULL_HEIGHT)
     .backgroundColor($r('app.color.mineBgColor'))

@@ -23,7 +23,7 @@
                 "descriptionId" : 16777218,
                 "exported" : true,
                 "icon" : "$media:logo",
-                "iconId" : 16777396,
+                "iconId" : 16777400,
                 "label" : "$string:EntryAbility_label",
                 "labelId" : 16777219,
                 "name" : "EntryAbility",
@@ -43,16 +43,16 @@
                 ],
                 "srcEntry" : "./ets/entryability/EntryAbility.ets",
                 "startWindowBackground" : "$color:white",
-                "startWindowBackgroundId" : 16777290,
+                "startWindowBackgroundId" : 16777293,
                 "startWindowIcon" : "$media:logo",
-                "startWindowIconId" : 16777396
+                "startWindowIconId" : 16777400
             }
         ],
         "compileMode" : "esmodule",
         "deliveryWithInstall" : true,
         "dependencies" : [],
         "description" : "$string:module_desc",
-        "descriptionId" : 16777244,
+        "descriptionId" : 16777246,
         "deviceTypes" : 
         [
             "phone"
@@ -69,7 +69,7 @@
                     {
                         "name" : "ohos.extension.form",
                         "resource" : "$profile:form_config",
-                        "resourceId" : 16777403
+                        "resourceId" : 16777408
                     }
                 ],
                 "name" : "EntryFormAbility",
@@ -86,13 +86,22 @@
             {
                 "name" : "ohos.permission.PUBLISH_AGENT_REMINDER",
                 "reason" : "$string:task_reason",
-                "reasonId" : 16777264,
+                "reasonId" : 16777267,
                 "usedScene" : 
                 {
                     "abilities" : 
                     [
                         "EntryAbility"
                     ],
+                    "when" : "always"
+                }
+            },
+            {
+                "name" : "ohos.permission.INTERNET",
+                "reason" : "$string:need_network",
+                "reasonId" : 16777247,
+                "usedScene" : 
+                {
                     "when" : "always"
                 }
             }

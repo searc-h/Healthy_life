@@ -7,17 +7,17 @@ function __Text__targetSetCommon() {
     Text.align(Alignment.End);
 }
 function __Text__targetSettingStyle(isOpen, taskID) {
-    Text.fontColor(isOpen && taskID !== taskType.smile && taskID !== taskType.brushTeeth ? { "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } : { "id": 16777252, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontColor(isOpen && taskID !== taskType.smile && taskID !== taskType.brushTeeth ? { "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } : { "id": 16777254, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
 }
 function __Text__remindTimeStyle(isOpen, isAlarm) {
-    Text.fontColor(isOpen && isAlarm ? { "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } : { "id": 16777252, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontColor(isOpen && isAlarm ? { "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } : { "id": 16777254, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
 }
 function __Text__frequencyStyle(isOpen, isAlarm) {
     Text.fontSize(Const.DEFAULT_12);
     Text.flexGrow(1);
     Text.margin({ right: Const.DEFAULT_8 });
     Text.textAlign(TextAlign.End);
-    Text.fontColor(isOpen && isAlarm ? { "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } : { "id": 16777252, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontColor(isOpen && isAlarm ? { "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } : { "id": 16777254, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
 }
 export class TaskChooseItem extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1) {
@@ -72,7 +72,7 @@ export class TaskChooseItem extends ViewPU {
             Toggle.debugLine("view/task/TaskEditListItem.ets(53:7)");
             Toggle.width(Const.DEFAULT_56);
             Toggle.height(Const.DEFAULT_32);
-            Toggle.selectedColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Toggle.selectedColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Toggle.onChange((isOn) => {
                 this.settingParams.isOpen = isOn;
             });
@@ -125,7 +125,7 @@ export class TargetSetItem extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777383, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777341, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/task/TaskEditListItem.ets(72:7)");
             Text.fontSize(Const.DEFAULT_20);
             Text.fontWeight(FontWeight.Medium);
@@ -192,7 +192,7 @@ export class TargetSetItem extends ViewPU {
         If.pop();
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Image.create({ "id": 16777394, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.create({ "id": 16777480, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.debugLine("view/task/TaskEditListItem.ets(87:7)");
             Image.width(Const.DEFAULT_8);
             Image.height(Const.DEFAULT_16);
@@ -244,7 +244,7 @@ export class OpenRemindItem extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777373, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777331, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/task/TaskEditListItem.ets(100:7)");
             Text.fontSize(Const.DEFAULT_20);
             Text.fontWeight(FontWeight.Medium);
@@ -261,7 +261,7 @@ export class OpenRemindItem extends ViewPU {
             Toggle.debugLine("view/task/TaskEditListItem.ets(104:7)");
             Toggle.width(Const.DEFAULT_56);
             Toggle.height(Const.DEFAULT_32);
-            Toggle.selectedColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Toggle.selectedColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Toggle.onChange((isOn) => {
                 this.settingParams.isAlarm = isOn;
             });
@@ -314,7 +314,7 @@ export class RemindTimeItem extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777376, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777334, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/task/TaskEditListItem.ets(123:7)");
             Text.fontSize(Const.DEFAULT_20);
             Text.fontWeight(FontWeight.Medium);
@@ -350,7 +350,7 @@ export class RemindTimeItem extends ViewPU {
         Text.pop();
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Image.create({ "id": 16777394, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.create({ "id": 16777480, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.debugLine("view/task/TaskEditListItem.ets(129:7)");
             Image.width(Const.DEFAULT_8);
             Image.height(Const.DEFAULT_16);
@@ -410,7 +410,7 @@ export class FrequencyItem extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777366, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777324, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/task/TaskEditListItem.ets(143:7)");
             Text.fontSize(Const.DEFAULT_20);
             Text.fontWeight(FontWeight.Medium);
@@ -435,7 +435,7 @@ export class FrequencyItem extends ViewPU {
         Text.pop();
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Image.create({ "id": 16777394, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.create({ "id": 16777480, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.debugLine("view/task/TaskEditListItem.ets(147:7)");
             Image.width(Const.DEFAULT_8);
             Image.height(Const.DEFAULT_16);

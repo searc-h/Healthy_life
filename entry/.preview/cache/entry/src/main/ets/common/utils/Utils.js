@@ -62,4 +62,13 @@ export const oneWeekDictFunc = () => {
     }
     return oneWeekDict;
 };
+/**
+ * 将params参数转化到url参数
+ */
+export const paramsObjToFullUrl = (url, params) => {
+    return Object.keys(params).reduce((preUrl, key, index, array) => {
+        index === array.length - 1 ? preUrl += `${key}=${params[key]}` : preUrl += `${key}=${params[key]}` + "&";
+        return preUrl;
+    }, url + "?");
+};
 //# sourceMappingURL=Utils.js.map

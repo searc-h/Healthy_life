@@ -60,7 +60,7 @@ class SplashIndex extends ViewPU {
     jumpAdPage() {
         setTimeout(() => {
             router.replaceUrl({ url: 'pages/AdvertisingPage' });
-        }, Const.LAUNCHER_DELAY_TIME);
+        }, Const.LAUNCHER_DELAY_TIME + 3000);
     }
     aboutToAppear() {
         let preferences = data_preferences.getPreferences(this.context, H_STORE);
@@ -85,7 +85,7 @@ class SplashIndex extends ViewPU {
             Column.width('100%');
             Column.height('100%');
             Column.backgroundImagePosition({ x: 0, y: 0 });
-            Column.backgroundImage({ "id": 16777381, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.backgroundImage({ "id": 16777385, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Column.backgroundImageSize({ width: '100%', height: '100%' });
             if (!isInitialRender) {
                 Column.pop();
@@ -94,10 +94,10 @@ class SplashIndex extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Image.create({ "id": 16777396, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Image.width({ "id": 16777304, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.create({ "id": 16777400, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.width({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.aspectRatio(1);
-            Image.margin({ top: { "id": 16777304, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Image.margin({ top: { "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 Image.pop();
             }
@@ -107,13 +107,13 @@ class SplashIndex extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create({ "id": 16777219, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontFamily({ "id": 16777223, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777289, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777315, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(Const.FONT_WEIGHT_700);
             Text.letterSpacing(Const.LETTER_1);
             Text.margin({
-                top: { "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
-                bottom: { "id": 16777332, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                top: { "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
+                bottom: { "id": 16777335, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
             });
             if (!isInitialRender) {
                 Text.pop();
@@ -125,11 +125,11 @@ class SplashIndex extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create({ "id": 16777218, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontFamily({ "id": 16777222, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777289, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777292, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(Const.FONT_WEIGHT_400);
             Text.letterSpacing(Const.LETTER_34);
             Text.opacity(Const.OPACITY_6);
-            Text.fontSize({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Text.pop();
             }

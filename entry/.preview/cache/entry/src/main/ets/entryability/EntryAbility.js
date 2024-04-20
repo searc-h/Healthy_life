@@ -63,6 +63,7 @@ export default class EntryAbility extends UIAbility {
     }
     onBackground() {
         // Ability has back to background
+        // update FormCards only when the taskList changed
         FormUtils.backgroundUpdateCard(GlobalContext.getContext().getObject('taskListChange'));
     }
     onNewWant(want, launchParam) {

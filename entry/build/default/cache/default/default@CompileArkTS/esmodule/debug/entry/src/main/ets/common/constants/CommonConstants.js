@@ -35,6 +35,12 @@ CommonConstants.FORM_INFO = {
 };
 // TaskNum
 CommonConstants.TASK_NUM = 6;
+// The host address of the server
+CommonConstants.SERVER = 'http://10.17.156.107:9588';
+/**
+ * The http timeout duration.
+ */
+CommonConstants.HTTP_READ_TIMEOUT = 10000;
 // THOUSANDTH
 CommonConstants.THOUSANDTH_15 = '1.5%'; // ‘1.5%’
 CommonConstants.THOUSANDTH_12 = '2.2%'; // ‘2.2%’
@@ -45,6 +51,7 @@ CommonConstants.THOUSANDTH_80 = '8%'; // ‘8%’
 CommonConstants.THOUSANDTH_100 = '10%'; // ‘10%’
 CommonConstants.THOUSANDTH_120 = '12%'; // ‘12%’
 CommonConstants.THOUSANDTH_160 = '16%'; // ‘16%’
+CommonConstants.THOUSANDTH_320 = '32%'; // ‘16%’
 CommonConstants.THOUSANDTH_400 = '40%'; // ‘40%’
 CommonConstants.THOUSANDTH_420 = '42%'; // ‘42%’
 CommonConstants.THOUSANDTH_500 = '50%'; // ‘50%’

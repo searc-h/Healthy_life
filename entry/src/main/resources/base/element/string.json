@@ -174,7 +174,7 @@
     },
     {
       "name": "jump_ad",
-      "value": " 跳过广告 %ds"
+      "value": " 跳过 %ds"
     },
     {
       "name": "alert",
@@ -189,6 +189,10 @@
       "value": "退出"
     },
     {
+      "name": "need_network",
+      "value": "需要网络发送请求"
+    },
+    {
       "name": "agencyNoTask",
       "value": "Go to Healthy Living to add tasks"
     },
@@ -199,6 +203,10 @@
     {
       "name": "empty",
       "value": "empty"
+    },
+    {
+      "name": "http_error_message",
+      "value": "Network request failed, please try later!"
     }
   ]
 }

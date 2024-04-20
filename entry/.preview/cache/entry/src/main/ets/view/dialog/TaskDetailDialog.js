@@ -2,11 +2,11 @@ import { TaskMapById } from '@bundle:com.example.healthy_life/entry/ets/model/Ta
 import { CommonConstants as Const } from '@bundle:com.example.healthy_life/entry/ets/common/constants/CommonConstants';
 import { GlobalContext } from '@bundle:com.example.healthy_life/entry/ets/common/utils/GlobalContext';
 function __Text__textStyle() {
-    Text.fontColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-    Text.fontFamily({ "id": 16777351, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontFamily({ "id": 16777309, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
 }
 function __Text__taskTextStyle() {
-    Text.fontColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+    Text.fontColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
     Text.width('100%');
 }
 export class TaskDetailDialog extends ViewPU {
@@ -67,8 +67,8 @@ export class TaskDetailDialog extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create();
             Column.debugLine("view/dialog/TaskDetailDialog.ets(40:5)");
-            Column.height({ "id": 16777322, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Column.width({ "id": 16777316, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.height({ "id": 16777389, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.width({ "id": 16777383, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Column.backgroundImage(TaskMapById[((_a = this.currentTask) === null || _a === void 0 ? void 0 : _a.taskID) - 1].dialogBg, ImageRepeat.NoRepeat);
             Column.backgroundImageSize({
                 width: '100%',
@@ -76,8 +76,8 @@ export class TaskDetailDialog extends ViewPU {
             });
             Column.justifyContent(FlexAlign.End);
             Column.padding({
-                bottom: { "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
-                left: { "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                bottom: { "id": 16777370, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
+                left: { "id": 16777376, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
             });
             if (!isInitialRender) {
                 Column.pop();
@@ -150,7 +150,7 @@ class TaskBaseInfo extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create({ space: Const.DEFAULT_8 });
             Column.debugLine("view/dialog/TaskDetailDialog.ets(76:5)");
-            Column.position({ y: { "id": 16777314, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Column.position({ y: { "id": 16777381, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 Column.pop();
             }
@@ -160,11 +160,11 @@ class TaskBaseInfo extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create(this.taskName);
             Text.debugLine("view/dialog/TaskDetailDialog.ets(77:7)");
-            Text.fontSize({ "id": 16777310, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777377, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(FontWeight.Bold);
-            Text.fontFamily({ "id": 16777352, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontFamily({ "id": 16777310, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             __Text__taskTextStyle();
-            Text.margin({ left: { "id": 16777303, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Text.margin({ left: { "id": 16777370, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 Text.pop();
             }
@@ -218,8 +218,8 @@ class TaskClock extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Button.createWithChild();
             Button.debugLine("view/dialog/TaskDetailDialog.ets(96:7)");
-            Button.width({ "id": 16777311, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Button.borderRadius({ "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Button.width({ "id": 16777378, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Button.borderRadius({ "id": 16777379, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Button.backgroundColor('rgba(255,255,255,0.40)');
             Button.onClick(() => {
                 GlobalContext.getContext().setObject('taskListChange', true);
@@ -233,10 +233,10 @@ class TaskClock extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777362, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777320, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskDetailDialog.ets(97:9)");
-            Text.height({ "id": 16777320, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.height({ "id": 16777387, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777376, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(FontWeight.Normal);
             __Text__textStyle();
             if (!isInitialRender) {
@@ -248,9 +248,9 @@ class TaskClock extends ViewPU {
         Button.pop();
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777367, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777325, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskDetailDialog.ets(112:7)");
-            Text.fontSize({ "id": 16777306, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777373, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(FontWeight.Regular);
             __Text__textStyle();
             Text.onClick(() => {

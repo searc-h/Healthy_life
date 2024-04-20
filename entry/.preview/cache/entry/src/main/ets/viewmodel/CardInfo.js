@@ -18,7 +18,7 @@
 export default class CardInfo {
     constructor() {
         this.titleContent = '';
-        this.achievement = { "id": 16777276, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
+        this.achievement = { "id": 16777297, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" };
     }
 }
 //# sourceMappingURL=CardInfo.js.map

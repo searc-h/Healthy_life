@@ -70,7 +70,7 @@ export default class TaskList extends ViewPU {
                                 }
                             });
                         });
-                        ListItem.backgroundColor({ "id": 16777270, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                        ListItem.backgroundColor({ "id": 16777291, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                         ListItem.debugLine("view/task/TaskListComponent.ets(28:9)");
                         if (!isInitialRender) {
                             ListItem.pop();
@@ -122,7 +122,7 @@ export default class TaskList extends ViewPU {
                             Text.create(item === null || item === void 0 ? void 0 : item.taskName);
                             Text.debugLine("view/task/TaskListComponent.ets(35:15)");
                             Text.fontSize(Const.DEFAULT_20);
-                            Text.fontColor({ "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Text.fontColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             if (!isInitialRender) {
                                 Text.pop();
                             }
@@ -148,13 +148,13 @@ export default class TaskList extends ViewPU {
                                 this.ifElseBranchUpdateFunction(0, () => {
                                     this.observeComponentCreation((elmtId, isInitialRender) => {
                                         ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                                        Text.create({ "id": 16777360, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                                        Text.create({ "id": 16777318, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                                         Text.debugLine("view/task/TaskListComponent.ets(41:15)");
                                         Text.fontSize(Const.DEFAULT_16);
                                         Text.flexGrow(1);
                                         Text.align(Alignment.End);
                                         Text.margin({ right: Const.DEFAULT_8 });
-                                        Text.fontColor({ "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                                        Text.fontColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                                         if (!isInitialRender) {
                                             Text.pop();
                                         }
@@ -174,7 +174,7 @@ export default class TaskList extends ViewPU {
                         If.pop();
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                            Image.create({ "id": 16777394, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.create({ "id": 16777480, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             Image.debugLine("view/task/TaskListComponent.ets(48:13)");
                             Image.width(Const.DEFAULT_8);
                             Image.height(Const.DEFAULT_16);
@@ -228,7 +228,7 @@ export default class TaskList extends ViewPU {
                             Text.create(item === null || item === void 0 ? void 0 : item.taskName);
                             Text.debugLine("view/task/TaskListComponent.ets(35:15)");
                             Text.fontSize(Const.DEFAULT_20);
-                            Text.fontColor({ "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Text.fontColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             if (!isInitialRender) {
                                 Text.pop();
                             }
@@ -254,13 +254,13 @@ export default class TaskList extends ViewPU {
                                 this.ifElseBranchUpdateFunction(0, () => {
                                     this.observeComponentCreation((elmtId, isInitialRender) => {
                                         ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                                        Text.create({ "id": 16777360, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                                        Text.create({ "id": 16777318, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                                         Text.debugLine("view/task/TaskListComponent.ets(41:15)");
                                         Text.fontSize(Const.DEFAULT_16);
                                         Text.flexGrow(1);
                                         Text.align(Alignment.End);
                                         Text.margin({ right: Const.DEFAULT_8 });
-                                        Text.fontColor({ "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                                        Text.fontColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                                         if (!isInitialRender) {
                                             Text.pop();
                                         }
@@ -280,7 +280,7 @@ export default class TaskList extends ViewPU {
                         If.pop();
                         this.observeComponentCreation((elmtId, isInitialRender) => {
                             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-                            Image.create({ "id": 16777394, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                            Image.create({ "id": 16777480, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                             Image.debugLine("view/task/TaskListComponent.ets(48:13)");
                             Image.width(Const.DEFAULT_8);
                             Image.height(Const.DEFAULT_16);

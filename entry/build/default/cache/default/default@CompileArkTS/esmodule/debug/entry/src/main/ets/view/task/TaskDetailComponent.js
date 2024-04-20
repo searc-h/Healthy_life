@@ -80,6 +80,7 @@ export default class TaskDetail extends ViewPU {
     set frequency(newValue) {
         this.__frequency.set(newValue);
     }
+    // 从路径参数中拿到 可编辑任务
     parseRouterParams() {
         let params = router.getParams();
         const routerParams = JSON.parse(params.params);
@@ -95,6 +96,7 @@ export default class TaskDetail extends ViewPU {
         if (this.isChanged) {
             let context = getContext(this);
             let taskInfo = new TaskInfo(Const.ZERO, Const.GLOBAL_KEY, this.settingParams.taskID, this.settingParams.targetValue, this.settingParams.isAlarm, this.settingParams.startTime, this.settingParams.endTime, this.settingParams.frequency, false, '', this.settingParams.isOpen);
+            console.info("taskInfo : ", JSON.stringify(taskInfo));
             addTask(taskInfo, context).then((res) => {
                 GlobalContext.getContext().setObject('taskListChange', true);
                 router.back({
@@ -153,7 +155,7 @@ export default class TaskDetail extends ViewPU {
             const itemCreation = (elmtId, isInitialRender) => {
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
@@ -212,7 +214,7 @@ export default class TaskDetail extends ViewPU {
                 var _a, _b, _c;
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
@@ -277,7 +279,7 @@ export default class TaskDetail extends ViewPU {
                 var _a;
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
@@ -337,7 +339,7 @@ export default class TaskDetail extends ViewPU {
                 var _a, _b;
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
@@ -400,7 +402,7 @@ export default class TaskDetail extends ViewPU {
                 var _a, _b;
                 ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
                 ListItem.create(deepRenderFunction, isLazyCreate);
-                ListItem.backgroundColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+                ListItem.backgroundColor({ "id": 16777293, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
                 ListItem.height(Const.DEFAULT_56);
                 ListItem.borderRadius(Const.DEFAULT_10);
                 ListItem.padding({ left: Const.DEFAULT_12, right: Const.DEFAULT_12 });
@@ -463,7 +465,7 @@ export default class TaskDetail extends ViewPU {
             Button.createWithChild();
             Button.width(Const.THOUSANDTH_800);
             Button.height(Const.DEFAULT_48);
-            Button.backgroundColor({ "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Button.backgroundColor({ "id": 16777272, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Button.onClick(() => {
                 this.finishTaskEdit();
             });
@@ -479,8 +481,8 @@ export default class TaskDetail extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create({ "id": 16777235, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777268, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777271, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Text.pop();
             }

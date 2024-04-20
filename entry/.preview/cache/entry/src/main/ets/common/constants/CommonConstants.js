@@ -35,6 +35,12 @@ CommonConstants.FORM_INFO = {
 };
 // TaskNum
 CommonConstants.TASK_NUM = 6;
+// The host address of the server
+CommonConstants.SERVER = 'http://10.17.156.107:9588';
+/**
+ * The http timeout duration.
+ */
+CommonConstants.HTTP_READ_TIMEOUT = 10000;
 // THOUSANDTH
 CommonConstants.THOUSANDTH_15 = '1.5%'; // ‘1.5%’
 CommonConstants.THOUSANDTH_12 = '2.2%'; // ‘2.2%’
@@ -168,6 +174,230 @@ CommonConstants.DEFAULT_DIMENSION_2X2 = 2;
 CommonConstants.DEFAULT_DIMENSION_2X4 = 3;
 CommonConstants.WIDGET_NAME_AGENCY = "agency";
 CommonConstants.WIDGET_NAME_PROGRESS = "progress";
+/**
+ * The span of privacy statement for SM device.
+ */
+CommonConstants.PRIVACY_SPAN_SM = 2;
+/**
+ * The span of privacy statement for MD device.
+ */
+CommonConstants.PRIVACY_SPAN_MD = 4;
+/**
+ * The span of privacy statement for LG device.
+ */
+CommonConstants.PRIVACY_SPAN_LG = 4;
+/**
+ * The span of mine page for SM device.
+ */
+CommonConstants.MINE_SPAN_SM = 4;
+/**
+ * The span of mine page for MD device.
+ */
+CommonConstants.MINE_SPAN_MD = 8;
+/**
+ * The span of mine for LG device.
+ */
+CommonConstants.MINE_SPAN_LG = 8;
+/**
+ * The span of login component button for SM device.
+ */
+CommonConstants.BUTTON_SPAN_SM = 4;
+/**
+ * The span of login component button for MD device if break point is smaller than 360vp.
+ */
+CommonConstants.BUTTON_SPAN_MD_SMALL = 3;
+/**
+ * The span of login component button for MD device if break point is not smaller than 360vp.
+ */
+CommonConstants.BUTTON_SPAN_MD_BIG = 6;
+/**
+ * The span of login component button for LG device.
+ */
+CommonConstants.BUTTON_SPAN_LG = 8;
+/**
+ * The offset for SM device.
+ */
+CommonConstants.OFFSET_SM = 1;
+/**
+ * The offset for MD device.
+ */
+CommonConstants.OFFSET_MD = 1;
+/**
+ * The offset for LG device.
+ */
+CommonConstants.OFFSET_LG = 2;
+/**
+ * The offset of privacy statement component for SM device.
+ */
+CommonConstants.PRIVACY_OFFSET_SM = 1;
+/**
+ * The offset of privacy statement component for MD device.
+ */
+CommonConstants.PRIVACY_OFFSET_MD = 2;
+/**
+ * The offset of privacy statement component for LG device.
+ */
+CommonConstants.PRIVACY_OFFSET_LG = 4;
+/**
+ * The offset of login component button for SM device.
+ */
+CommonConstants.BUTTON_OFFSET_SM = 0;
+/**
+ * The offset of login component button for MD device.
+ */
+CommonConstants.BUTTON_OFFSET_MD = 2;
+/**
+ * The offset of login component button for LG device.
+ */
+CommonConstants.BUTTON_OFFSET_LG = 4;
+/**
+ * The break point for page.
+ */
+CommonConstants.BREAK_POINT = ['320vp', '600vp', '820vp'];
+/**
+ * Login scroll layout weight.
+ */
+CommonConstants.LOGIN_SCROLL_LAYOUT_WEIGHT = 1;
+/**
+ * Registration success page scroll layout weight.
+ */
+CommonConstants.SCROLL_LAYOUT_WEIGHT = 1;
+/**
+ * Mine page column layout weight.
+ */
+CommonConstants.COLUMN_LAYOUT_WEIGHT = 1;
+/**
+ * Mine page list size.
+ */
+CommonConstants.LIST_SIZE = 2;
+/**
+ * Title font weight.
+ */
+CommonConstants.TITLE_FONT_WEIGHT = 500;
+/**
+ * Login text font weight.
+ */
+CommonConstants.LOGIN_TEXT_FONT_WEIGHT = 500;
+/**
+ * Button font weight of registration page.
+ */
+CommonConstants.BUTTON_FONT_WEIGHT = 500;
+/**
+ * Text font weight of registration page.
+ */
+CommonConstants.TEXT_FONT_WEIGHT = 500;
+/**
+ * User nickname text font weight.
+ */
+CommonConstants.NICKNAME_FONT_WEIGHT = 500;
+/**
+ * Mine page url.
+ */
+CommonConstants.MINE_PAGE_URL = 'pages/MinePage';
+/**
+ * Registration success page url.
+ */
+CommonConstants.REGISTRATION_SUCCESS_PAGE_URL = 'pages/RegistrationSuccessPage';
+/**
+ * Privacy page url.
+ */
+CommonConstants.PRIVACY_PAGE_URL = 'pages/PrivacyPage';
+/**
+ * Customer service page url.
+ */
+CommonConstants.CUSTOMER_SERVICE_PAGE_URL = 'pages/CustomerServicePage';
+/**
+ * Percent of the text input.
+ */
+CommonConstants.TEXT_INPUT_WIDTH_PERCENT = '100%';
+/**
+ * Percent of divider width.
+ */
+CommonConstants.DIVIDER_WIDTH_PERCENT = '100%';
+/**
+ * Percent of the button width.
+ */
+CommonConstants.BUTTON_WIDTH_PERCENT = '100%';
+/**
+ * Percent of the flex width.
+ */
+CommonConstants.FLEX_WIDTH_PERCENT = '100%';
+/**
+ * Percent of the login page width.
+ */
+CommonConstants.LOGIN_PAGE_WIDTH_PERCENT = '100%';
+/**
+ * Full percent of the width.
+ */
+CommonConstants.FULL_WIDTH_PERCENT = '100%';
+/**
+ * Percent of the registration success page width.
+ */
+CommonConstants.REGISTRATION_PAGE_WIDTH_PERCENT = '100%';
+/**
+ * Percent of the registration success page height.
+ */
+CommonConstants.REGISTRATION_PAGE_HEIGHT_PERCENT = '100%';
+/**
+ * Percent of text width in mine page.
+ */
+CommonConstants.MINE_PAGE_TEXT_WIDTH_PERCENT = '100%';
+/**
+ * Percent of the mine page width.
+ */
+CommonConstants.MINE_PAGE_WIDTH_PERCENT = '100%';
+/**
+ * Percent of column width in customer service page.
+ */
+CommonConstants.CUSTOMER_COLUMN_WIDTH_PERCENT = '100%';
+/**
+ * Percent of column height in customer service page.
+ */
+CommonConstants.CUSTOMER_COLUMN_HEIGHT_PERCENT = '100%';
+/**
+ * Percent of column height in mine page.
+ */
+CommonConstants.MINE_PAGE_HEIGHT_PERCENT = '100%';
+/**
+ * Percent of the row width.
+ */
+CommonConstants.ROW_WIDTH_PERCENT = '100%';
+/**
+ * Scroll height percentage setting.
+ */
+CommonConstants.SCROLL_HEIGHT_PERCENT = '100%';
+/**
+ * Percent of the column width in detail page.
+ */
+CommonConstants.DETAIL_COLUMN_WIDTH_PERCENT = '93%';
+/**
+ * The number of columns for SM device.
+ */
+CommonConstants.GRID_ROW_SM = 4;
+/**
+ * The number of columns for MD device.
+ */
+CommonConstants.GRID_ROW_MD = 8;
+/**
+ * The number of columns for LG device.
+ */
+CommonConstants.GRID_ROW_LG = 12;
+/**
+ * The gutter of x direction device.
+ */
+CommonConstants.GUTTER_X = vp2px(12);
+/**
+ * The span of page for SM device.
+ */
+CommonConstants.SPAN_SM = 4;
+/**
+ * The span of page for MD device.
+ */
+CommonConstants.SPAN_MD = 6;
+/**
+ * The span of page for MD device.
+ */
+CommonConstants.SPAN_LG = 8;
 export var TaskType;
 (function (TaskType) {
     TaskType["Getup"] = "getup";

@@ -20,6 +20,7 @@ export class HealthDataSrcMgr {
         Logger.debug('HealthDataSourceManager', 'constructor');
         this.broadCast = new BroadCast();
     }
+    // 确保一个应用的实例是唯一的
     static getInstance() {
         if (!AppStorage.Get(APP_KEY_GROUP_DATA_SOURCE_MANAGER)) {
             AppStorage.SetOrCreate(APP_KEY_GROUP_DATA_SOURCE_MANAGER, new HealthDataSrcMgr());

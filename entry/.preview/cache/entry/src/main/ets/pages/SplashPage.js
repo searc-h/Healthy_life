@@ -60,7 +60,7 @@ class SplashIndex extends ViewPU {
     jumpAdPage() {
         setTimeout(() => {
             router.replaceUrl({ url: 'pages/AdvertisingPage' });
-        }, Const.LAUNCHER_DELAY_TIME);
+        }, Const.LAUNCHER_DELAY_TIME + 3000);
     }
     aboutToAppear() {
         let preferences = data_preferences.getPreferences(this.context, H_STORE);
@@ -86,7 +86,7 @@ class SplashIndex extends ViewPU {
             Column.width('100%');
             Column.height('100%');
             Column.backgroundImagePosition({ x: 0, y: 0 });
-            Column.backgroundImage({ "id": 16777226, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.backgroundImage({ "id": 16777227, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Column.backgroundImageSize({ width: '100%', height: '100%' });
             if (!isInitialRender) {
                 Column.pop();
@@ -97,9 +97,9 @@ class SplashIndex extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Image.create({ "id": 16777218, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.debugLine("pages/SplashPage.ets(86:7)");
-            Image.width({ "id": 16777304, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.width({ "id": 16777371, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Image.aspectRatio(1);
-            Image.margin({ top: { "id": 16777304, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Image.margin({ top: { "id": 16777371, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 Image.pop();
             }
@@ -107,16 +107,16 @@ class SplashIndex extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777272, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777293, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("pages/SplashPage.ets(90:7)");
-            Text.fontFamily({ "id": 16777352, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777312, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontFamily({ "id": 16777310, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777379, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(Const.FONT_WEIGHT_700);
             Text.letterSpacing(Const.LETTER_1);
             Text.margin({
-                top: { "id": 16777309, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
-                bottom: { "id": 16777332, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                top: { "id": 16777376, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" },
+                bottom: { "id": 16777399, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
             });
             if (!isInitialRender) {
                 Text.pop();
@@ -126,14 +126,14 @@ class SplashIndex extends ViewPU {
         Text.pop();
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777271, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777292, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("pages/SplashPage.ets(99:7)");
-            Text.fontFamily({ "id": 16777351, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontColor({ "id": 16777269, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontFamily({ "id": 16777309, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777290, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(Const.FONT_WEIGHT_400);
             Text.letterSpacing(Const.LETTER_34);
             Text.opacity(Const.OPACITY_6);
-            Text.fontSize({ "id": 16777307, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777374, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Text.pop();
             }

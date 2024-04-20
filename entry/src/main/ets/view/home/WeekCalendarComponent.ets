@@ -30,8 +30,8 @@ const DEFAULT_SCROLL_PERCENT = 0.934; // default calendar width percent
 @Component
 export struct WeekCalendar {
 
-  // 当选择的日期改变，触发回调
-  @State @Watch("changeSelectedDate") selectedDate: Date = new Date()
+  // 当选择的日期改变，触发回调; 使用@State以及@Watch有bug出现，所以只能用这种方式代替。
+  selectDate: Date = new Date()
   @Link homeStore: HomeStore;
 
   currentPage: number = 1;
@@ -53,9 +53,8 @@ export struct WeekCalendar {
 
   // 日期更改的回调
   changeSelectedDate(){
-    // 系统日期
-    this.homeStore.setSelectedShowDate(this.selectedDate.getTime());
-    // 任务列表数据
+    this.homeStore.setSelectedShowDate(this.selectDate.getTime());
+    // 更新任务列表数据
   }
 
   getProgressImg(item: WeekDateModel): Resource {
@@ -68,6 +67,7 @@ export struct WeekCalendar {
     }
     return $r('app.media.ic_home_half_done');
   }
+
   @Builder
   ArrowIcon(isRight: boolean) {
     Row() {
@@ -81,7 +81,8 @@ export struct WeekCalendar {
     .justifyContent(FlexAlign.Center)
     .onClick(() => {
        // 回到今日
-        this.selectedDate = new Date();
+        this.selectDate = new Date();
+        this.changeSelectedDate();
     })
   }
 
@@ -95,11 +96,11 @@ export struct WeekCalendar {
               DatePickerDialog.show({
                 start: new Date("2024-01-01"),
                 end: new Date(),
-                selected: this.selectedDate,
+                selected : this.selectDate,
                 onAccept: (value: DatePickerResult) => {
                   // 通过Date的setFullYear方法设置按下确定按钮时的日期，这样当弹窗再次弹出时显示选中的是上一次确定的日期
-                  this.selectedDate.setFullYear(value.year, value.month, value.day)
-                  console.info("DatePickerDialog:onAccept()" + JSON.stringify(value))
+                  this.selectDate.setFullYear(value.year, value.month, value.day)
+                  this.changeSelectedDate()
                 },
                 onCancel: () => {
                   console.info("DatePickerDialog:onCancel()")

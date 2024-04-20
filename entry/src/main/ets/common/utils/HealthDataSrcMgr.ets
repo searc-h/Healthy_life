@@ -26,6 +26,7 @@ export class HealthDataSrcMgr {
     this.broadCast = new BroadCast();
   }
 
+  // 确保一个应用的实例是唯一的
   public static getInstance(): HealthDataSrcMgr {
     if (!AppStorage.Get<HealthDataSrcMgr>(APP_KEY_GROUP_DATA_SOURCE_MANAGER)) {
       AppStorage.SetOrCreate<HealthDataSrcMgr>(APP_KEY_GROUP_DATA_SOURCE_MANAGER, new HealthDataSrcMgr());

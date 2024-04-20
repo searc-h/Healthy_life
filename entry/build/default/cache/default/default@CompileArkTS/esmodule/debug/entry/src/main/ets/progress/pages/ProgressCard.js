@@ -97,7 +97,7 @@ class ProgressCard extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Column.create();
-            Column.backgroundColor({ "id": 16777284, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Column.backgroundColor({ "id": 16777287, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Column.width(this.FULL_WIDTH_PERCENT);
             Column.height(this.FULL_HEIGHT_PERCENT);
             Column.onClick(() => {
@@ -124,10 +124,10 @@ class ProgressCard extends ViewPU {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Progress.create({ value: 0, total: this.PROGRESS_TOTAL, type: ProgressType.Ring });
             Progress.value(Number.parseInt(this.percent));
-            Progress.width({ "id": 16777342, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Progress.height({ "id": 16777342, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Progress.backgroundColor({ "id": 16777283, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Progress.style({ strokeWidth: { "id": 16777343, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Progress.width({ "id": 16777345, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Progress.height({ "id": 16777345, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Progress.backgroundColor({ "id": 16777286, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Progress.style({ strokeWidth: { "id": 16777346, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 Progress.pop();
             }
@@ -145,7 +145,7 @@ class ProgressCard extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create(this.percent);
-            Text.fontSize({ "id": 16777341, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777344, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontColor(Color.Black);
             Text.fontWeight(FontWeight.Normal);
             if (!isInitialRender) {
@@ -157,10 +157,10 @@ class ProgressCard extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create(this.PERCENTAGE);
-            Text.fontSize({ "id": 16777340, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777343, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontColor(Color.Black);
             Text.fontWeight(this.TEXT_SLIGHTLY_BOLD);
-            Text.margin({ top: { "id": 16777339, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
+            Text.margin({ top: { "id": 16777342, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } });
             if (!isInitialRender) {
                 Text.pop();
             }
@@ -181,9 +181,9 @@ class ProgressCard extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create(this.numerator.toString());
-            Text.fontColor({ "id": 16777280, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777338, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.lineHeight({ "id": 16777337, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777283, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777341, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.lineHeight({ "id": 16777340, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(FontWeight.Normal);
             if (!isInitialRender) {
                 Text.pop();
@@ -194,9 +194,9 @@ class ProgressCard extends ViewPU {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Text.create(this.SLASHES + this.denominator);
-            Text.fontColor({ "id": 16777271, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.fontSize({ "id": 16777335, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Text.lineHeight({ "id": 16777334, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777274, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontSize({ "id": 16777338, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.lineHeight({ "id": 16777337, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.fontWeight(FontWeight.Normal);
             if (!isInitialRender) {
                 Text.pop();

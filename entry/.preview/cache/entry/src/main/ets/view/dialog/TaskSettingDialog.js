@@ -119,7 +119,7 @@ export class TargetSettingDialog extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777383, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777341, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskSettingDialog.ets(65:9)");
             Text.fontSize(Const.DEFAULT_20);
             Text.margin({ right: Const.DEFAULT_12 });
@@ -211,10 +211,10 @@ export class TargetSettingDialog extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777361, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777319, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskSettingDialog.ets(94:9)");
             Text.fontSize(Const.DEFAULT_20);
-            Text.fontColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.onClick(() => {
                 this.currentTime = Const.DEFAULT_TIME;
                 this.currentValue = '';
@@ -228,10 +228,10 @@ export class TargetSettingDialog extends ViewPU {
         Text.pop();
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777364, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777322, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskSettingDialog.ets(101:9)");
             Text.fontSize(Const.DEFAULT_20);
-            Text.fontColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.onClick(() => {
                 this.setTargetValue();
                 this.controller.close();
@@ -310,7 +310,7 @@ export class RemindTimeDialog extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777376, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777334, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskSettingDialog.ets(127:9)");
             Text.fontSize(Const.DEFAULT_20);
             Text.margin({ top: Const.DEFAULT_10 });
@@ -355,10 +355,10 @@ export class RemindTimeDialog extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777361, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777319, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskSettingDialog.ets(145:9)");
             Text.fontSize(Const.DEFAULT_20);
-            Text.fontColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.onClick(() => {
                 this.currentTime = Const.DEFAULT_TIME;
                 this.controller.close();
@@ -371,10 +371,10 @@ export class RemindTimeDialog extends ViewPU {
         Text.pop();
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777364, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777322, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskSettingDialog.ets(151:9)");
             Text.fontSize(Const.DEFAULT_20);
-            Text.fontColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.onClick(() => {
                 this.settingParams.startTime = this.currentTime;
                 this.controller.close();
@@ -479,7 +479,7 @@ export class FrequencyDialog extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777377, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777335, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskSettingDialog.ets(194:9)");
             Text.fontSize(Const.DEFAULT_20);
             Text.margin({ top: Const.DEFAULT_10 });
@@ -498,7 +498,7 @@ export class FrequencyDialog extends ViewPU {
             List.debugLine("view/dialog/TaskSettingDialog.ets(202:7)");
             List.divider({
                 strokeWidth: Const.DEFAULT_2,
-                color: { "id": 16777250, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
+                color: { "id": 16777251, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" }
             });
             List.flexGrow(1);
             List.padding(Const.DEFAULT_12);
@@ -642,10 +642,10 @@ export class FrequencyDialog extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777361, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777319, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskSettingDialog.ets(227:9)");
             Text.fontSize(Const.DEFAULT_20);
-            Text.fontColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.onClick(() => {
                 this.controller.close();
             });
@@ -657,10 +657,10 @@ export class FrequencyDialog extends ViewPU {
         Text.pop();
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Text.create({ "id": 16777364, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.create({ "id": 16777322, "type": 10003, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.debugLine("view/dialog/TaskSettingDialog.ets(232:9)");
             Text.fontSize(Const.DEFAULT_20);
-            Text.fontColor({ "id": 16777248, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Text.fontColor({ "id": 16777249, "type": 10001, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             Text.onClick(() => {
                 this.setFrequency();
                 this.frequency = this.currentFrequency;

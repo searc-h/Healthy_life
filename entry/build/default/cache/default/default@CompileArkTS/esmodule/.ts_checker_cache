@@ -38,7 +38,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\pages\\SplashPage.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1712976115887.478,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\utils\\Logger.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\constants\\CommonConstants.ets",
@@ -48,7 +48,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\pages\\AdvertisingPage.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1712976618657.242,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\constants\\CommonConstants.ets"
       ],
@@ -56,7 +56,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\pages\\MainPage.ets": {
-      "mtimeMs": 1712495414027.838,
+      "mtimeMs": 1713002559695.87,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\utils\\Logger.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\model\\TaskInitList.ets",
@@ -95,7 +95,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\constants\\CommonConstants.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1712715972156.0017,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\CommonConstantsInfo.ets"
       ],
@@ -560,7 +560,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\utils\\Utils.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1712721684390.4326,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\model\\TaskInitList.ets"
       ],
@@ -576,7 +576,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\model\\TaskInitList.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1713062507476.8655,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\AchievementMapInfo.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\TaskInfo.ets",
@@ -743,7 +743,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\HomeComponent.ets": {
-      "mtimeMs": 1712497064030.8723,
+      "mtimeMs": 1713006061248.2156,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\HealthTextComponent.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\home\\AddBtnComponent.ets",
@@ -789,7 +789,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\HomeViewModel.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1713001965393.2605,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\constants\\CommonConstants.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\model\\AchieveModel.ets",
@@ -812,7 +812,8 @@
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\HomeComponent.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\home\\HomeTopComponent.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\home\\WeekCalendarComponent.ets",
-        "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\CalendarViewModel.ets"
+        "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\CalendarViewModel.ets",
+        "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\home\\AddBtnComponent.ets"
       ],
       "error": false
     },
@@ -899,7 +900,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\HealthTextComponent.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1712497622260.744,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\constants\\CommonConstants.ets"
       ],
@@ -912,9 +913,10 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\home\\AddBtnComponent.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1713006130660.352,
       "children": [
-        "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\constants\\CommonConstants.ets"
+        "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\constants\\CommonConstants.ets",
+        "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\HomeViewModel.ets"
       ],
       "parent": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\HomeComponent.ets"
@@ -935,7 +937,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\home\\HomeTopComponent.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1712998449862.3171,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\HomeViewModel.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\home\\WeekCalendarComponent.ets",
@@ -965,7 +967,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\utils\\HealthDataSrcMgr.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1713002176114.8694,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\utils\\BroadCast.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\utils\\Logger.ets"
@@ -1003,7 +1005,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\home\\WeekCalendarComponent.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1713061012916.2852,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\CalendarViewModel.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\HomeViewModel.ets",
@@ -1121,7 +1123,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\viewmodel\\CalendarViewModel.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1713001842612.7964,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\model\\WeekCalendarModel.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\utils\\Logger.ets",
@@ -1333,7 +1335,7 @@
       "error": false
     },
     "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\view\\task\\TaskDetailComponent.ets": {
-      "mtimeMs": 1698043038000,
+      "mtimeMs": 1713064128177.3071,
       "children": [
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\model\\TaskInitList.ets",
         "O:\\Heathy-app-final\\Healthy_life\\entry\\src\\main\\ets\\common\\utils\\Logger.ets",

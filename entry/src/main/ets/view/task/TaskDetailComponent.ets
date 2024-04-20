@@ -48,11 +48,13 @@ export default struct TaskDetail {
   @Provide frequency: string = initFrequencyString(this.settingParams?.frequency);
   private isChanged: boolean = false;
 
+  // 从路径参数中拿到 可编辑任务
   parseRouterParams() {
     let params = router.getParams() as Record<string, Object>;
     const routerParams: ITaskItem = JSON.parse(params.params as string);
     return routerParams;
   }
+
 
   onParamsChanged() {
     this.isChanged = true;
@@ -68,6 +70,7 @@ export default struct TaskDetail {
       let taskInfo: TaskInfo = new TaskInfo(Const.ZERO, Const.GLOBAL_KEY, this.settingParams.taskID,
         this.settingParams.targetValue, this.settingParams.isAlarm, this.settingParams.startTime,
         this.settingParams.endTime, this.settingParams.frequency, false, '', this.settingParams.isOpen);
+      console.info("taskInfo : " , JSON.stringify(taskInfo))
       addTask(taskInfo, context).then((res: number) => {
         GlobalContext.getContext().setObject('taskListChange', true);
         router.back({

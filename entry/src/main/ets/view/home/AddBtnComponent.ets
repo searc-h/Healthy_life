@@ -14,6 +14,7 @@
  */
 
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
+import {HomeStore} from '../../viewmodel/HomeViewModel';
 
 @Styles function allSize () {
   .width(Const.THOUSANDTH_1000)
@@ -23,6 +24,7 @@ import { CommonConstants as Const } from '../../common/constants/CommonConstants
 @Component
 export default struct AddBtn {
   clickAction: Function = () => {};
+  @Link homeStore: HomeStore;
 
   build() {
     Button({ type: ButtonType.Circle, stateEffect: false }) {
@@ -33,7 +35,7 @@ export default struct AddBtn {
     .onClick(() => this.clickAction())
     .zIndex(Const.HOME_BTN_Z)
     .position({ x: Const.THOUSANDTH_830, y: Const.THOUSANDTH_880 })
-    .width($r('app.float.default_48'))
+    .width(this.homeStore.checkCurrentDay() ? $r('app.float.default_48'):0)
     .height($r('app.float.default_48'))
   }
 }

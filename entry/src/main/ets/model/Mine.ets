@@ -15,7 +15,7 @@
 
 export interface InfoItem {
   id: string;
-  title: Resource;
+  title: Resource | string;
   icon?: Resource;
 }
 
@@ -26,10 +26,6 @@ export const MineInfoList: InfoItem[] = [
   },
   {
     id: '2',
-    title: $r('app.string.mine_check_updates')
-  },
-  {
-    id: '3',
     title: $r('app.string.mine_about')
-  }
+  },
 ];

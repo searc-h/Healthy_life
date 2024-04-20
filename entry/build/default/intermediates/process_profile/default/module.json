@@ -70,6 +70,13 @@
 					],
 					"when": "always"
 				}
+			},
+			{
+				"name": "ohos.permission.INTERNET",
+				"reason": "$string:need_network",
+				"usedScene": {
+					"when": "always"
+				}
 			}
 		],
 		"virtualMachine": "ark9.0.0.0",

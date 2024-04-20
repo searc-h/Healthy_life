@@ -141,7 +141,7 @@ function getPreferencesValue(preferences: preferences.Preferences, getKey: strin
     }
     if (value >= 0) {
       reminderAgent.cancelReminder(value).then(() => {
-        Logger.info(Const.REMINDER_AGENT_TAG, 'cancelReminder promise success');
+        Logger.info(Const.REMINDER_AGENT_TAG, 'cancelReminder promise success: ' + value);
       }).catch((err: Error) => {
         Logger.error(Const.REMINDER_AGENT_TAG, `cancelReminder err: ${err}`);
       });

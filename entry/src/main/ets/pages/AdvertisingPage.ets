@@ -30,7 +30,7 @@ struct AdvertisingPage {
   aboutToAppear() {
     this.intervalId = setInterval(() => {
       if (this.duration > 0) {
-        this.duration -= 1;
+        this.duration += 1;
       } else {
         this.goToHomePage();
       }
@@ -54,6 +54,29 @@ struct AdvertisingPage {
       }
       .width('90%')
       .justifyContent(FlexAlign.End)
+
+      Row() {
+        Column({ space: Const.SPACE_4 }) {
+          Text("毕业设计成果展示")
+            .fontFamily($r('app.string.HarmonyHeiTi_Bold'))
+            .fontSize($r('app.float.default_26'))
+            .fontColor($r('app.color.titleColor'))
+            .fontWeight(Const.FONT_WEIGHT_700)
+            .letterSpacing(Const.LETTER_1)
+          Text("邓洪 2020211849")
+            .fontFamily($r('app.string.HarmonyHeiTi'))
+            .fontColor($r('app.color.titleColor'))
+            .fontWeight(Const.FONT_WEIGHT_400)
+            .letterSpacing(Const.LETTER_34)
+            .opacity(Const.OPACITY_4)
+            .fontSize($r('app.float.default_16'))
+        }
+        .alignItems(HorizontalAlign.Start)
+        .margin({ left: $r('app.float.default_12') })
+      }
+      .height($r('app.float.default_28'))
+      .width('100%')
+      .justifyContent(FlexAlign.Center)
 
       Row() {
         Image($r('app.media.logo'))
@@ -84,9 +107,10 @@ struct AdvertisingPage {
     }
     .width('100%')
     .height('100%')
-    .backgroundImagePosition({x: 0, y: 0})
-    .backgroundImage($r('app.media.ic_ad_bg'))
-    .backgroundImageSize({ width: '100%', height: '100%' })
+    .backgroundImagePosition({x: -300, y: 0})
+    .backgroundImage($r('app.media.bg_logo'))
+    .backgroundImageSize({  height: '100%' })
+    .backgroundBlurStyle(BlurStyle.Regular)
     .justifyContent(FlexAlign.SpaceBetween)
   }
 }

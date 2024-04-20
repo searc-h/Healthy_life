@@ -17,6 +17,7 @@ export default class AddBtn extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1) {
         super(parent, __localStorage, elmtId);
         this.clickAction = () => { };
+        this.__homeStore = new SynchedPropertyObjectTwoWayPU(params.homeStore, this, "homeStore");
         this.setInitiallyProvidedValue(params);
     }
     setInitiallyProvidedValue(params) {
@@ -27,21 +28,29 @@ export default class AddBtn extends ViewPU {
     updateStateVars(params) {
     }
     purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__homeStore.purgeDependencyOnElmtId(rmElmtId);
     }
     aboutToBeDeleted() {
+        this.__homeStore.aboutToBeDeleted();
         SubscriberManager.Get().delete(this.id__());
         this.aboutToBeDeletedInternal();
+    }
+    get homeStore() {
+        return this.__homeStore.get();
+    }
+    set homeStore(newValue) {
+        this.__homeStore.set(newValue);
     }
     initialRender() {
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
             Button.createWithChild({ type: ButtonType.Circle, stateEffect: false });
-            Button.debugLine("view/home/AddBtnComponent.ets(28:5)");
+            Button.debugLine("view/home/AddBtnComponent.ets(30:5)");
             Button.onClick(() => this.clickAction());
             Button.zIndex(Const.HOME_BTN_Z);
             Button.position({ x: Const.THOUSANDTH_830, y: Const.THOUSANDTH_880 });
-            Button.width({ "id": 16777323, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Button.height({ "id": 16777323, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Button.width(this.homeStore.checkCurrentDay() ? { "id": 16777390, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" } : 0);
+            Button.height({ "id": 16777390, "type": 10002, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
             if (!isInitialRender) {
                 Button.pop();
             }
@@ -49,8 +58,8 @@ export default class AddBtn extends ViewPU {
         });
         this.observeComponentCreation((elmtId, isInitialRender) => {
             ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
-            Image.create({ "id": 16777395, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
-            Image.debugLine("view/home/AddBtnComponent.ets(29:7)");
+            Image.create({ "id": 16777481, "type": 20000, params: [], "bundleName": "com.example.healthy_life", "moduleName": "entry" });
+            Image.debugLine("view/home/AddBtnComponent.ets(31:7)");
             Image.width(Const.THOUSANDTH_1000);
             Image.height(Const.THOUSANDTH_1000);
             Image.borderRadius(Const.BORDER_RADIUS_PERCENT_50);
