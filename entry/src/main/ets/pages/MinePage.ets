@@ -16,17 +16,15 @@ import router from '@ohos.router';
 import { ListInfo } from '../view/ListInfo';
 import { UserBaseInfo } from '../view/UserBaseInfo';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
-import { GlobalContext } from '../common/utils/GlobalContext';
+import { UserInfo } from '../model/Mine'
 
-@Entry
 @Component
 export struct MineIndex {
-  @State nickname: string = Const.NICK_NAME;
   @State signature: string = Const.SIGNATURE;
-  @State isLogin : boolean = false;
+  @ObjectLink userInfo : UserInfo;
 
   aboutToAppear(){
-    this.isLogin = GlobalContext.getContext().getObject("isLogin") as boolean
+
   }
 
   loginOut(){
@@ -36,11 +34,11 @@ export struct MineIndex {
   build() {
     Column() {
       UserBaseInfo({
-        nickname: this.nickname,
-        signature: this.signature
+        userName: "",
+        signature: this.userInfo.isLogin?"已经登陆":"未登陆"
       });
 
-      ListInfo();
+      ListInfo({isLogin:this.userInfo.isLogin as boolean});
 
     }
     .height(Const.FULL_HEIGHT)

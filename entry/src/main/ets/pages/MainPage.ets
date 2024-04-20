@@ -27,6 +27,7 @@ import { HomeStore } from '../viewmodel/HomeViewModel';
 import GlobalInfoApi from '../common/database/tables/GlobalInfoApi';
 import GlobalInfo from '../viewmodel/GlobalInfo';
 import { GlobalContext } from '../common/utils/GlobalContext';
+import { UserInfo } from '../model/Mine';
 
 @Styles function allSize() {
   .width(Const.THOUSANDTH_1000)
@@ -52,6 +53,8 @@ struct Index {
    */
   @State homeStore: HomeStore = new HomeStore(new Date());
 
+  @State userInfo : UserInfo = new UserInfo();
+
   private tabController: TabsController = new TabsController();
 
   // 检测通知权限
@@ -65,8 +68,15 @@ struct Index {
 
   onPageShow() {
     Logger.info('onPageShow', JSON.stringify(router.getParams()));
+    this.userInfo = GlobalContext.getContext().getObject("User_Info") as UserInfo || {}
+    console.log("userInfo : " + JSON.stringify(this.userInfo))
+
     let params = (router.getParams() ? router.getParams() : {}) as Record<string, Object>;
+    console.log(JSON.stringify(params))
     let result = params.editTask ? params.editTask as string : '{}';
+    // this.currentTab = params.currentTab?params.currentTab as number:0;
+    // this.tabController.changeIndex(this.currentTab)
+
     this.editedTaskInfo = JSON.parse(result);
     this.editedTaskID = JSON.stringify(this.editedTaskInfo);
 
@@ -141,7 +151,7 @@ struct Index {
       .tabBar(this.TabBuilder(TabId.ACHIEVEMENT))
 
       TabContent() {
-        MineIndex()
+        MineIndex({userInfo:this.userInfo})
           .borderWidth({ bottom: 1 })
           .borderColor($r('app.color.primaryBgColor'))
       }

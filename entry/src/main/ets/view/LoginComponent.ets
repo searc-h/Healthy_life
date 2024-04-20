@@ -1,6 +1,17 @@
 import router from '@ohos.router';
 import { CommonConstants } from '../common/constants/CommonConstants';
+import { httpRequest } from '../common/utils/httpUtils'
+import { AlertDialogService } from '../service/AlertDialogService'
+import http from '@ohos.net.http';
+import { GlobalContext } from '../common/utils/GlobalContext';
 
+interface LoginResDataType{
+    token : string,
+    userInfo: {
+      _id : string,
+      username: string,
+    }
+}
 /**
  * Login page component.
  */
@@ -9,6 +20,61 @@ export struct LoginComponent {
   @StorageProp('isMinHeight') isMinHeight: boolean = false;
   @State userName: string = '';
   @State password: string = '';
+
+
+  loginConfirm = ()=>{
+    if(this.userName.trim() == '' || this.password.trim() == ''){
+      AlertDialogService({ title:"登陆提示", message: '用户名或者密码不能为空' })
+    }
+
+    httpRequest<LoginResDataType>({
+      url: "/users/login",
+      method: http.RequestMethod.POST,
+      extraData:{
+        username: this.userName,
+        password: this.password
+      }
+    }).then(res=>{
+      console.log(JSON.stringify(res))
+      if(res.errno === 0){
+        AlertDialogService({
+          message: res.message
+        })
+      }else{
+        GlobalContext.getContext().setObject("User_Info" , {
+          token: res.data.token,
+          usename: res.data.userInfo.username,
+          userId : res.data.userInfo._id,
+          isLogin: true
+        })
+
+        router.back()
+      }
+    })
+
+
+  }
+
+  registerConfirm = ()=>{
+    if(this.userName.trim() == '' || this.password.trim() == ''){
+      AlertDialogService({  title:"注册提示" , message: '用户名或者密码不能为空'})
+    }
+
+    httpRequest({
+      url: "/users/register",
+      method: http.RequestMethod.POST,
+      extraData:{
+        username: this.userName,
+        password: this.password
+      }
+    }).then(res=>{
+      console.log(JSON.stringify(res))
+        AlertDialogService({
+          message: res.message
+        })
+    })
+  }
+
 
   build() {
     GridRow({
@@ -95,11 +161,7 @@ export struct LoginComponent {
           Color.White : $r('app.color.login_font_normal'))
           .backgroundColor(isLoginButtonClickable(this.userName, this.password) ?
           $r('app.color.login_btn_enabled') : $r('app.color.login_btn_normal'))
-          .onClick(() => {
-            router.pushUrl({
-              url: CommonConstants.MINE_PAGE_URL
-            });
-          })
+          .onClick(this.loginConfirm)
       }
 
       GridCol({
@@ -123,11 +185,7 @@ export struct LoginComponent {
           .margin({ top: $r('app.float.register_btn_margin_top') })
           .fontColor($r('app.color.register_font_clickable'))
           .backgroundColor($r('app.color.register_btn_clickable'))
-          .onClick(() => {
-            router.pushUrl({
-              url: CommonConstants.REGISTRATION_SUCCESS_PAGE_URL
-            });
-          })
+          .onClick(this.registerConfirm)
       }
     }
   }

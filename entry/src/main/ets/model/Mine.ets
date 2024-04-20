@@ -29,3 +29,16 @@ export const MineInfoList: InfoItem[] = [
     title: $r('app.string.mine_about')
   },
 ];
+
+@Observed
+export class UserInfo {
+  userName?: string;
+  isLogin? : boolean;
+  token? : string;
+
+  constructor(userName?:string, isLogin?:boolean , token?:string) {
+    this.userName = userName;
+    this.isLogin = isLogin;
+    this.token = token;
+  }
+}

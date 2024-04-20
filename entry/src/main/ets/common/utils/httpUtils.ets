@@ -17,24 +17,27 @@ import http from '@ohos.net.http';
 import { CommonConstants as Const , ContentType } from '../constants/CommonConstants';
 import { paramsObjToFullUrl } from '../utils/Utils'
 
-export interface ResponseResult {
+export interface ResponseResult<T> {
   /**
-   * Code returned by the network request: success, fail.
+   *   0 : error happened .
+   *  -1 : normal request
    */
-  code: string;
+  errno: 0 | -1;
 
   /**
    * Message returned by the network request.
    */
-  msg: string | Resource;
+  message: string | Resource;
 
   /**
    * Data returned by the network request.
    */
-  data: string | Object | ArrayBuffer;
+  data: T;
 }
 
 export interface RequestType {
+
+  server? : string;
   /**
    * The origin path without any params
    */
@@ -62,10 +65,11 @@ export interface RequestType {
  * @param url URL for initiating an HTTP request.
  * @param params Params for initiating an HTTP request.
  */
-export function httpRequest(requestObj: RequestType): Promise<ResponseResult> {
-  const {url , method = http.RequestMethod.GET , params , extraData , header} = requestObj;
-  const httpRequest = http.createHttp();
-  const responseResult = httpRequest.request(paramsObjToFullUrl(url , params), {
+export function httpRequest<T = any>(requestObj : RequestType): Promise<ResponseResult<T>> {
+  const { server = "http://10.17.145.107:8000" , url , method = http.RequestMethod.GET , params , extraData , header} = requestObj;
+
+  const httpRequest = http.createHttp()
+  const responseResult = httpRequest.request(paramsObjToFullUrl(server + url , params||{}), {
     method: method,
     readTimeout: Const.HTTP_READ_TIMEOUT,
     header: {
@@ -75,28 +79,24 @@ export function httpRequest(requestObj: RequestType): Promise<ResponseResult> {
     connectTimeout: Const.HTTP_READ_TIMEOUT,
     extraData: extraData
   });
-  const serverData: ResponseResult = {
-    code : "",
-    msg : "",
-    data : {}
-  };
+  let serverData: ResponseResult<T> = {} as ResponseResult<T>
   // Processes the data and returns.
   return responseResult.then((value: http.HttpResponse) => {
     if (value.responseCode === 200) {
       // Obtains the returned data.
       let result = `${value.result}`;
-      let resultJson: ResponseResult = JSON.parse(result);
-      if (resultJson.code === "success") {
+      let resultJson: ResponseResult<T> = JSON.parse(result);
+      if (resultJson.errno === -1) {
         serverData.data = resultJson.data;
       }
-      serverData.code = resultJson.code;
-      serverData.msg = resultJson.msg;
+      serverData.errno = resultJson.errno;
+      serverData.message = resultJson.message;
     } else {
-      serverData.msg = `${$r('app.string.http_error_message')}&${value.responseCode}`;
+      serverData.message = `${$r('app.string.http_error_message')}&${value.responseCode}`;
     }
-    return serverData;
+    return serverData as ResponseResult<T> ;
   }).catch(() => {
-    serverData.msg = $r('app.string.http_error_message');
+    serverData.message = $r('app.string.http_error_message');
     return serverData;
   })
 }

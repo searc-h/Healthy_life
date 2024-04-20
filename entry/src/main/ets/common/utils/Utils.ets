@@ -97,9 +97,11 @@ export const oneWeekDictFunc = () => {
  * 将params参数转化到url参数
  */
 export const paramsObjToFullUrl = (url :string , params : Record<string , string| number>) : string =>{
-    return Object.keys(params).reduce((preUrl:string , key, index , array)=>{
+
+    const newUrl =  Object.keys(params).reduce((preUrl:string , key, index , array)=>{
         index === array.length - 1 ? preUrl += `${key}=${params[key]}` : preUrl += `${key}=${params[key]}` + "&"
         return preUrl
     } , url + "?")
+    return newUrl
 }
 

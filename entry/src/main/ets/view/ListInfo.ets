@@ -13,11 +13,32 @@
  * limitations under the License.
  */
 
-import { MineInfoList, InfoItem } from '../model/Mine';
-
-
+import { MineInfoList, InfoItem, UserInfo } from '../model/Mine';
+import { GlobalContext } from '../common/utils/GlobalContext';
+import router from '@ohos.router';
+import { AlertDialogService } from '../service/AlertDialogService'
 @Component
 export struct ListInfo {
+
+  @Prop isLogin : boolean;
+
+  // 去登陆
+  goLogin(){
+    router.pushUrl({url:"pages/LoginPage"})
+  }
+
+  // 退出登陆
+  loginOut(){
+    GlobalContext.getContext().setObject("User_Info" , {})
+
+    AlertDialogService({
+      message:"已经退出登陆",
+      action: ()=>{
+        router.pushUrl({url:"pages/LoginPage"})
+      }
+    })
+
+  }
 
   @Builder ListItem_Child(item : InfoItem ){
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
@@ -41,10 +62,20 @@ export struct ListInfo {
 
       }, (item: InfoItem) => JSON.stringify(item))
 
-      ListItem() {
-        this.ListItem_Child({id:"3" , title:"退出登陆"})
+      // display different layout with userInfo
+      if(this.isLogin){
+        ListItem() {
+          this.ListItem_Child({id:"3" , title:"退出登陆"})
+        }
+        .onClick(this.loginOut)
+        .ListItem_Child_Styles()
+      }else {
+        ListItem() {
+          this.ListItem_Child({id:"3" , title:"去登陆"})
+        }
+        .onClick(this.goLogin)
+        .ListItem_Child_Styles()
       }
-      .ListItem_Child_Styles()
 
     }
     .border({

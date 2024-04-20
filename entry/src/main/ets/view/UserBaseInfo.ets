@@ -15,7 +15,7 @@
 
 @Component
 export struct UserBaseInfo {
-  @Prop nickname: string;
+  @Prop userName: string;
   @Prop signature: string;
 
   build() {
@@ -41,7 +41,7 @@ export struct UserBaseInfo {
       .justifyContent(FlexAlign.Center)
 
       // nickname
-      Text(this.nickname)
+      Text(this.userName)
         .fontSize($r('app.float.default_20'))
         .fontFamily($r('app.string.Helvetica'))
         .margin({ bottom: $r('app.float.default_6') })
