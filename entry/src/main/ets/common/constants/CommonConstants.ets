@@ -57,12 +57,12 @@ export class CommonConstants {
   static readonly TASK_NUM = 6;
 
   // The host address of the server
-  static readonly SERVER: string = 'http://10.17.156.107:9588'
+  static readonly SERVER: string = 'http://10.17.145.107:8000'
 
   /**
    * The http timeout duration.
    */
-  static readonly HTTP_READ_TIMEOUT: number = 10000;
+  static readonly HTTP_READ_TIMEOUT: number = 5000;
 
   // THOUSANDTH
   static readonly THOUSANDTH_15: string = '1.5%'; // ‘1.5%’

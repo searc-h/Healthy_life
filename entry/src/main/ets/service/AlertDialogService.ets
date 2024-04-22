@@ -21,7 +21,7 @@ export function AlertDialogService(props : Partial<AlertDialogServiceType>){
         value: confirmValue || '知道了',
         action: () => {
           console.info('Button-clicking callback')
-          action()
+          action && action()
         }
       },
       cancel: () => {

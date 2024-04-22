@@ -28,7 +28,7 @@ export default struct TaskList {
         ListItem() {
           Row() {
             Row() {
-              Image(item?.icon)
+              Image(`${Const.SERVER}/${item.icon}`)
                 .width(Const.DEFAULT_24)
                 .height(Const.DEFAULT_24)
                 .margin({ right: Const.DEFAULT_8 })

@@ -16,20 +16,34 @@ import AchievementMapInfo from '../viewmodel/AchievementMapInfo';
 
 import TaskInfo from '../viewmodel/TaskInfo';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
+import { httpRequest } from '../common/utils/httpUtils'
 
 export interface ITaskItem {
+  // 任务ID
   taskID: number;
+  // 任务名称
   taskName: Resource;
+  // 是否开启
   isOpen: boolean;
+  // 单位
   unit: string;
+  // 图标资源
   icon: Resource;
+  // 弹窗背景
   dialogBg: Resource;
+  // 目标值
   targetValue: string;
+  // 是否开启提示
   isAlarm: boolean;
+  // 提醒开始时间
   startTime: string;
+  // 提醒结束时间
   endTime: string;
+  // 提醒频率
   frequency: string;
+  // 是否初始化
   isInit: boolean;
+  // 打卡递增值
   step: number;
 }
 

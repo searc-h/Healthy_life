@@ -17,26 +17,19 @@ export interface InfoItem {
   id: string;
   title: Resource | string;
   icon?: Resource;
+  clickEvent? : (user?:UserInfo)=>void;
 }
 
-export const MineInfoList: InfoItem[] = [
-  {
-    id: '1',
-    title: $r('app.string.mine_personal_data')
-  },
-  {
-    id: '2',
-    title: $r('app.string.mine_about')
-  },
-];
 
 @Observed
 export class UserInfo {
+  _id? :  string;
   userName?: string;
   isLogin? : boolean;
   token? : string;
 
-  constructor(userName?:string, isLogin?:boolean , token?:string) {
+  constructor(_id? : string ,userName?:string, isLogin?:boolean , token?:string) {
+    this._id = _id;
     this.userName = userName;
     this.isLogin = isLogin;
     this.token = token;

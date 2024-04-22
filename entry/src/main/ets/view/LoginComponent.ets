@@ -20,12 +20,15 @@ export struct LoginComponent {
   @StorageProp('isMinHeight') isMinHeight: boolean = false;
   @State userName: string = '';
   @State password: string = '';
-
+  @State submitProgress : "uploading" | "finished" = "finished";
 
   loginConfirm = ()=>{
     if(this.userName.trim() == '' || this.password.trim() == ''){
       AlertDialogService({ title:"登陆提示", message: '用户名或者密码不能为空' })
+      return
     }
+    this.submitProgress = "uploading"
+
 
     httpRequest<LoginResDataType>({
       url: "/users/login",
@@ -35,30 +38,33 @@ export struct LoginComponent {
         password: this.password
       }
     }).then(res=>{
-      console.log(JSON.stringify(res))
       if(res.errno === 0){
         AlertDialogService({
           message: res.message
         })
-      }else{
+      }else if(res.errno === -1){
         GlobalContext.getContext().setObject("User_Info" , {
           token: res.data.token,
           usename: res.data.userInfo.username,
           userId : res.data.userInfo._id,
           isLogin: true
         })
-
-        router.back()
+        AlertDialogService({
+          message: res.message,
+          action:()=>router.back()
+        })
       }
+    }).finally(()=>{
+      this.submitProgress = "finished"
     })
-
-
   }
 
   registerConfirm = ()=>{
     if(this.userName.trim() == '' || this.password.trim() == ''){
       AlertDialogService({  title:"注册提示" , message: '用户名或者密码不能为空'})
+      return
     }
+    this.submitProgress = "uploading"
 
     httpRequest({
       url: "/users/register",
@@ -68,10 +74,13 @@ export struct LoginComponent {
         password: this.password
       }
     }).then(res=>{
-      console.log(JSON.stringify(res))
+      if(res.errno === -1 || res.errno === 0){
         AlertDialogService({
           message: res.message
         })
+      }
+    }).finally(()=>{
+      this.submitProgress = "finished"
     })
   }
 
@@ -186,6 +195,25 @@ export struct LoginComponent {
           .fontColor($r('app.color.register_font_clickable'))
           .backgroundColor($r('app.color.register_btn_clickable'))
           .onClick(this.registerConfirm)
+      }
+
+      GridCol({
+        span: {
+          sm: CommonConstants.BUTTON_SPAN_SM,
+          md: this.isMinHeight ? CommonConstants.BUTTON_SPAN_MD_SMALL : CommonConstants.BUTTON_SPAN_MD_BIG,
+          lg: CommonConstants.BUTTON_SPAN_LG
+        },
+        offset: {
+          sm: CommonConstants.BUTTON_OFFSET_SM,
+          md: this.isMinHeight ? CommonConstants.BUTTON_OFFSET_SM : CommonConstants.BUTTON_OFFSET_MD,
+          lg: CommonConstants.BUTTON_OFFSET_LG
+        }
+      }) {
+        if(this.submitProgress == "uploading")
+          Column({ space: 5 }) {
+            LoadingProgress()
+              .color(Color.Blue)
+          }.width('50%').margin({ top: 0 })
       }
     }
   }

@@ -67,15 +67,13 @@ struct Index {
   }
 
   onPageShow() {
-    Logger.info('onPageShow', JSON.stringify(router.getParams()));
     this.userInfo = GlobalContext.getContext().getObject("User_Info") as UserInfo || {}
     console.log("userInfo : " + JSON.stringify(this.userInfo))
 
     let params = (router.getParams() ? router.getParams() : {}) as Record<string, Object>;
-    console.log(JSON.stringify(params))
+    console.log("MainPage Show , params is : ",JSON.stringify(params))
+
     let result = params.editTask ? params.editTask as string : '{}';
-    // this.currentTab = params.currentTab?params.currentTab as number:0;
-    // this.tabController.changeIndex(this.currentTab)
 
     this.editedTaskInfo = JSON.parse(result);
     this.editedTaskID = JSON.stringify(this.editedTaskInfo);
@@ -157,7 +155,7 @@ struct Index {
       }
       .tabBar(this.TabBuilder(TabId.MINE))
     }
-    .scrollable(false)
+    .scrollable(true)
     .allSize()
     .barWidth(Const.THOUSANDTH_940)
     .barMode(BarMode.Fixed)

@@ -23,13 +23,13 @@ import TaskInfo from '../viewmodel/TaskInfo';
 @Component
 @Preview
 struct TaskIndex {
-  @Provide taskList: ITaskItem[] = taskOriginData;
+  @Provide taskList: ITaskItem[] = [];
 
   onPageShow() {
-    getAllTask().then((res: TaskInfo[]) => {
+    getAllTask().then((res: ITaskItem[]) => {
       let deepCopyDataStr = JSON.stringify(this.taskList);
       let deepCopyData: ITaskItem[] = JSON.parse(deepCopyDataStr);
-      this.taskList = taskIndexDataInit(deepCopyData, res);
+      this.taskList = res as ITaskItem[];
     })
   }
 

@@ -31,16 +31,28 @@ import { oneWeekDictFunc } from '../common/utils/Utils';
  * @param isOpen
  */
 export default class TaskInfo {
+    // 数据id
     id: number;
+    // 2023-01-01 字符串日期
     date: string;
+
+    // 任务ID
     taskID: number;
+    // 目标值
     targetValue: string;
+    // 是否开启闹钟提醒
     isAlarm: boolean;
+    // 开始提醒时间
     startTime: string;
+    // 结束提醒时间
     endTime: string;
+    // 提醒频率
     frequency: string;
+    // 是否完成
     isDone: boolean;
+    //
     finValue: string;
+    // 是否开启
     isOpen: boolean;
 
     constructor(id: number, date: string, taskID: number, targetValue: string, isAlarm: boolean, startTime: string,

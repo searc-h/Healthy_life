@@ -22,6 +22,8 @@ import TaskInfo, { oneWeek } from './TaskInfo';
 import { TaskMapById, RemindContentMap, ITaskItem } from '../model/TaskInitList';
 import PublishReminderInfo from './PublishReminderInfo';
 
+import { httpRequest } from '../common/utils/httpUtils'
+
 const publishReminder = reminder.publishReminder;
 const cancelReminder = reminder.cancelReminder;
 const hasNotificationId = reminder.hasNotificationId;
@@ -32,15 +34,14 @@ export const taskOriginData: ITaskItem[] = TaskMapById;
  * @return object[] Database query results
  */
 export const getAllTask = () => {
-  return new Promise<TaskInfo[]>((resolve) => {
-    TaskInfoApi.query(Const.GLOBAL_KEY, true, (res: TaskInfo[]) => {
-      if (res?.length === 0) {
-        Logger.warn('queryTaskList', 'has no data!!');
-        resolve(res ?? []);
-      }
-      resolve(res);
+
+  return new Promise<ITaskItem[]>(res=>{
+    httpRequest({
+      url : "/tasks/list"
+    }).then(list=>{
+      res(list.data)
     })
-  });
+  })
 }
 
 /**

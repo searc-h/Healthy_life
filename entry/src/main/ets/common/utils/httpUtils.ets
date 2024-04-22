@@ -14,6 +14,7 @@
  */
 
 import http from '@ohos.net.http';
+import { AlertDialogService } from '../../service/AlertDialogService';
 import { CommonConstants as Const , ContentType } from '../constants/CommonConstants';
 import { paramsObjToFullUrl } from '../utils/Utils'
 
@@ -66,7 +67,7 @@ export interface RequestType {
  * @param params Params for initiating an HTTP request.
  */
 export function httpRequest<T = any>(requestObj : RequestType): Promise<ResponseResult<T>> {
-  const { server = "http://10.17.145.107:8000" , url , method = http.RequestMethod.GET , params , extraData , header} = requestObj;
+  const { server = Const.SERVER, url , method = http.RequestMethod.GET , params , extraData , header} = requestObj;
 
   const httpRequest = http.createHttp()
   const responseResult = httpRequest.request(paramsObjToFullUrl(server + url , params||{}), {
@@ -95,8 +96,12 @@ export function httpRequest<T = any>(requestObj : RequestType): Promise<Response
       serverData.message = `${$r('app.string.http_error_message')}&${value.responseCode}`;
     }
     return serverData as ResponseResult<T> ;
-  }).catch(() => {
+  }).catch((err) => {
     serverData.message = $r('app.string.http_error_message');
+    AlertDialogService({
+      title:"提示",
+      message:JSON.stringify(err.message)
+    })
     return serverData;
   })
 }
