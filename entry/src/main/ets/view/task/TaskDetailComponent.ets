@@ -67,7 +67,7 @@ export default struct TaskDetail {
   finishTaskEdit() {
     if (this.isChanged) {
       let context: Context = getContext(this) as common.Context;
-      let taskInfo: TaskInfo = new TaskInfo(Const.ZERO, Const.GLOBAL_KEY, this.settingParams.taskID,
+      let taskInfo: TaskInfo = new TaskInfo(Const.ZERO, Const.GLOBAL_KEY, this.settingParams.taskId,
         this.settingParams.targetValue, this.settingParams.isAlarm, this.settingParams.startTime,
         this.settingParams.endTime, this.settingParams.frequency, false, '', this.settingParams.isOpen);
       console.info("taskInfo : " , JSON.stringify(taskInfo))
@@ -114,8 +114,8 @@ export default struct TaskDetail {
           .listItemStyle()
           .enabled(
             this.settingParams?.isOpen
-            && this.settingParams?.taskID !== taskType.smile
-            && this.settingParams?.taskID !== taskType.brushTeeth
+            && this.settingParams?.taskId !== taskType.smile
+            && this.settingParams?.taskId !== taskType.brushTeeth
           )
           .onClick(() => {
             this.broadCast.emit(

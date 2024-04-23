@@ -38,7 +38,7 @@ export struct MineIndex {
         signature: this.userInfo.isLogin?"已经登陆":"未登陆"
       });
 
-      ListInfo({isLogin:this.userInfo.isLogin as boolean , userId : this.userInfo._id as string});
+      ListInfo({isLogin:this.userInfo.isLogin as boolean , userId : this.userInfo.userId as string});
 
     }
     .height(Const.FULL_HEIGHT)

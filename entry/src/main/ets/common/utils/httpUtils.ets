@@ -14,9 +14,11 @@
  */
 
 import http from '@ohos.net.http';
+import { UserInfo } from '../../model/Mine';
 import { AlertDialogService } from '../../service/AlertDialogService';
 import { CommonConstants as Const , ContentType } from '../constants/CommonConstants';
 import { paramsObjToFullUrl } from '../utils/Utils'
+import { GlobalContext } from './GlobalContext'
 
 export interface ResponseResult<T> {
   /**
@@ -49,7 +51,7 @@ export interface RequestType {
    */
   method?: http.RequestMethod; // default is GET
 
-  params?: Record<string , string | number>;
+  query?: Record<string , string | number>;
 
   /**
    * Additional data of the request.
@@ -67,15 +69,17 @@ export interface RequestType {
  * @param params Params for initiating an HTTP request.
  */
 export function httpRequest<T = any>(requestObj : RequestType): Promise<ResponseResult<T>> {
-  const { server = Const.SERVER, url , method = http.RequestMethod.GET , params , extraData , header} = requestObj;
+  const { server = Const.SERVER, url , method = http.RequestMethod.GET , query , extraData , header} = requestObj;
+  const userInfo = GlobalContext.getContext().getObject("User_Info") as UserInfo
 
   const httpRequest = http.createHttp()
-  const responseResult = httpRequest.request(paramsObjToFullUrl(server + url , params||{}), {
+  const responseResult = httpRequest.request(paramsObjToFullUrl(server + url , query||{}), {
     method: method,
     readTimeout: Const.HTTP_READ_TIMEOUT,
     header: {
       'Content-Type': ContentType.JSON,
-      ...header
+      ...header,
+      "Authorization" : `Bearer ${userInfo?.token}`
     },
     connectTimeout: Const.HTTP_READ_TIMEOUT,
     extraData: extraData

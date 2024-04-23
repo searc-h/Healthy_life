@@ -14,7 +14,8 @@
  */
 
 import { oneWeekDictFunc } from '../common/utils/Utils';
-
+import { UserInfo } from '../model/Mine';
+import { ITaskItem } from '../model/TaskInitList'
 /**
  * TaskInfo
  *
@@ -70,6 +71,7 @@ export default class TaskInfo {
         this.isOpen = isOpen;
     }
 }
+
 
 export enum taskType {
     'getup' = 1,

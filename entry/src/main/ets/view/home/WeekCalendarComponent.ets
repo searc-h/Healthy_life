@@ -43,6 +43,7 @@ export struct WeekCalendar {
 
   aboutToAppear() {
     try {
+
       let displayClass = display.getDefaultDisplaySync();
       this.scrollWidth = displayClass.width / displayClass.densityPixels * DEFAULT_SCROLL_PERCENT;
       Logger.info('HomeIndex', 'get the window scrollWidth: ' + this.scrollWidth);
@@ -55,6 +56,8 @@ export struct WeekCalendar {
   changeSelectedDate(){
     this.homeStore.setSelectedShowDate(this.selectDate.getTime());
     // 更新任务列表数据
+
+    this.homeStore.getTaskListOfDay()
   }
 
   getProgressImg(item: WeekDateModel): Resource {

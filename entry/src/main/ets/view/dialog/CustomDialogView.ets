@@ -64,6 +64,7 @@ export struct CustomDialogView {
         this.dialogCallBack = dialogCallBack;
         this.taskDialog.open();
       });
+
   }
 
   aboutToDisappear() {

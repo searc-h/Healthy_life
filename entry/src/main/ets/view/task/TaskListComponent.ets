@@ -37,14 +37,8 @@ export default struct TaskList {
 
             Blank()
               .layoutWeight(1)
-            if (item?.isOpen) {
-              Text($r('app.string.already_open'))
-                .fontSize(Const.DEFAULT_16)
-                .flexGrow(1)
-                .align(Alignment.End)
-                .margin({ right: Const.DEFAULT_8 })
-                .fontColor($r('app.color.titleColor'))
-            }
+
+
             Image($r('app.media.ic_right_grey'))
             .width(Const.DEFAULT_8)
             .height(Const.DEFAULT_16)

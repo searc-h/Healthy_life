@@ -15,7 +15,7 @@
 
 import { CustomDialogCallback } from './CustomDialogView';
 import TaskInfo from '../../viewmodel/TaskInfo';
-import { TaskMapById } from '../../model/TaskInitList';
+import { TaskMapById, UserTaskType } from '../../model/TaskInitList';
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
 import { GlobalContext } from '../../common/utils/GlobalContext';
 
@@ -32,14 +32,14 @@ import { GlobalContext } from '../../common/utils/GlobalContext';
 @CustomDialog
 export struct TaskDetailDialog {
   controller: CustomDialogController = new CustomDialogController({ builder: '' });
-  @Consume currentTask: TaskInfo;
+  @Consume currentTask: UserTaskType;
   @State showButton: boolean = true;
   @Consume dialogCallBack: CustomDialogCallback;
 
   build() {
     Column() {
       TaskBaseInfo({
-        taskName: TaskMapById[this.currentTask?.taskID - 1].taskName
+        taskName: JSON.stringify(this.currentTask?.taskId.taskName)
       });
 
       TaskClock({
@@ -55,7 +55,7 @@ export struct TaskDetailDialog {
     }
     .height($r('app.float.default_451'))
     .width($r('app.float.default_316'))
-    .backgroundImage(TaskMapById[this.currentTask?.taskID - 1].dialogBg, ImageRepeat.NoRepeat)
+    .backgroundImage(Const.SERVER + "/" + this.currentTask?.taskId.dialogBg, ImageRepeat.NoRepeat)
     .backgroundImageSize({
       width: '100%',
       height: '100%'

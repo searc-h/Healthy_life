@@ -149,7 +149,7 @@ export const addTask = (params: TaskInfo, context: Context) => {
 export const taskIndexDataInit = (taskInitList: ITaskItem[], taskInfoData: TaskInfo[]) => {
   const afterInitData = taskInitList.map((content) => {
     taskInfoData.forEach((item) => {
-      if (item?.taskID === content?.taskID) {
+      if (item?.taskID === content?.taskId) {
         content.isOpen = item?.isOpen;
         content.targetValue = item?.targetValue;
         content.isAlarm = item?.isAlarm;

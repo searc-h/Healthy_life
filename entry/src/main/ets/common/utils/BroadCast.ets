@@ -15,7 +15,7 @@
 import { CustomDialogCallback } from '../../view/dialog/CustomDialogView';
 import BroadCastCallBackInfo from '../../viewmodel/BroadCastCallBackInfo';
 import TaskInfo from '../../viewmodel/TaskInfo';
-
+import { UserTaskType} from '../../model/TaskInitList'
 import Logger from './Logger';
 
 const FILE_TAG = 'BroadCast';
@@ -25,7 +25,7 @@ const callBackArrayTemp = new BroadCastCallBackInfo();
 export class BroadCast {
   private callBackArray: BroadCastCallBackInfo = callBackArrayTemp;
 
-  public on(event: string, callback: Function) {
+  public on(event: BroadCastType | string, callback: Function) {
     Logger.info(FILE_TAG, 'register broadcast with type '+ event);
     switch (event) {
       case BroadCastType.SHOW_ACHIEVEMENT_DIALOG:
@@ -48,7 +48,7 @@ export class BroadCast {
     }
   }
 
-  public off(event: string, callback: Function) {
+  public off(event: BroadCastType | string, callback: Function) {
     if (event === null) {
       Logger.info(FILE_TAG, 'cancel all broadcast');
       this.callBackArray = callBackArrayTemp;
@@ -81,7 +81,7 @@ export class BroadCast {
     }
   }
 
-  public emit(event: string, args?: (number | number[] | (TaskInfo | CustomDialogCallback)[])) {
+  public emit(event: BroadCastType | string, args?: (number | number[] | (UserTaskType | CustomDialogCallback)[])) {
     if (!this.callBackArray) {
       Logger.info(FILE_TAG, 'emit broadcast failed for no callback');
       return;

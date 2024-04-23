@@ -23,13 +23,13 @@ export interface InfoItem {
 
 @Observed
 export class UserInfo {
-  _id? :  string;
+  userId? :  string;
   userName?: string;
   isLogin? : boolean;
   token? : string;
 
   constructor(_id? : string ,userName?:string, isLogin?:boolean , token?:string) {
-    this._id = _id;
+    this.userId = _id;
     this.userName = userName;
     this.isLogin = isLogin;
     this.token = token;

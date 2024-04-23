@@ -17,10 +17,12 @@ import AchievementMapInfo from '../viewmodel/AchievementMapInfo';
 import TaskInfo from '../viewmodel/TaskInfo';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
 import { httpRequest } from '../common/utils/httpUtils'
+import { UserInfo } from './Mine';
 
 export interface ITaskItem {
+  _id ?:number,
   // 任务ID
-  taskID: number;
+  taskId: number;
   // 任务名称
   taskName: Resource;
   // 是否开启
@@ -45,6 +47,22 @@ export interface ITaskItem {
   isInit: boolean;
   // 打卡递增值
   step: number;
+}
+
+
+export interface UserTaskType {
+  _id: string,
+  userId: UserInfo,
+  taskId: ITaskItem,
+  date: string,
+  timeStamp: number,
+  isAlarm: boolean,
+  startTime: string,
+  endTime: string,
+  frequency: string,
+  finValue: string,
+  isDone: boolean,
+  isOpen: boolean,
 }
 
 export interface RemindContentItem {
@@ -72,7 +90,7 @@ export const AchievementMap = achievementMap;
 
 export const TaskMapById: Array<ITaskItem> = [
   {
-    taskID: 1,
+    taskId: 1,
     taskName: $r('app.string.task_morning'),
     icon: $r("app.media.ic_task_morning"),
     dialogBg: $r('app.media.ic_dialog_getup'),
@@ -87,7 +105,7 @@ export const TaskMapById: Array<ITaskItem> = [
     frequency: '1, 2, 3, 4, 5, 6, 7'
   },
   {
-    taskID: 2,
+    taskId: 2,
     taskName: $r('app.string.task_water'),
     icon: $r("app.media.ic_task_water"),
     dialogBg: $r('app.media.ic_dialog_drink'),
@@ -102,7 +120,7 @@ export const TaskMapById: Array<ITaskItem> = [
     frequency: '1, 2, 3, 4, 5, 6, 7'
   },
   {
-    taskID: 3,
+    taskId: 3,
     taskName: $r('app.string.task_apple'),
     icon: $r("app.media.ic_task_apple"),
     dialogBg: $r('app.media.ic_dialog_eat_apples'),
@@ -117,7 +135,7 @@ export const TaskMapById: Array<ITaskItem> = [
     frequency: '1, 2, 3, 4, 5, 6, 7'
   },
   {
-    taskID: 4,
+    taskId: 4,
     taskName: $r('app.string.task_smile'),
     icon: $r("app.media.ic_task_smile"),
     dialogBg: $r('app.media.ic_dialog_smile'),
@@ -132,7 +150,7 @@ export const TaskMapById: Array<ITaskItem> = [
     frequency: '1, 2, 3, 4, 5, 6, 7'
   },
   {
-    taskID: 5,
+    taskId: 5,
     taskName: $r('app.string.task_brush'),
     icon: $r("app.media.ic_task_brush"),
     dialogBg: $r('app.media.ic_dialog_brush_teeth'),
@@ -147,7 +165,7 @@ export const TaskMapById: Array<ITaskItem> = [
     frequency: '1, 2, 3, 4, 5, 6, 7'
   },
   {
-    taskID: 6,
+    taskId: 6,
     taskName: $r('app.string.task_night'),
     icon: $r("app.media.ic_task_night"),
     dialogBg: $r('app.media.ic_dialog_sleep'),
@@ -162,7 +180,7 @@ export const TaskMapById: Array<ITaskItem> = [
     frequency: '1, 2, 3, 4, 5, 6, 7'
   },
   {
-    taskID: 7,
+    taskId: 7,
     taskName: $r("app.string.task_smile"),
     icon: $r("app.media.running"),
     dialogBg: $r('app.media.ic_dialog_sleep'),

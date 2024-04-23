@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 
-import { TaskMapById } from '../../model/TaskInitList';
+import { TaskMapById ,UserTaskType} from '../../model/TaskInitList';
 import HealthText from '../../view/HealthTextComponent';
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
-import TaskInfo from '../../viewmodel/TaskInfo';
 
 @Styles function allSize () {
   .width(Const.THOUSANDTH_1000)
@@ -32,9 +31,9 @@ import TaskInfo from '../../viewmodel/TaskInfo';
 
 @Component
 export struct TaskCard {
-  @Prop taskInfoStr: string = '';
+  @Prop taskInfoStr: string;
   clickAction: Function = (isClick: boolean) => {};
-  @State taskInfo: TaskInfo = new TaskInfo(-1, '', -1, '', false, '', '', '', false, '', false);
+  @State taskInfo: Partial<UserTaskType> = {};
 
   aboutToAppear() {
     this.taskInfo = JSON.parse(this.taskInfoStr);
@@ -49,7 +48,7 @@ export struct TaskCard {
           title: this.taskInfo.finValue || `--`,
           fontSize: $r('app.float.default_24')
         })
-        Text(` / ${this.taskInfo.targetValue} ${TaskMapById[this.taskInfo.taskID - 1].unit}`)
+        Text(this.taskInfo.taskId.unit)
           .labelTextStyle()
           .fontWeight(Const.FONT_WEIGHT_400)
       }
@@ -59,12 +58,12 @@ export struct TaskCard {
   build() {
     Row() {
       Row({ space: Const.DEFAULT_6 }) {
-        Image(TaskMapById[this.taskInfo.taskID - 1].icon)
+        Image(Const.SERVER + "/" + this.taskInfo.taskId.icon)
           .width($r('app.float.default_36')).height($r('app.float.default_36'))
           .objectFit(ImageFit.Contain)
         HealthText({
           title: '',
-          titleResource: TaskMapById[this.taskInfo.taskID - 1].taskName,
+          titleResource: this.taskInfo.taskId.taskName,
           fontFamily: $r('app.string.HarmonyHeiTi')
         })
       }

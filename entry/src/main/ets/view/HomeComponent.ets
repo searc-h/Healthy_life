@@ -19,9 +19,9 @@ import AddBtn from '../view/home/AddBtnComponent';
 import { TaskCard } from '../view/home//TaskCardComponent';
 import HomeTopComponent from '../view/home/HomeTopComponent';
 import { CustomDialogView, CustomDialogCallback } from '../view/dialog/CustomDialogView';
-import TaskInfo from '../viewmodel/TaskInfo';
+
 import { HomeStore } from '../viewmodel/HomeViewModel';
-import { ITaskItem, TaskMapById } from '../model/TaskInitList';
+import { ITaskItem, TaskMapById, UserTaskType } from '../model/TaskInitList';
 import { HealthDataSrcMgr } from '../common/utils/HealthDataSrcMgr';
 import { BroadCast, BroadCastType } from '../common/utils/BroadCast';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
@@ -50,7 +50,7 @@ function titleTextStyle() {
 }
 
 @Component
-export default struct HomeIndex {
+export struct HomeIndex {
   @Provide broadCast: BroadCast = HealthDataSrcMgr.getInstance().getBroadCast();
   @State naviAlpha: number = 0;
   @Link homeStore: HomeStore;
@@ -63,22 +63,27 @@ export default struct HomeIndex {
     this.homeStore.updateTaskInfoList(this.editedTaskInfo);
   }
 
-  taskItemAction(item: TaskInfo, isClick: boolean): void {
+  taskItemAction(item: UserTaskType, isClick: boolean): void {
     if (!this.homeStore.checkCurrentDay()) {
       return;
     }
+
     if (isClick) {
       // click to clock
-      let callback: CustomDialogCallback = { confirmCallback: (taskTemp: TaskInfo) => {
-        this.onConfirm(taskTemp)
-      }, cancelCallback: () => {
-      } };
+      let callback: CustomDialogCallback = {
+        confirmCallback: (taskTemp: UserTaskType) => {
+          this.onConfirm(taskTemp)
+        },
+        cancelCallback: () => { }
+      };
+
       this.broadCast.emit(BroadCastType.SHOW_TASK_DETAIL_DIALOG, [item, callback]);
+
     } else {
       // edit task
-      let editTaskStr: string = JSON.stringify(TaskMapById[item.taskID - 1]);
+      let editTaskStr: string = JSON.stringify(TaskMapById[item.taskId.taskId - 1]);
       let editTask: ITaskItem = JSON.parse(editTaskStr);
-      editTask.targetValue = item?.targetValue;
+      editTask.targetValue = item?.taskId.targetValue;
       editTask.isAlarm = item.isAlarm;
       editTask.startTime = item.startTime;
       editTask.frequency = item.frequency;
@@ -88,7 +93,7 @@ export default struct HomeIndex {
   }
 
   //confirm clockL
-  onConfirm(task: TaskInfo) {
+  onConfirm(task: UserTaskType) {
     this.homeStore.taskClock(task).then((res: AchievementInfo) => {
       if (res.showAchievement) {
         let achievementLevel = res.achievementLevel;
@@ -124,16 +129,18 @@ export default struct HomeIndex {
         Column() {
           HomeTopComponent({ homeStore: $homeStore })
           Text($r('app.string.task_list')).titleTextStyle()
-          if (this.homeStore.getTaskListOfDay().length > 0) {
+          if (this.homeStore.userTaskList.length > 0) {
             Column({ space: Const.DEFAULT_8 }) {
-              ForEach(this.homeStore.getTaskListOfDay(), (item: TaskInfo) => {
+              ForEach(this.homeStore.userTaskList, (item: UserTaskType) => {
                 TaskCard({
                   taskInfoStr: JSON.stringify(item),
-                  clickAction: (isClick: boolean) => this.taskItemAction(item, isClick)
+                  clickAction: (isClick: boolean) => {
+                    this.taskItemAction(item, isClick)
+                  }
                 })
                   .margin({ bottom: Const.DEFAULT_12 })
                   .height($r('app.float.default_64'))
-              }, (item: TaskInfo) => JSON.stringify(item))
+              }, (item: UserTaskType) => JSON.stringify(item))
             }
             .onAppear(() => {
               this.scroller.scrollTo({ xOffset: 0, yOffset: this.yOffset });

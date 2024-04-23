@@ -50,13 +50,7 @@ export struct TaskChooseItem {
   build() {
     Row() {
       Text(this.settingParams.taskName).fontSize(Const.DEFAULT_20).fontWeight(FontWeight.Medium)
-      Toggle({ type: ToggleType.Switch, isOn: this.settingParams.isOpen })
-        .width(Const.DEFAULT_56)
-        .height(Const.DEFAULT_32)
-        .selectedColor($r('app.color.blueColor'))
-        .onChange((isOn) => {
-          this.settingParams.isOpen = isOn;
-        })
+
     }
     .width(Const.THOUSANDTH_1000)
     .justifyContent(FlexAlign.SpaceBetween)
@@ -78,11 +72,11 @@ export struct TargetSetItem {
       if (this.settingParams?.unit === '') {
         Text(`${this.settingParams?.targetValue}`)
           .targetSetCommon()
-          .targetSettingStyle(this.settingParams?.isOpen, this.settingParams?.taskID)
+          .targetSettingStyle(this.settingParams?.isOpen, this.settingParams?.taskId)
       } else {
         Text(`${this.settingParams?.targetValue} ${this.settingParams?.unit} ${Const.PER_DAY}`)
           .targetSetCommon()
-          .targetSettingStyle(this.settingParams?.isOpen, this.settingParams?.taskID)
+          .targetSettingStyle(this.settingParams?.isOpen, this.settingParams?.taskId)
       }
       Image($r('app.media.ic_right_grey')).width(Const.DEFAULT_8).height(Const.DEFAULT_16);
     }

@@ -18,16 +18,22 @@ import { isReachNewAchievement, ACHIEVEMENT_LEVEL_KEY } from '../model/AchieveMo
 import { TaskMapById, ITaskItem, ACHIEVEMENT_LEVEL_LIST } from '../model/TaskInitList';
 import TaskInfo from './TaskInfo';
 import DayInfo from './DayInfo';
+import { UserTaskType } from '../model/TaskInitList'
 import { dateToStr, weekDateFormat } from '../common/utils/Utils';
-import { WeekDateModel, initializeOnStartUp, getPreviousWeek, WEEK_DAY_NUM } from '../model/WeekCalendarModel';
-import DatabaseApi from '../model/DatabaseModel';
+import { WeekDateModel , WEEK_DAY_NUM } from '../model/WeekCalendarModel';
+
 import TaskInfoTableApi from '../common/database/tables/TaskInfoApi';
 import DayInfoApi from '../common/database/tables/DayInfoApi';
 import GlobalInfoApi from '../common/database/tables/GlobalInfoApi';
 import Logger from '../common/utils/Logger';
 import GlobalInfo from './GlobalInfo';
-import WeekCalendarInfo from './WeekCalendarInfo';
+
 import AchievementInfo from './AchievementInfo';
+
+import {httpRequest} from '../common/utils/httpUtils'
+import {GlobalContext} from '../common/utils/GlobalContext'
+import { UserInfo } from '../model/Mine';
+import { AlertDialogService } from '../service/AlertDialogService';
 
 @Observed
 export class HomeStore {
@@ -45,10 +51,15 @@ export class HomeStore {
    *  选择的日期
    */
   public selectedDate: Date;
+
+  public selectedLocalString : string;
   /**
    * @description Week组件的标题显示:xx年xx月xx日星期x
    */
   public dateTitle: string;
+
+
+  public userTaskList: UserTaskType[] = [];
 
   /**
    * 选择日期的信息
@@ -58,12 +69,13 @@ export class HomeStore {
   constructor(currentDate: Date) {
     this.currentDate = currentDate;
     this.selectedDate = currentDate;
+    this.selectedLocalString =  `${this.selectedDate.getFullYear()}/${this.selectedDate.getMonth()+1}/${this.selectedDate.getDate()}`
     this.dateTitle = weekDateFormat(currentDate.getTime());
     this.selectedDay = (this.selectedDate.getDay() + WEEK_DAY_NUM - 1) % WEEK_DAY_NUM;
   }
 
   public initData() {
-    // get data form db
+    this.getTaskListOfDay()
   }
 
   // check selected day is current day
@@ -96,9 +108,9 @@ export class HomeStore {
   }
 
   public updateTaskInfoList(editedTaskInfo: ITaskItem) {
-    if (editedTaskInfo?.taskID) {
+    if (editedTaskInfo?.taskId) {
       // edited task
-      let taskID = editedTaskInfo.taskID;
+      let taskID = editedTaskInfo.taskId;
       let targetValue = editedTaskInfo.targetValue;
       let isAlarm = editedTaskInfo.isAlarm;
       let frequency = editedTaskInfo.frequency;
@@ -117,10 +129,9 @@ export class HomeStore {
     this.selectedDate = new Date(showDateTime);
 
     this.dateTitle = weekDateFormat(this.selectedDate.getTime());
-    // let selectedInfo = this.dateArr.find((item: WeekDateModel) => item.dateStr === dateToStr(new Date(showDateTime)));
-    // if (selectedInfo) {
-    //   this.updateSelectedDayInfo(selectedInfo);
-    // }
+
+    this.selectedLocalString = `${this.selectedDate.getFullYear()}/${this.selectedDate.getMonth()+1}/${this.selectedDate.getDate()}`
+
     Logger.info('dateTitle', this.dateTitle);
   }
 
@@ -136,15 +147,28 @@ export class HomeStore {
     return '0';
   }
 
-  public getTaskListOfDay(): TaskInfo[] {
-    Logger.info('getTaskListOfDay', JSON.stringify(this.selectedDayInfo));
-    if (this.selectedDayInfo && this.selectedDayInfo.taskList.length > 0) {
-      return this.selectedDayInfo.taskList;
+  public getTaskListOfDay() {
+    let userInfo = GlobalContext.getContext().getObject("User_Info") as UserInfo
+    if(userInfo?.userId){
+      httpRequest<any[]>({
+        url:`/tasks/user/${userInfo.userId}`,
+        query: {
+          date : this.selectedLocalString
+        }
+      }).then(res=>{
+        if(res.errno === -1){
+          this.userTaskList = res.data
+        }else{
+          AlertDialogService({message:res.message})
+        }
+      })
+    }else{
+
     }
-    return [];
+
   }
 
-  public async taskClock(taskInfo: TaskInfo) {
+  public async taskClock(taskInfo: UserTaskType) {
     let taskItem = await this.updateTask(taskInfo);
     let dateStr = this.selectedDayInfo?.dateStr;
     if (!taskItem) {
@@ -154,9 +178,6 @@ export class HomeStore {
       } as AchievementInfo;
     }
 
-    this.selectedDayInfo.taskList = this.selectedDayInfo.taskList.map((item) => {
-      return item.taskID === taskItem?.taskID ? taskItem : item;
-    });
     let achievementLevel: number = 0;
     if (taskItem.isDone) {
       let dayInfo = await this.updateDayInfo();
@@ -171,12 +192,12 @@ export class HomeStore {
     } as AchievementInfo;
   }
 
-  updateTask(task: TaskInfo): Promise<TaskInfo> {
+  updateTask(task: UserTaskType): Promise<TaskInfo> {
     return new Promise((resolve, reject) => {
-      let taskID = task.taskID;
-      let targetValue = task.targetValue;
+      let taskID = task.taskId.taskId;
+      let targetValue = task.taskId.targetValue;
       let finValue = task.finValue;
-      let updateTask = new TaskInfo(task.id, task.date, taskID, targetValue, task.isAlarm, task.startTime,
+      let updateTask = new TaskInfo(task.taskId._id, task.date, taskID, targetValue, task.isAlarm, task.startTime,
         task.endTime, task.frequency, task.isDone, finValue, task.isOpen);
       let step = TaskMapById[taskID - 1].step;
       let hasExceed = updateTask.isDone;
@@ -201,7 +222,6 @@ export class HomeStore {
   updateDayInfo(): Promise<DayInfo> {
     let dayInfo: DayInfo = this.selectedDayInfo.dayInfo;
     dayInfo.finTaskNum += 1;
-    dayInfo.targetTaskNum = this.selectedDayInfo.taskList.length;
     return new Promise((resolve, reject) => {
       DayInfoApi.updateData(dayInfo, (res: number) => {
         if (!res) {

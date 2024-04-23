@@ -20,7 +20,7 @@ import Logger from '../common/utils/Logger';
 import { ITaskItem } from '../model/TaskInitList';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
 import { NavList, TabId } from '../model/NavItemModel';
-import HomeIndex from '../view/HomeComponent';
+import { HomeIndex } from '../view/HomeComponent';
 import { AchievementIndex } from '../view/AchievementComponent';
 import { MineIndex } from './MinePage';
 import { HomeStore } from '../viewmodel/HomeViewModel';
@@ -70,6 +70,8 @@ struct Index {
     this.userInfo = GlobalContext.getContext().getObject("User_Info") as UserInfo || {}
     console.log("userInfo : " + JSON.stringify(this.userInfo))
 
+    this.homeStore.getTaskListOfDay()
+
     let params = (router.getParams() ? router.getParams() : {}) as Record<string, Object>;
     console.log("MainPage Show , params is : ",JSON.stringify(params))
 
@@ -114,6 +116,7 @@ struct Index {
           });
       } else {
         this.homeStore.initData();
+
       }
     });
   }

@@ -42,14 +42,14 @@ export struct TargetSettingDialog {
   }
 
   setTargetValue() {
-    if (this.settingParams?.taskID === taskType.getup) {
+    if (this.settingParams?.taskId === taskType.getup) {
       if (!this.compareTime(Const.GET_UP_EARLY_TIME, Const.GET_UP_LATE_TIME)) {
         return;
       }
       this.settingParams.targetValue = this.currentTime;
       return;
     }
-    if (this.settingParams?.taskID === taskType.sleepEarly) {
+    if (this.settingParams?.taskId === taskType.sleepEarly) {
       if (!this.compareTime(Const.SLEEP_EARLY_TIME, Const.SLEEP_LATE_TIME)) {
         return;
       }
@@ -63,16 +63,16 @@ export struct TargetSettingDialog {
     Column() {
       Row() {
         Text($r('app.string.target_setting')).fontSize(Const.DEFAULT_20).margin({ right: Const.DEFAULT_12 })
-        Text(this.settingParams?.taskID === taskType.getup ?
+        Text(this.settingParams?.taskId === taskType.getup ?
         Const.GET_UP_TIME_RANGE :
-            this.settingParams?.taskID === taskType.sleepEarly ?
+            this.settingParams?.taskId === taskType.sleepEarly ?
           Const.SLEEP_TIME_RANGE : '')
           .fontSize(Const.DEFAULT_16)
       }
       .width(Const.THOUSANDTH_1000)
       .justifyContent(FlexAlign.Start)
 
-      if ([taskType.getup, taskType.sleepEarly].indexOf(this.settingParams?.taskID) > Const.HAS_NO_INDEX) {
+      if ([taskType.getup, taskType.sleepEarly].indexOf(this.settingParams?.taskId) > Const.HAS_NO_INDEX) {
         TimePicker({
           selected: new Date(`${new Date().toDateString()} 8:00:00`),
         })
@@ -82,7 +82,7 @@ export struct TargetSettingDialog {
             this.currentTime = formatTime(value);
           })
       } else {
-        TextPicker({ range: this.settingParams?.taskID === taskType.drinkWater ? this.drinkRange : this.appleRange })
+        TextPicker({ range: this.settingParams?.taskId === taskType.drinkWater ? this.drinkRange : this.appleRange })
           .width(Const.THOUSANDTH_900,)
           .height(Const.THOUSANDTH_800,)
           .onChange((value) => {

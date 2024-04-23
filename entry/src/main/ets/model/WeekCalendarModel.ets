@@ -27,7 +27,7 @@ export class WeekDateModel {
   dateStr: string;
   date: Date;
   dayInfo: DayInfo = new DayInfo('', 0, 0);
-  taskList: TaskInfo[] = [];
+
 
   constructor(weekTitle: string, dateStr: string, date: Date) {
     this.weekTitle = weekTitle;
