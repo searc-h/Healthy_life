@@ -5,6 +5,7 @@
     "pages/MainPage",
     "pages/TaskListPage",
     "pages/TaskEditPage",
-    "pages/LoginPage"
+    "pages/LoginPage",
+    "pages/AppSetting"
   ]
 }

@@ -70,8 +70,8 @@ export struct ListInfo {
   }
 
   aboutApp = ()=>{
-    AlertDialogService({
-      message:"TBD"
+    router.pushUrl({
+      url:"pages/AppSetting"
     })
   }
 
@@ -96,7 +96,7 @@ export struct ListInfo {
       .ListItem_Child_Styles()
 
       ListItem() {
-        this.ListItem_Child({id:"2" , title:"关于应用"})
+        this.ListItem_Child({id:"2" , title:"应用设置"})
       }
       .onClick(this.aboutApp)
       .ListItem_Child_Styles()
