@@ -1,6 +1,10 @@
 import router from '@ohos.router';
 import {CommonConstants } from '../common/constants/CommonConstants'
 import SettingItemComponent  from '../view/SettingItemComponent';
+import PreferencesUtil from '../common/utils/PreferencesUtils'
+import promptAction from '@ohos.promptAction';
+import SliderSettingComponent from '../view/SliderSettingComponent'
+
 
 @Entry
 @Component
@@ -8,6 +12,34 @@ struct AppSetting {
   @State message: string = 'Hello World'
   @State changeFontSize: number = 16;
   @State settingTag : "font" | "tab" | undefined = undefined;
+
+  settingTab  = [
+    {
+      id : 1,
+      name : "首页",
+      value : true
+    },
+    {
+      id : 2,
+      name : "成就",
+      value : true
+    },
+    {
+      id : 3,
+      name : "历史",
+      value : true
+    },
+    {
+      id : 4,
+      name : "我的",
+      value : true
+    },
+    {
+      id : 5,
+      name : "AI",
+      value : true
+    }
+  ]
 
   build() {
     Row() {
@@ -26,30 +58,10 @@ struct AppSetting {
               }
               .blockBackground("1.5%")
 
-            Row(){
-                Text("A")
-                  .fontColor($r('app.color.text'))
-                  .fontSize("16fp")
-                  .fontWeight(FontWeight.Medium)
-                  .textAlign(TextAlign.End)
-                  .width("7.5%")
-                  .padding({ right: "9vp" })
-
-                Slider({
-                  value: 1,
-                  step : 1/3 * 100
-                })
-                  .width("75%")
-
-
-                Text("A")
-                  .fontColor($r('app.color.text'))
-                  .fontSize("24fp")
-                  .fontWeight(FontWeight.Medium)
-                  .textAlign(TextAlign.End)
-                  .width("7.5%")
-                  .padding({ right: "9vp" })
-              }
+            SliderSettingComponent({
+              changeFontSize : $changeFontSize
+            })
+            .margin({top : 10})
 
             Row(){
               SettingItemComponent({
@@ -60,10 +72,30 @@ struct AppSetting {
               })
             }
             .blockBackground("1.5%")
+            .margin({top : 50})
 
-            Row(){
-
-            }
+            ForEach(this.settingTab , (item)=>{
+              Row() {
+                Text(item.name)
+                  .height(40)
+                  .padding({left: 10})
+                  .fontSize(this.changeFontSize)
+                  .textAlign(TextAlign.Start)
+                  .margin({left: 40})
+                  .width("50%")
+                Toggle({ type: ToggleType.Switch ,isOn:item.value })
+                  .margin({left: 10, right: 10})
+                  .onChange((isOn: boolean) => {
+                    if(isOn) {
+                      promptAction.showToast({ message:  `${item.name} is on.` })
+                    } else {
+                      promptAction.showToast({ message: `${item.name} is off.` })
+                    }
+                  })
+              }
+              .width('70%')
+              .justifyContent(FlexAlign.SpaceBetween)
+            } , item=>item.id)
 
           }
           .height(CommonConstants.FULL_HEIGHT)

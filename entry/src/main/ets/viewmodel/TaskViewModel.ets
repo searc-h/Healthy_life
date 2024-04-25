@@ -16,13 +16,18 @@
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
 import Logger from '../common/utils/Logger';
 import reminder from '../service/ReminderAgent';
-import TaskInfoApi from '../common/database/tables/TaskInfoApi';
+
 import { padTo2Digits } from '../common/utils/Utils';
 import TaskInfo, { oneWeek } from './TaskInfo';
 import { TaskMapById, RemindContentMap, ITaskItem } from '../model/TaskInitList';
 import PublishReminderInfo from './PublishReminderInfo';
 
 import { httpRequest } from '../common/utils/httpUtils'
+import http from '@ohos.net.http';
+import { GlobalContext } from '../common/utils/GlobalContext';
+import { UserInfo } from '../model/Mine';
+import { AlertDialogService } from '../service/AlertDialogService';
+import router from '@ohos.router';
 
 const publishReminder = reminder.publishReminder;
 const cancelReminder = reminder.cancelReminder;
@@ -54,15 +59,15 @@ export const getAllTask = () => {
  *  content: Contents of notice
  *  notificationId: Notification ID
  */
-const useReminder = (params: TaskInfo, context: Context) => {
+const useReminder = (params: ITaskItem, context: Context) => {
   try {
     let publishReminderInfo = new PublishReminderInfo();
     publishReminderInfo.hour = Number(params?.startTime.split(':')[0]);
     publishReminderInfo.minute = Number(params?.startTime.split(':')[1]);
     publishReminderInfo.daysOfWeek = params?.frequency.split(',').map(item => Number(item));
-    publishReminderInfo.title = RemindContentMap[params?.taskID - 1].title;
-    publishReminderInfo.content = RemindContentMap[params?.taskID - 1].content;
-    publishReminderInfo.notificationId = params?.taskID;
+    publishReminderInfo.title = RemindContentMap[params?.taskId - 1].title;
+    publishReminderInfo.content = RemindContentMap[params?.taskId - 1].content;
+    publishReminderInfo.notificationId = params?.taskId;
     publishReminder(publishReminderInfo, context);
   } catch (error) {
     Logger.error('publishReminder', JSON.stringify(error));
@@ -94,51 +99,57 @@ const isHasNotificationId = (notificationId: number) => {
 /**
  * @param params:TaskInfo
  */
-export const addTask = (params: TaskInfo, context: Context) => {
+export const addTask = async  (params: ITaskItem, context: Context)  => {
   if (!params) {
     Logger.error('addTask', 'params is null!');
-    return new Promise<number>((resolve) => {
-      resolve(-1);
-    });
+    return Promise.resolve("params is null!")
   }
-  return new Promise<number>(async (resolve, reject) => {
-    Logger.info('TaskViewModel', 'addTask');
-    if (params?.isOpen) {
-      if (params?.isAlarm) {
-        useReminder(params, context);
-      } else {
-        isHasNotificationId(params?.taskID).then((flag: boolean) => {
-          if (flag) {
-            useCancelReminder(params.taskID, context);
-          }
-        });
-      }
+
+  if (params?.isOpen) {
+    if (params?.isAlarm) {
+      useReminder(params, context);
     } else {
-      isHasNotificationId(params?.taskID).then((flag: boolean) => {
+      isHasNotificationId(params?.taskId).then((flag: boolean) => {
         if (flag) {
-          useCancelReminder(params.taskID, context);
+          useCancelReminder(params.taskId, context);
         }
       });
     }
-    TaskInfoApi.updateDataByDate(params, (flag: number) => {
-      if (!flag) {
-        Logger.error('insertTaskSetting', 'updateTaskSetting Error!');
-        reject(flag);
+  } else {
+    isHasNotificationId(params?.taskId).then((flag: boolean) => {
+      if (flag) {
+        useCancelReminder(params.taskId, context);
       }
-      resolve(flag);
     });
-    let taskInfoStr = JSON.stringify(params);
-    let taskInfo: TaskInfo = JSON.parse(taskInfoStr);
-    taskInfo.date = new Date().toDateString();
-    taskInfo.isDone = true;
-    TaskInfoApi.updateDataByDate(taskInfo, (flag: number) => {
-      if (!flag) {
-        Logger.error('insertTaskSetting', 'updateTaskSetting Error!');
-        reject(flag);
+  }
+  let userInfo = GlobalContext.getContext().getObject("User_Info") as UserInfo
+
+  if(userInfo){
+    // 请求
+    let res = await httpRequest({
+      url : "/tasks/user",
+      method : http.RequestMethod.POST,
+      extraData : {
+        ...params,
+        taskId: params._id,
+        userId : userInfo.userId,
       }
-      resolve(flag);
-    });
-  });
+    }).then(res=>{
+      AlertDialogService({
+        message : res.message
+      })
+    })
+    return res
+  }else{
+    AlertDialogService({
+      message: "请先登录",
+      action : ()=>{
+        router.pushUrl({url : "/pages/LoginPage"})
+      }
+    })
+    return Promise.resolve("no login")
+  }
+
 }
 
 /**

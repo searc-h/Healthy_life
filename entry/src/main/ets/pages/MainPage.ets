@@ -28,6 +28,7 @@ import GlobalInfoApi from '../common/database/tables/GlobalInfoApi';
 import GlobalInfo from '../viewmodel/GlobalInfo';
 import { GlobalContext } from '../common/utils/GlobalContext';
 import { UserInfo } from '../model/Mine';
+import PreferencesUtil from '../common/utils/PreferencesUtils'
 
 @Styles function allSize() {
   .width(Const.THOUSANDTH_1000)
@@ -54,11 +55,13 @@ struct Index {
   @State homeStore: HomeStore = new HomeStore(new Date());
 
   @State userInfo : UserInfo = new UserInfo();
+  @State changeFontSize : number = 16;
 
   private tabController: TabsController = new TabsController();
 
   // 检测通知权限
   aboutToAppear() {
+    
     notificationManager.requestEnableNotification().then(() => {
       Logger.info('onPageShow', `requestEnableNotification success`);
     }).catch((err: Error) => {
@@ -128,7 +131,7 @@ struct Index {
         .height($r('app.float.default_24'))
         .objectFit(ImageFit.Contain);
       Text(NavList[index].text)
-        .fontSize($r('app.float.default_10'))
+        .fontSize(this.changeFontSize || $r('app.float.default_10'))
         .fontWeight(Const.FONT_WEIGHT_500)
         .fontColor(this.currentTab === index ? $r('app.color.blueColor') : $r('app.color.tabTitleColor'))
         .margin({ top: $r('app.float.default_4') })

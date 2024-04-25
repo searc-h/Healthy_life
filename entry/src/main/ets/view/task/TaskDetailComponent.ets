@@ -66,12 +66,13 @@ export default struct TaskDetail {
 
   finishTaskEdit() {
     if (this.isChanged) {
+      console.log(JSON.stringify(this.settingParams))
       let context: Context = getContext(this) as common.Context;
-      let taskInfo: TaskInfo = new TaskInfo(Const.ZERO, Const.GLOBAL_KEY, this.settingParams.taskId,
-        this.settingParams.targetValue, this.settingParams.isAlarm, this.settingParams.startTime,
-        this.settingParams.endTime, this.settingParams.frequency, false, '', this.settingParams.isOpen);
+      let taskInfo: ITaskItem = {
+        ...this.settingParams
+      }
       console.info("taskInfo : " , JSON.stringify(taskInfo))
-      addTask(taskInfo, context).then((res: number) => {
+      addTask(taskInfo, context).then(() => {
         GlobalContext.getContext().setObject('taskListChange', true);
         router.back({
           url: 'pages/MainPage',
@@ -79,7 +80,7 @@ export default struct TaskDetail {
             editTask: this.backIndexParams(),
           }
         })
-        Logger.info('addTaskFinished', JSON.stringify(res));
+
       }).catch((error: Error) => {
         prompt.showToast({
           message: Const.SETTING_FINISH_FAILED_MESSAGE
@@ -150,7 +151,7 @@ export default struct TaskDetail {
         .width(Const.THOUSANDTH_940)
 
         Button() {
-          Text($r('app.string.complete')).fontSize($r('app.float.default_20')).fontColor($r('app.color.blueColor'))
+          Text("添加").fontSize($r('app.float.default_20')).fontColor($r('app.color.blueColor'))
         }
         .width(Const.THOUSANDTH_800)
         .height(Const.DEFAULT_48)

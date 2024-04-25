@@ -27,8 +27,6 @@ struct TaskIndex {
 
   onPageShow() {
     getAllTask().then((res: ITaskItem[]) => {
-      let deepCopyDataStr = JSON.stringify(this.taskList);
-      let deepCopyData: ITaskItem[] = JSON.parse(deepCopyDataStr);
       this.taskList = res as ITaskItem[];
     })
   }

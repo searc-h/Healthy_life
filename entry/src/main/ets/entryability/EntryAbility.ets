@@ -14,14 +14,7 @@
  */
 
 import UIAbility from '@ohos.app.ability.UIAbility';
-import { CommonConstants as Const } from '../common/constants/CommonConstants';
-import {
-  columnDayInfoList,
-  columnGlobalInfoList,
-  columnTaskInfoInfoList,
-  columnFormInfoList
-} from '../model/RdbColumnModel';
-import RdbUtils from '../common/database/rdb/RdbUtils';
+import PreferencesUtil from '../common/utils/PreferencesUtils'
 import Logger from '../common/utils/Logger';
 import FormUtils from '../common/utils/FormUtils';
 import Want from '@ohos.app.ability.Want';
@@ -36,29 +29,10 @@ export default class EntryAbility extends UIAbility {
     GlobalContext.getContext().setObject('want', want);
     GlobalContext.getContext().setObject('launchParam', launchParam);
 
-    RdbUtils.initDb(this.context, Const.RDB_NAME.dbName ? Const.RDB_NAME.dbName : '');
-    await RdbUtils.createDb();
+    PreferencesUtil.createFontPreferences(this.context);
+    // default font size is 16
+    PreferencesUtil.saveDefaultFontSize(16)
 
-    RdbUtils.createTable(Const.DAY_INFO.tableName ? Const.DAY_INFO.tableName : '', columnDayInfoList).then(() => {
-      Logger.info(`RdbHelper createTable dayInfo success`);
-    }).catch((err: Error) => {
-      Logger.error(`RdbHelper dayInfo err : ${JSON.stringify(err)}`);
-    });
-
-    RdbUtils.createTable(Const.GLOBAL_INFO.tableName ? Const.GLOBAL_INFO.tableName : '', columnGlobalInfoList).then(() => {
-      Logger.info(`RdbHelper createTable globalInfo success`);
-    }).catch((err: Error) => {
-      Logger.error(`RdbHelper globalInfo err : ${JSON.stringify(err)}`);
-    });
-    RdbUtils.createTable(Const.TASK_INFO.tableName ? Const.TASK_INFO.tableName : '', columnTaskInfoInfoList).then(() => {
-      Logger.info(`RdbHelper createTable taskInfo success`);
-    }).catch((err: Error) => {
-      Logger.error(`RdbHelper taskInfo err : ${JSON.stringify(err)}`);
-    });
-    RdbUtils.createTable(Const.FORM_INFO.tableName ? Const.FORM_INFO.tableName : '', columnFormInfoList)
-      .catch((err: Error) => {
-        Logger.error(`RdbHelper formInfo err : ${JSON.stringify(err)}`);
-      });
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
