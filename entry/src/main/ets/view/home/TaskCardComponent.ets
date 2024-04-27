@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { TaskMapById ,UserTaskType} from '../../model/TaskInitList';
+import { UserTaskType} from '../../model/TaskInitList';
 import HealthText from '../../view/HealthTextComponent';
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
 
@@ -33,7 +33,7 @@ import { CommonConstants as Const } from '../../common/constants/CommonConstants
 export struct TaskCard {
   @Prop taskInfoStr: string;
   clickAction: Function = (isClick: boolean) => {};
-  @State taskInfo: Partial<UserTaskType> = {};
+  @State taskInfo: Partial<UserTaskType> = undefined;
 
   aboutToAppear() {
     this.taskInfo = JSON.parse(this.taskInfoStr);
@@ -45,7 +45,7 @@ export struct TaskCard {
     } else {
       Row() {
         HealthText({
-          title: this.taskInfo.finValue || `--`,
+          title: this.taskInfo.targetValue || `--`,
           fontSize: $r('app.float.default_24')
         })
         Text(this.taskInfo.taskId.unit)
@@ -57,18 +57,20 @@ export struct TaskCard {
 
   build() {
     Row() {
-      Row({ space: Const.DEFAULT_6 }) {
-        Image(Const.SERVER + "/" + this.taskInfo.taskId.icon)
-          .width($r('app.float.default_36')).height($r('app.float.default_36'))
-          .objectFit(ImageFit.Contain)
-        HealthText({
-          title: '',
-          titleResource: this.taskInfo.taskId.taskName,
-          fontFamily: $r('app.string.HarmonyHeiTi')
-        })
-      }
+      if(this.taskInfo.taskId){
+        Row({ space: Const.DEFAULT_6 }) {
+          Image(Const.SERVER + "/" + this.taskInfo.taskId.icon)
+            .width($r('app.float.default_36')).height($r('app.float.default_36'))
+            .objectFit(ImageFit.Contain)
+          HealthText({
+            title: '',
+            titleResource: this.taskInfo.taskId.taskName,
+            fontFamily: $r('app.string.HarmonyHeiTi')
+          })
+        }
 
-      this.targetValueBuilder();
+        this.targetValueBuilder();
+      }
     }
     .allSize()
     .justifyContent(FlexAlign.SpaceBetween)

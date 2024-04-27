@@ -21,7 +21,7 @@ import HomeTopComponent from '../view/home/HomeTopComponent';
 import { CustomDialogView, CustomDialogCallback } from '../view/dialog/CustomDialogView';
 
 import { HomeStore } from '../viewmodel/HomeViewModel';
-import { ITaskItem, TaskMapById, UserTaskType } from '../model/TaskInitList';
+import { ITaskItem, UserTaskType } from '../model/TaskInitList';
 import { HealthDataSrcMgr } from '../common/utils/HealthDataSrcMgr';
 import { BroadCast, BroadCastType } from '../common/utils/BroadCast';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
@@ -81,14 +81,9 @@ export struct HomeIndex {
 
     } else {
       // edit task
-      let editTaskStr: string = JSON.stringify(TaskMapById[item.taskId.taskId - 1]);
-      let editTask: ITaskItem = JSON.parse(editTaskStr);
-      editTask.targetValue = item?.taskId.targetValue;
-      editTask.isAlarm = item.isAlarm;
-      editTask.startTime = item.startTime;
-      editTask.frequency = item.frequency;
-      editTask.isOpen = item.isOpen;
-      router.pushUrl({ url: 'pages/TaskEditPage', params: { params: JSON.stringify(editTask) } });
+      // Need Check Line
+
+      router.pushUrl({ url: 'pages/TaskEditPage', params: { params: { ...item, userId:item.userId.userId , taskId:item.taskId._id } } });
     }
   }
 

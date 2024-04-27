@@ -15,7 +15,7 @@
 
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
 import { isReachNewAchievement, ACHIEVEMENT_LEVEL_KEY } from '../model/AchieveModel';
-import { TaskMapById, ITaskItem, ACHIEVEMENT_LEVEL_LIST } from '../model/TaskInitList';
+import { ITaskItem, ACHIEVEMENT_LEVEL_LIST } from '../model/TaskInitList';
 import TaskInfo from './TaskInfo';
 import DayInfo from './DayInfo';
 import { UserTaskType } from '../model/TaskInitList'
@@ -83,29 +83,6 @@ export class HomeStore {
     return dateToStr(this.currentDate) === new Date(this.selectedDate).toDateString();
   }
 
-  public updateSelectedDayInfo(selectedDayInfo: WeekDateModel) {
-    // Logger.debug('updateSelectedDayInfo', JSON.stringify(selectedDayInfo));
-    // if (selectedDayInfo.taskList?.length === 0) {
-    //   // get data form db
-    //   TaskInfoTableApi.query(selectedDayInfo.dateStr, true, (res: TaskInfo[]) => {
-    //     Logger.info('Selected TaskInfoList: ', JSON.stringify(res));
-    //     selectedDayInfo.taskList = res;
-    //     this.dateArr = this.dateArr.map((item: WeekDateModel) => {
-    //       if(item.dateStr === selectedDayInfo.dateStr) {
-    //         let taskListStr = JSON.stringify(res);
-    //         item.taskList = JSON.parse(taskListStr);
-    //         return item;
-    //       } else {
-    //         return item;
-    //       }
-    //     })
-    //     this.selectedDayInfo = selectedDayInfo;
-    //   });
-    // } else {
-    //   this.selectedDayInfo = selectedDayInfo;
-    // }
-    // Logger.info("selectedDayTaskInfo: ", JSON.stringify(selectedDayInfo.taskList));
-  }
 
   public updateTaskInfoList(editedTaskInfo: ITaskItem) {
     if (editedTaskInfo?.taskId) {
@@ -192,14 +169,15 @@ export class HomeStore {
     } as AchievementInfo;
   }
 
+
   updateTask(task: UserTaskType): Promise<TaskInfo> {
     return new Promise((resolve, reject) => {
       let taskID = task.taskId.taskId;
       let targetValue = task.taskId.targetValue;
-      let finValue = task.finValue;
+      let finValue = task.currentValue;
       let updateTask = new TaskInfo(task.taskId._id, task.date, taskID, targetValue, task.isAlarm, task.startTime,
         task.endTime, task.frequency, task.isDone, finValue, task.isOpen);
-      let step = TaskMapById[taskID - 1].step;
+      let step = task.taskId.step;
       let hasExceed = updateTask.isDone;
       if (step === 0) {
         updateTask.isDone = true;

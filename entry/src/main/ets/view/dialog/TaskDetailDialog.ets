@@ -15,7 +15,7 @@
 
 import { CustomDialogCallback } from './CustomDialogView';
 import TaskInfo from '../../viewmodel/TaskInfo';
-import { TaskMapById, UserTaskType } from '../../model/TaskInitList';
+import { UserTaskType } from '../../model/TaskInitList';
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
 import { GlobalContext } from '../../common/utils/GlobalContext';
 

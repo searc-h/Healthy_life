@@ -566,6 +566,7 @@ export class CommonConstants {
    */
   static readonly SPAN_LG: number = 8;
 
+
 }
 
 export enum TaskType {

@@ -4,42 +4,31 @@ import SettingItemComponent  from '../view/SettingItemComponent';
 import PreferencesUtil from '../common/utils/PreferencesUtils'
 import promptAction from '@ohos.promptAction';
 import SliderSettingComponent from '../view/SliderSettingComponent'
-
+import { GlobalContext } from '../common/utils/GlobalContext'
 
 @Entry
 @Component
 struct AppSetting {
-  @State message: string = 'Hello World'
-  @State changeFontSize: number = 16;
-  @State settingTag : "font" | "tab" | undefined = undefined;
 
-  settingTab  = [
-    {
-      id : 1,
-      name : "首页",
-      value : true
-    },
-    {
-      id : 2,
-      name : "成就",
-      value : true
-    },
-    {
-      id : 3,
-      name : "历史",
-      value : true
-    },
-    {
-      id : 4,
-      name : "我的",
-      value : true
-    },
-    {
-      id : 5,
-      name : "AI",
-      value : true
-    }
-  ]
+  @State changeFontSize: number = 16;
+  // @State settingTag : "font" | "tab" | undefined = undefined;
+
+  settingTab :Record<string,boolean> =  {
+    History : true,
+    AI : true
+  }
+
+
+  aboutToAppear(){
+    console.info("appear")
+    let res = GlobalContext.getContext().getObject("settingTab" ) as Record<string , boolean>
+    if(res) this.settingTab  = res
+  }
+
+  settingTabChange(key:string , value: boolean){
+    this.settingTab[key] = value
+    GlobalContext.getContext().setObject("settingTab" , this.settingTab)
+  }
 
   build() {
     Row() {
@@ -74,28 +63,25 @@ struct AppSetting {
             .blockBackground("1.5%")
             .margin({top : 50})
 
-            ForEach(this.settingTab , (item)=>{
+            ForEach(Object.keys(this.settingTab) , (key)=>{
               Row() {
-                Text(item.name)
+                Text(key)
                   .height(40)
                   .padding({left: 10})
                   .fontSize(this.changeFontSize)
                   .textAlign(TextAlign.Start)
                   .margin({left: 40})
                   .width("50%")
-                Toggle({ type: ToggleType.Switch ,isOn:item.value })
+                Toggle({ type: ToggleType.Switch ,isOn:this.settingTab[key] })
                   .margin({left: 10, right: 10})
                   .onChange((isOn: boolean) => {
-                    if(isOn) {
-                      promptAction.showToast({ message:  `${item.name} is on.` })
-                    } else {
-                      promptAction.showToast({ message: `${item.name} is off.` })
-                    }
+                    promptAction.showToast({ message: `${key} is ${isOn ? "on" : "off"}.` })
+                    this.settingTabChange(key, isOn)
                   })
               }
               .width('70%')
               .justifyContent(FlexAlign.SpaceBetween)
-            } , item=>item.id)
+            } , item=>JSON.stringify(item))
 
           }
           .height(CommonConstants.FULL_HEIGHT)

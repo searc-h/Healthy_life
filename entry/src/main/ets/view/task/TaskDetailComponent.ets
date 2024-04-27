@@ -51,7 +51,7 @@ export default struct TaskDetail {
   // 从路径参数中拿到 可编辑任务
   parseRouterParams() {
     let params = router.getParams() as Record<string, Object>;
-    const routerParams: ITaskItem = JSON.parse(params.params as string);
+    const routerParams: ITaskItem  = params.params as ITaskItem;
     return routerParams;
   }
 
@@ -66,7 +66,10 @@ export default struct TaskDetail {
 
   finishTaskEdit() {
     if (this.isChanged) {
-      console.log(JSON.stringify(this.settingParams))
+      Object.keys(this.settingParams).map(item=>{
+        console.log(item , JSON.stringify(this.settingParams[item]))
+      })
+
       let context: Context = getContext(this) as common.Context;
       let taskInfo: ITaskItem = {
         ...this.settingParams
@@ -75,26 +78,25 @@ export default struct TaskDetail {
       addTask(taskInfo, context).then(() => {
         GlobalContext.getContext().setObject('taskListChange', true);
         router.back({
-          url: 'pages/MainPage',
-          params: {
-            editTask: this.backIndexParams(),
-          }
-        })
+            url: 'pages/MainPage',
+            params: {
+              editTask: this.backIndexParams(),
+            }
+          })
 
       }).catch((error: Error) => {
         prompt.showToast({
-          message: Const.SETTING_FINISH_FAILED_MESSAGE
+          message: error.message
         })
         Logger.error('addTaskFailed', JSON.stringify(error));
       })
-      return;
     }
-    router.back({
-      url: 'pages/MainPage',
-    });
   }
 
   aboutToAppear() {
+    Object.keys(this.settingParams).map(item=>{
+      console.log(item , JSON.stringify(this.settingParams[item]))
+    })
     this.broadCast.off(BroadCastType.SHOW_TARGET_SETTING_DIALOG, () => {});
     this.broadCast.off(BroadCastType.SHOW_REMIND_TIME_DIALOG, () => {});
     this.broadCast.off(BroadCastType.SHOW_FREQUENCY_DIALOG, () => {});
@@ -151,7 +153,7 @@ export default struct TaskDetail {
         .width(Const.THOUSANDTH_940)
 
         Button() {
-          Text("添加").fontSize($r('app.float.default_20')).fontColor($r('app.color.blueColor'))
+          Text("完成").fontSize($r('app.float.default_20')).fontColor($r('app.color.blueColor'))
         }
         .width(Const.THOUSANDTH_800)
         .height(Const.DEFAULT_48)

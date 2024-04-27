@@ -16,7 +16,7 @@
 export interface NavItem {
   icon: Resource;
   icon_selected: Resource;
-  text: Resource;
+  text: Resource | string;
   id: number;
 }
 
@@ -24,7 +24,9 @@ export interface NavItem {
 export enum TabId {
   HOME,
   ACHIEVEMENT,
-  MINE
+  MINE,
+  HISTORY,
+  AI
 }
 
 export const NavList: NavItem[] = [
@@ -45,5 +47,17 @@ export const NavList: NavItem[] = [
     icon_selected: $r('app.media.ic_tabs_mine_sel'),
     text: $r('app.string.tab_mine'),
     id: TabId.MINE
+  },
+  {
+    icon: $r('app.media.ic_tabs_history'),
+    icon_selected: $r('app.media.ic_tabs_history_active'),
+    text: "历史",
+    id: TabId.HISTORY
+  },
+  {
+    icon: $r('app.media.ic_tabs_mine_normal'),
+    icon_selected: $r('app.media.ic_tabs_mine_sel'),
+    text: "智评",
+    id: TabId.AI
   },
 ]

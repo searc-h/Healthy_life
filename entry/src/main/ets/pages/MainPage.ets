@@ -57,6 +57,9 @@ struct Index {
   @State userInfo : UserInfo = new UserInfo();
   @State changeFontSize : number = 16;
 
+  // 有bug,
+  @State settingTab : Record<string, boolean> = undefined
+
   private tabController: TabsController = new TabsController();
 
   // 检测通知权限
@@ -72,6 +75,8 @@ struct Index {
   onPageShow() {
     this.userInfo = GlobalContext.getContext().getObject("User_Info") as UserInfo || {}
     console.log("userInfo : " + JSON.stringify(this.userInfo))
+    this.settingTab = GlobalContext.getContext().getObject("settingTab") as Record<string , boolean>
+    console.log("setting Tab" , JSON.stringify(this.settingTab))
 
     this.homeStore.getTaskListOfDay()
 
@@ -141,25 +146,41 @@ struct Index {
 
   build() {
     Tabs({ barPosition: BarPosition.End, controller: this.tabController }) {
-      TabContent() {
-        HomeIndex({ homeStore: $homeStore, editedTaskInfo: $editedTaskInfo, editedTaskID: $editedTaskID })
-          .borderWidth({ bottom: 1 })
-          .borderColor($r('app.color.primaryBgColor'))
-      }
-      .tabBar(this.TabBuilder(TabId.HOME))
-      .align(Alignment.Start)
 
-      TabContent() {
-        AchievementIndex()
-      }
-      .tabBar(this.TabBuilder(TabId.ACHIEVEMENT))
+        TabContent() {
+          HomeIndex({ homeStore: $homeStore, editedTaskInfo: $editedTaskInfo, editedTaskID: $editedTaskID })
+            .borderWidth({ bottom: 1 })
+            .borderColor($r('app.color.primaryBgColor'))
+        }
+        .tabBar(this.TabBuilder(TabId.HOME))
+        .align(Alignment.Start)
 
-      TabContent() {
-        MineIndex({userInfo:this.userInfo})
-          .borderWidth({ bottom: 1 })
-          .borderColor($r('app.color.primaryBgColor'))
+        TabContent() {
+          AchievementIndex()
+        }
+        .tabBar(this.TabBuilder(TabId.ACHIEVEMENT))
+
+        TabContent() {
+          MineIndex({userInfo:this.userInfo})
+            .borderWidth({ bottom: 1 })
+            .borderColor($r('app.color.primaryBgColor'))
+        }
+        .tabBar(this.TabBuilder(TabId.MINE))
+
+        if( !this.settingTab || this.settingTab["History"]){
+          TabContent(){
+            Text("历史")
+          }
+          .tabBar(this.TabBuilder(3))
+        }
+
+      if( !this.settingTab || this.settingTab["AI"]){
+        TabContent(){
+          Text("AI")
+        }
+        .tabBar(this.TabBuilder(4))
       }
-      .tabBar(this.TabBuilder(TabId.MINE))
+
     }
     .scrollable(true)
     .allSize()
@@ -167,6 +188,7 @@ struct Index {
     .barMode(BarMode.Fixed)
     .vertical(false)
     .onChange((index) => {
+      console.log("tab index" , index)
       this.currentTab = index;
     })
   }

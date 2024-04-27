@@ -19,7 +19,11 @@ import { CommonConstants as Const } from '../common/constants/CommonConstants';
 import { httpRequest } from '../common/utils/httpUtils'
 import { UserInfo } from './Mine';
 
+/**
+ * @description 任务的相关信息
+ */
 export interface ITaskItem {
+  // Task_Id
   _id ?:number,
   // 任务ID
   taskId: number;
@@ -35,6 +39,9 @@ export interface ITaskItem {
   dialogBg: Resource;
   // 目标值
   targetValue: string;
+
+  // 当前值
+  currentValue : string;
   // 是否开启提示
   isAlarm: boolean;
   // 提醒开始时间
@@ -60,7 +67,8 @@ export interface UserTaskType {
   startTime: string,
   endTime: string,
   frequency: string,
-  finValue: string,
+  currentValue: string,
+  targetValue : string,
   isDone: boolean,
   isOpen: boolean,
 }
@@ -88,113 +96,7 @@ export const TaskList: TaskInfo[] = [
 let achievementMap = new AchievementMapInfo();
 export const AchievementMap = achievementMap;
 
-export const TaskMapById: Array<ITaskItem> = [
-  {
-    taskId: 1,
-    taskName: $r('app.string.task_morning'),
-    icon: $r("app.media.ic_task_morning"),
-    dialogBg: $r('app.media.ic_dialog_getup'),
-    targetValue: '08: 00',
-    isOpen: true,
-    unit: '',
-    step: 0,
-    isInit: true,
-    isAlarm: false,
-    startTime: '08: 00',
-    endTime: '00: 00',
-    frequency: '1, 2, 3, 4, 5, 6, 7'
-  },
-  {
-    taskId: 2,
-    taskName: $r('app.string.task_water'),
-    icon: $r("app.media.ic_task_water"),
-    dialogBg: $r('app.media.ic_dialog_drink'),
-    targetValue: '0.25',
-    isOpen: false,
-    unit: 'L',
-    step: 0,
-    isInit: true,
-    isAlarm: false,
-    startTime: '08: 00',
-    endTime: '00: 00',
-    frequency: '1, 2, 3, 4, 5, 6, 7'
-  },
-  {
-    taskId: 3,
-    taskName: $r('app.string.task_apple'),
-    icon: $r("app.media.ic_task_apple"),
-    dialogBg: $r('app.media.ic_dialog_eat_apples'),
-    targetValue: '1',
-    isOpen: false,
-    unit: '个',
-    step: 1,
-    isInit: true,
-    isAlarm: false,
-    startTime: '08: 00',
-    endTime: '00: 00',
-    frequency: '1, 2, 3, 4, 5, 6, 7'
-  },
-  {
-    taskId: 4,
-    taskName: $r('app.string.task_smile'),
-    icon: $r("app.media.ic_task_smile"),
-    dialogBg: $r('app.media.ic_dialog_smile'),
-    targetValue: '1',
-    isOpen: false,
-    unit: '次',
-    step: 0,
-    isInit: true,
-    isAlarm: false,
-    startTime: '08: 00',
-    endTime: '00: 00',
-    frequency: '1, 2, 3, 4, 5, 6, 7'
-  },
-  {
-    taskId: 5,
-    taskName: $r('app.string.task_brush'),
-    icon: $r("app.media.ic_task_brush"),
-    dialogBg: $r('app.media.ic_dialog_brush_teeth'),
-    targetValue: '1',
-    isOpen: false,
-    unit: '次',
-    step: 0,
-    isInit: true,
-    isAlarm: false,
-    startTime: '08: 00',
-    endTime: '00: 00',
-    frequency: '1, 2, 3, 4, 5, 6, 7'
-  },
-  {
-    taskId: 6,
-    taskName: $r('app.string.task_night'),
-    icon: $r("app.media.ic_task_night"),
-    dialogBg: $r('app.media.ic_dialog_sleep'),
-    targetValue: '20: 00',
-    isOpen: false,
-    unit: '',
-    step: 0,
-    isInit: true,
-    isAlarm: false,
-    startTime: '08: 00',
-    endTime: '00: 00',
-    frequency: '1, 2, 3, 4, 5, 6, 7'
-  },
-  {
-    taskId: 7,
-    taskName: $r("app.string.task_smile"),
-    icon: $r("app.media.running"),
-    dialogBg: $r('app.media.ic_dialog_sleep'),
-    targetValue: '20: 00',
-    isOpen: false,
-    unit: '',
-    step: 0,
-    isInit: true,
-    isAlarm: false,
-    startTime: '08: 00',
-    endTime: '00: 00',
-    frequency: '1, 2, 3, 4, 5, 6, 7'
-  }
-]
+
 
 export const TaskItem = new TaskInfo(1, '', 0, '7:00', true, 'string', 'string;', '', true, '6:58', false);
 

@@ -16,7 +16,7 @@
 import { ITaskItem } from '../model/TaskInitList';
 import TaskList from '../view/task/TaskListComponent';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
-import { getAllTask, taskIndexDataInit, taskOriginData } from '../viewmodel/TaskViewModel';
+import { getAllTask, taskIndexDataInit } from '../viewmodel/TaskViewModel';
 import TaskInfo from '../viewmodel/TaskInfo';
 
 @Entry

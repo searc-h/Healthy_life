@@ -19,7 +19,7 @@ import reminder from '../service/ReminderAgent';
 
 import { padTo2Digits } from '../common/utils/Utils';
 import TaskInfo, { oneWeek } from './TaskInfo';
-import { TaskMapById, RemindContentMap, ITaskItem } from '../model/TaskInitList';
+import { RemindContentMap, ITaskItem } from '../model/TaskInitList';
 import PublishReminderInfo from './PublishReminderInfo';
 
 import { httpRequest } from '../common/utils/httpUtils'
@@ -32,7 +32,6 @@ import router from '@ohos.router';
 const publishReminder = reminder.publishReminder;
 const cancelReminder = reminder.cancelReminder;
 const hasNotificationId = reminder.hasNotificationId;
-export const taskOriginData: ITaskItem[] = TaskMapById;
 
 /**
  * @description Get all task status
@@ -65,9 +64,9 @@ const useReminder = (params: ITaskItem, context: Context) => {
     publishReminderInfo.hour = Number(params?.startTime.split(':')[0]);
     publishReminderInfo.minute = Number(params?.startTime.split(':')[1]);
     publishReminderInfo.daysOfWeek = params?.frequency.split(',').map(item => Number(item));
-    publishReminderInfo.title = RemindContentMap[params?.taskId - 1].title;
-    publishReminderInfo.content = RemindContentMap[params?.taskId - 1].content;
-    publishReminderInfo.notificationId = params?.taskId;
+    publishReminderInfo.title = RemindContentMap[params?.taskId as number - 1].title;
+    publishReminderInfo.content = RemindContentMap[params?.taskId as number - 1].content;
+    publishReminderInfo.notificationId = params?.taskId as number;
     publishReminder(publishReminderInfo, context);
   } catch (error) {
     Logger.error('publishReminder', JSON.stringify(error));
@@ -102,7 +101,7 @@ const isHasNotificationId = (notificationId: number) => {
 export const addTask = async  (params: ITaskItem, context: Context)  => {
   if (!params) {
     Logger.error('addTask', 'params is null!');
-    return Promise.resolve("params is null!")
+    return Promise.reject("params is null!")
   }
 
   if (params?.isOpen) {
@@ -138,16 +137,17 @@ export const addTask = async  (params: ITaskItem, context: Context)  => {
       AlertDialogService({
         message : res.message
       })
+      return res
     })
-    return res
+    Promise.resolve(res)
   }else{
     AlertDialogService({
       message: "请先登录",
       action : ()=>{
-        router.pushUrl({url : "/pages/LoginPage"})
+        router.pushUrl({url : "pages/LoginPage"})
       }
     })
-    return Promise.resolve("no login")
+    return Promise.reject("no login")
   }
 
 }
