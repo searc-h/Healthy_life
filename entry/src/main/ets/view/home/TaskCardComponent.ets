@@ -78,6 +78,6 @@ export struct TaskCard {
     .padding({ left: Const.THOUSANDTH_50, right: Const.THOUSANDTH_33 })
     .backgroundColor($r('app.color.white'))
     .onClick(() => this.clickAction(true))
-    .gesture(LongPressGesture().onAction(() => this.clickAction(false)))
+    .gesture(LongPressGesture().onAction(() => this.clickAction && this.clickAction(false)))
   }
 }

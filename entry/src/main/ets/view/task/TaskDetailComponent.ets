@@ -66,15 +66,11 @@ export default struct TaskDetail {
 
   finishTaskEdit() {
     if (this.isChanged) {
-      Object.keys(this.settingParams).map(item=>{
-        console.log(item , JSON.stringify(this.settingParams[item]))
-      })
-
       let context: Context = getContext(this) as common.Context;
       let taskInfo: ITaskItem = {
         ...this.settingParams
       }
-      console.info("taskInfo : " , JSON.stringify(taskInfo))
+
       addTask(taskInfo, context).then(() => {
         GlobalContext.getContext().setObject('taskListChange', true);
         router.back({
@@ -94,9 +90,7 @@ export default struct TaskDetail {
   }
 
   aboutToAppear() {
-    Object.keys(this.settingParams).map(item=>{
-      console.log(item , JSON.stringify(this.settingParams[item]))
-    })
+
     this.broadCast.off(BroadCastType.SHOW_TARGET_SETTING_DIALOG, () => {});
     this.broadCast.off(BroadCastType.SHOW_REMIND_TIME_DIALOG, () => {});
     this.broadCast.off(BroadCastType.SHOW_FREQUENCY_DIALOG, () => {});
@@ -121,8 +115,7 @@ export default struct TaskDetail {
             && this.settingParams?.taskId !== taskType.brushTeeth
           )
           .onClick(() => {
-            this.broadCast.emit(
-            BroadCastType.SHOW_TARGET_SETTING_DIALOG);
+            this.broadCast.emit(BroadCastType.SHOW_TARGET_SETTING_DIALOG);
           })
 
           ListItem() {

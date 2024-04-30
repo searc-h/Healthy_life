@@ -1,0 +1,67 @@
+
+
+import { CommonConstants as Const } from '../../common/constants/CommonConstants';
+import { ClockHistoryType, ResultListType } from '../../viewmodel/HistoryViewModel';
+import { TaskCard } from '../home/TaskCardComponent';
+
+/**
+ * The news list item component.
+ */
+@Component
+export default struct HistoryItem {
+  private data: Partial<ClockHistoryType> = {};
+
+  build() {
+    Column() {
+      Row() {
+        Image($r('app.media.daka'))
+          .width(Const.NewsTitle_IMAGE_WIDTH)
+          .height("22vp")
+          .objectFit(ImageFit.Contain)
+        Text(this.data.title)
+          .fontSize(20)
+          .fontColor("#000000")
+          .width(Const.NewsTitle_TEXT_WIDTH)
+          .maxLines(1)
+          .margin({ left: Const.NewsTitle_TEXT_MARGIN_LEFT })
+          .textOverflow({ overflow: TextOverflow.Ellipsis })
+          .fontWeight(Const.NewsTitle_TEXT_FONT_WEIGHT)
+      }
+      .margin({top : '5vp'})
+      .height("22vp")
+
+      Text(this.data.content)
+        .fontSize(Const.NewsContent_FONT_SIZE)
+        .fontColor("#000")
+        .height(Const.NewsContent_HEIGHT)
+        .lineHeight("22vp")
+        .width(Const.NewsContent_WIDTH)
+        .maxLines(Const.NewsContent_MAX_LINES)
+        .margin({ left: Const.NewsContent_MARGIN_LEFT ,top: Const.NewsContent_MARGIN_TOP  ,bottom:Const.NewsContent_MARGIN_TOP })
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+
+      TaskCard({
+        taskInfoStr: JSON.stringify({
+          ...this.data.userTaskDetails,
+          taskId : this.data.task
+        }),
+      })
+        .margin({ bottom: Const.DEFAULT_12 })
+        .height($r('app.float.default_36'))
+        .width(Const.NewsSource_WIDTH)
+
+
+      Row(){
+        Text("打卡日期："  + this.data.date.split("T")[0] + "  " + this.data.date.split("T")[1].split(".")[0])
+          .fontSize(Const.NewsSource_FONT_SIZE)
+          .fontColor("FF989898")
+          .height(Const.NewsSource_HEIGHT)
+          .width(Const.NewsSource_WIDTH)
+          .maxLines(Const.NewsSource_MAX_LINES)
+          .margin({ left: Const.NewsSource_MARGIN_LEFT, top: Const.NewsSource_MARGIN_TOP })
+          .textOverflow({ overflow: TextOverflow.None })
+      }
+    }
+    .alignItems(HorizontalAlign.Center)
+  }
+}

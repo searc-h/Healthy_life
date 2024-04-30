@@ -188,6 +188,7 @@ export const formatParams = (params: ITaskItem) => {
  * @return string Frequency string
  */
 export const initFrequencyString = (frequencyIdCollection: string) => {
+  console.log("frequencyIdCollection: " , frequencyIdCollection)
   if (frequencyIdCollection === '') {
     return Const.EVERYDAY;
   }

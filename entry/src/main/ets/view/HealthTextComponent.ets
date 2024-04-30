@@ -18,7 +18,7 @@ import { CommonConstants as Const } from '../common/constants/CommonConstants'
 @Component
 export default struct HealthText {
   @Prop title: string = '';
-  titleResource: Resource = $r('app.string.empty');
+  titleResource: Resource | string = $r('app.string.empty');
   fontSize: number | string | Resource = $r('app.float.default_16');
   fontWeight: number | FontWeight | string = Const.FONT_WEIGHT_500;
   fontColor: ResourceColor = $r('app.color.titleColor');

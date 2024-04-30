@@ -109,3 +109,19 @@ export function httpRequest<T = any>(requestObj : RequestType): Promise<Response
     return serverData;
   })
 }
+
+
+export async function httpGet(url: string) {
+  if (!url) {
+    return undefined;
+  }
+  let request = http.createHttp();
+  let options = {
+    method: http.RequestMethod.GET,
+    header: { 'Content-Type': 'application/json' },
+    readTimeout: Const.HTTP_READ_TIMEOUT,
+    connectTimeout: Const.HTTP_READ_TIMEOUT
+  } as http.HttpRequestOptions;
+  let result = await request.request(url, options);
+  return result;
+}

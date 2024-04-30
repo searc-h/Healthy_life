@@ -28,6 +28,7 @@ import GlobalInfoApi from '../common/database/tables/GlobalInfoApi';
 import GlobalInfo from '../viewmodel/GlobalInfo';
 import { GlobalContext } from '../common/utils/GlobalContext';
 import { UserInfo } from '../model/Mine';
+import {HistoryComponent} from '../view/HistoryComponent'
 import PreferencesUtil from '../common/utils/PreferencesUtils'
 
 @Styles function allSize() {
@@ -54,11 +55,12 @@ struct Index {
    */
   @State homeStore: HomeStore = new HomeStore(new Date());
 
-  @State userInfo : UserInfo = new UserInfo();
   @State changeFontSize : number = 16;
 
   // 有bug,
   @State settingTab : Record<string, boolean> = undefined
+
+  @Provide userInfo : UserInfo = new UserInfo();
 
   private tabController: TabsController = new TabsController();
 
@@ -161,7 +163,7 @@ struct Index {
         .tabBar(this.TabBuilder(TabId.ACHIEVEMENT))
 
         TabContent() {
-          MineIndex({userInfo:this.userInfo})
+          MineIndex()
             .borderWidth({ bottom: 1 })
             .borderColor($r('app.color.primaryBgColor'))
         }
@@ -169,7 +171,7 @@ struct Index {
 
         if( !this.settingTab || this.settingTab["History"]){
           TabContent(){
-            Text("历史")
+            HistoryComponent({currentTab : this.currentTab})
           }
           .tabBar(this.TabBuilder(3))
         }
@@ -188,7 +190,6 @@ struct Index {
     .barMode(BarMode.Fixed)
     .vertical(false)
     .onChange((index) => {
-      console.log("tab index" , index)
       this.currentTab = index;
     })
   }

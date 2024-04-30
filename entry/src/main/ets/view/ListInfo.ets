@@ -74,6 +74,11 @@ export struct ListInfo {
       url:"pages/AppSetting"
     })
   }
+  goWebPage = ()=>{
+    router.pushUrl(({
+      url : "pages/WebPage"
+    }))
+  }
 
   @Builder ListItem_Child(item : InfoItem ){
     Flex({ justifyContent: FlexAlign.SpaceBetween, alignItems: ItemAlign.Center }) {
@@ -101,16 +106,22 @@ export struct ListInfo {
       .onClick(this.aboutApp)
       .ListItem_Child_Styles()
 
+      ListItem() {
+        this.ListItem_Child({id:"3" , title:"harmonyOS官网"})
+      }
+      .onClick(this.goWebPage)
+      .ListItem_Child_Styles()
+
       // display different layout with userInfo
       if(this.isLogin){
         ListItem() {
-          this.ListItem_Child({id:"3" , title:"退出登陆"})
+          this.ListItem_Child({id:"4" , title:"退出登陆"})
         }
         .onClick(this.loginOut)
         .ListItem_Child_Styles()
       }else {
         ListItem() {
-          this.ListItem_Child({id:"3" , title:"去登陆"})
+          this.ListItem_Child({id:"4" , title:"去登陆"})
         }
         .onClick(this.goLogin)
         .ListItem_Child_Styles()

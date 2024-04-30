@@ -21,7 +21,7 @@ import { UserInfo } from '../model/Mine'
 @Component
 export struct MineIndex {
   @State signature: string = Const.SIGNATURE;
-  @ObjectLink userInfo : UserInfo;
+  @Consume userInfo : UserInfo;
 
   aboutToAppear(){
 

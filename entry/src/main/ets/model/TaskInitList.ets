@@ -25,10 +25,10 @@ import { UserInfo } from './Mine';
 export interface ITaskItem {
   // Task_Id
   _id ?:number,
-  // 任务ID
+  // 前端的任务ID
   taskId: number;
   // 任务名称
-  taskName: Resource;
+  taskName: Resource | string;
   // 是否开启
   isOpen: boolean;
   // 单位
@@ -54,6 +54,8 @@ export interface ITaskItem {
   isInit: boolean;
   // 打卡递增值
   step: number;
+
+  [k:string]: any;
 }
 
 

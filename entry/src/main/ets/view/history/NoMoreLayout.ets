@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License,Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,27 +13,22 @@
  * limitations under the License.
  */
 
-export interface InfoItem {
-  id: string;
-  title: Resource | string;
-  icon?: Resource;
-  clickEvent? : (user?:UserInfo)=>void;
-}
+import { CommonConstants as Const } from '../../common/constants/CommonConstants'
 
-
-@Observed
-export class UserInfo {
-  _id? : string;
-  userId? :  string;
-  userName?: string;
-  isLogin? : boolean;
-  token? : string;
-
-  constructor(_id? : string ,userName?:string, isLogin?:boolean , token?:string) {
-    this._id = _id;
-    this.userId = _id;
-    this.userName = userName;
-    this.isLogin = isLogin;
-    this.token = token;
+/**
+ * The No more data layout component.
+ */
+@Component
+export default struct NoMoreLayout {
+  build() {
+    Row() {
+      Text("no more data")
+        .margin({ left: Const.NoMoreLayoutConstant_NORMAL_PADDING })
+        .fontSize(Const.NoMoreLayoutConstant_TITLE_FONT)
+        .textAlign(TextAlign.Center)
+    }
+    .width(Const.FULL_WIDTH)
+    .justifyContent(FlexAlign.Center)
+    .height(70)
   }
 }

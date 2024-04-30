@@ -28,7 +28,7 @@ export struct TargetSettingDialog {
   drinkRange: string[] = createDrinkRange();
   appleRange: string[] = createAppleRange();
   currentValue: string = this.settingParams.targetValue;
-  currentTime: string = Const.DEFAULT_TIME;
+  currentTime: string =  Const.DEFAULT_TIME;
 
   compareTime(startTime: string, endTime: string) {
     if (returnTimeStamp(this.currentTime) < returnTimeStamp(startTime) ||

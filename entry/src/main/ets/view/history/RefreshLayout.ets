@@ -13,27 +13,23 @@
  * limitations under the License.
  */
 
-import { CommonConstants as Const } from '../../common/constants/CommonConstants';
+import { CustomRefreshLoadLayoutClass } from '../../viewmodel/HistoryViewModel';
+import CustomRefreshLoadLayout from './CustomRefreshLoadLayout';
 
-@Styles function allSize () {
-  .width(Const.THOUSANDTH_1000)
-  .height(Const.THOUSANDTH_1000)
-}
-
+/**
+ * The refresh layout component.
+ */
 @Component
-export default struct AddBtn {
-  clickAction: Function = () => {};
+export default struct RefreshLayout {
+  @ObjectLink refreshLayoutClass: CustomRefreshLoadLayoutClass;
 
   build() {
-    Button({ type: ButtonType.Circle, stateEffect: false }) {
-      Image($r('app.media.ic_home_add'))
-        .allSize()
-        .borderRadius(Const.BORDER_RADIUS_PERCENT_50)
+    Column() {
+      if (this.refreshLayoutClass.isVisible) {
+        CustomRefreshLoadLayout({ customRefreshLoadClass: new CustomRefreshLoadLayoutClass
+        (this.refreshLayoutClass.isVisible, this.refreshLayoutClass.imageSrc, this.refreshLayoutClass.textValue,
+          this.refreshLayoutClass.heightValue) })
+      }
     }
-    .onClick(() => this.clickAction())
-    .zIndex(Const.HOME_BTN_Z)
-    .position({ x: Const.THOUSANDTH_830, y: Const.THOUSANDTH_880 })
-    .width($r('app.float.default_48'))
-    .height($r('app.float.default_48'))
   }
 }

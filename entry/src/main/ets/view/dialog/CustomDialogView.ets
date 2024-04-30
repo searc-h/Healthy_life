@@ -16,7 +16,7 @@
 import { AchievementDialog } from './AchievementDialog';
 import { TaskDetailDialog } from './TaskDetailDialog';
 import { BroadCast, BroadCastType } from '../../common/utils/BroadCast';
-import { TaskItem } from '../../model/TaskInitList';
+import { TaskItem,UserTaskType } from '../../model/TaskInitList';
 import TaskInfo from '../../viewmodel/TaskInfo';
 import Logger from '../../common/utils/Logger';
 
@@ -30,7 +30,7 @@ export struct CustomDialogView {
   @State isShow: boolean = false;
   @Provide achievementLevel: number = 0;
   @Consume broadCast: BroadCast;
-  @Provide currentTask: TaskInfo = TaskItem;
+  @Provide currentTask: Partial<UserTaskType> = {};
   @Provide dialogCallBack: CustomDialogCallback = new CustomDialogCallback();
 
   // achievement dialog
@@ -58,7 +58,7 @@ export struct CustomDialogView {
 
     // task clock dialog
     this.broadCast.on(BroadCastType.SHOW_TASK_DETAIL_DIALOG,
-      (currentTask: TaskInfo, dialogCallBack: CustomDialogCallback) => {
+      (currentTask: UserTaskType, dialogCallBack: CustomDialogCallback) => {
         Logger.debug('CustomDialogView', 'SHOW_TASK_DETAIL_DIALOG');
         this.currentTask = currentTask || TaskItem;
         this.dialogCallBack = dialogCallBack;

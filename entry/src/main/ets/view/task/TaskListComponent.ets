@@ -53,7 +53,7 @@ export default struct TaskList {
           router.pushUrl({
             url: 'pages/TaskEditPage',
             params: {
-              params: formatParams(item)
+              params: item
             }
           })
         })

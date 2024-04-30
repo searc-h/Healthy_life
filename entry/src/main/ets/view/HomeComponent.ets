@@ -76,14 +76,21 @@ export struct HomeIndex {
         },
         cancelCallback: () => { }
       };
-
       this.broadCast.emit(BroadCastType.SHOW_TASK_DETAIL_DIALOG, [item, callback]);
 
     } else {
-      // edit task
-      // Need Check Line
-
-      router.pushUrl({ url: 'pages/TaskEditPage', params: { params: { ...item, userId:item.userId.userId , taskId:item.taskId._id } } });
+      router.pushUrl({ url: 'pages/TaskEditPage',
+        params: {
+          params: {
+            ...item,
+            taskName:item.taskId.taskName ,
+            userId:item.userId._id ,
+            taskId:item.taskId.taskId ,
+            unit : item.taskId.unit,
+            _id : item.taskId._id,
+          }
+        }
+      });
     }
   }
 
@@ -165,10 +172,11 @@ export struct HomeIndex {
       })
       .align(Alignment.TopStart)
 
-      AddBtn({
-        clickAction: () => { this.editTaskAction() } ,
-        homeStore: $homeStore
-      })
+      if(this.homeStore.checkCurrentDay()){
+        AddBtn({
+          clickAction: () => { this.editTaskAction() } ,
+        })
+      }
 
       CustomDialogView()
     }
