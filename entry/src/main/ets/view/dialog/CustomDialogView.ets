@@ -20,8 +20,8 @@ import { TaskItem,UserTaskType } from '../../model/TaskInitList';
 import TaskInfo from '../../viewmodel/TaskInfo';
 import Logger from '../../common/utils/Logger';
 
-export class CustomDialogCallback {
-  confirmCallback: Function = () => {};
+export class CustomDialogCallback<T = any> {
+  confirmCallback: Function = (item:T) => {};
   cancelCallback: Function = () => {};
 }
 
@@ -58,7 +58,7 @@ export struct CustomDialogView {
 
     // task clock dialog
     this.broadCast.on(BroadCastType.SHOW_TASK_DETAIL_DIALOG,
-      (currentTask: UserTaskType, dialogCallBack: CustomDialogCallback) => {
+      (currentTask: UserTaskType, dialogCallBack: CustomDialogCallback<UserTaskType>) => {
         Logger.debug('CustomDialogView', 'SHOW_TASK_DETAIL_DIALOG');
         this.currentTask = currentTask || TaskItem;
         this.dialogCallBack = dialogCallBack;

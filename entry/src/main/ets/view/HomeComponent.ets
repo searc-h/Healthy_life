@@ -70,15 +70,17 @@ export struct HomeIndex {
 
     if (isClick) {
       // click to clock
-      let callback: CustomDialogCallback = {
+      let callback: CustomDialogCallback<UserTaskType> = {
         confirmCallback: (taskTemp: UserTaskType) => {
           this.onConfirm(taskTemp)
         },
         cancelCallback: () => { }
       };
+      // 展示打卡Dialog
       this.broadCast.emit(BroadCastType.SHOW_TASK_DETAIL_DIALOG, [item, callback]);
 
     } else {
+      // 进入修改页面
       router.pushUrl({ url: 'pages/TaskEditPage',
         params: {
           params: {

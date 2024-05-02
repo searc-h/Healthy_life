@@ -20,13 +20,6 @@ import Logger from '../common/utils/Logger';
 
 @Component
 export struct AchievementIndex {
-  aboutToAppear(){
-    Logger.debug('AchievementIndex', 'aboutToAppear')
-  }
-
-  onPageShow () {
-    Logger.debug('AchievementIndex', 'onPageShow')
-  }
 
   build() {
     Column({space: Const.DEFAULT_20}) {

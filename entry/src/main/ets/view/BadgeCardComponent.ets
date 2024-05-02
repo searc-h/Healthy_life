@@ -18,7 +18,7 @@ import { CommonConstants as Const } from '../common/constants/CommonConstants';
 
 @Component
 export struct BadgeCard {
-  @Prop content: string = '';
+  @Prop content: string ;
   imgSrc: Resource = $r('app.string.empty');
 
   build() {
@@ -27,7 +27,7 @@ export struct BadgeCard {
         .width(Const.FULL_WIDTH)
         .height(Const.ACHIEVE_CARD_IMG_HEIGHT)
         .objectFit(ImageFit.Contain)
-      Text($r('app.string.task_achievement_level', Number(this.content)))
+      Text(`累计打卡${Number(this.content)}天`)
         .lineHeight($r('app.float.default_16'))
         .fontSize($r('app.float.default_12'))
         .fontColor($r('app.color.white'))

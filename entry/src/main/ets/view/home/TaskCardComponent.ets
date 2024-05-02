@@ -45,10 +45,10 @@ export struct TaskCard {
     } else {
       Row() {
         HealthText({
-          title: this.taskInfo.targetValue || `--`,
+          title: this.taskInfo.currentValue || `--`,
           fontSize: $r('app.float.default_24')
         })
-        Text(this.taskInfo.taskId.unit)
+        Text(` / ${this.taskInfo.targetValue} ${this.taskInfo.taskId.unit}`)
           .labelTextStyle()
           .fontWeight(Const.FONT_WEIGHT_400)
       }
@@ -77,7 +77,7 @@ export struct TaskCard {
     .borderRadius($r('app.float.default_24'))
     .padding({ left: Const.THOUSANDTH_50, right: Const.THOUSANDTH_33 })
     .backgroundColor($r('app.color.white'))
-    .onClick(() => this.clickAction(true))
+    .onClick(() => this.clickAction && this.clickAction(true))
     .gesture(LongPressGesture().onAction(() => this.clickAction && this.clickAction(false)))
   }
 }

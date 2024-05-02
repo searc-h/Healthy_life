@@ -14,22 +14,34 @@
  */
 
 import { ACHIEVEMENT_LEVEL_LIST } from './TaskInitList';
+import { httpRequest } from '../common/utils/httpUtils'
 import GlobalInfo from '../viewmodel/GlobalInfo';
-import GlobalInfoApi from '../common/database/tables/GlobalInfoApi';
+import { AlertDialogService } from '../service/AlertDialogService';
 
 export const ACHIEVEMENT_LEVEL_KEY = 'AchievementLevelKey';
 
-export function getAchievementLevel() {
-  GlobalInfoApi.query((res: GlobalInfo) => {
-    let globalInfo: GlobalInfo = res;
+export function getAchievementLevel(userId : string) {
+  if(!userId){
+    AlertDialogService({
+      message:"还没有登陆哦"
+    })
+  }
 
-    let achievementStr = globalInfo.achievements??'';
-    let achievements = achievementStr.split(',');
-    if (achievements.length > 0) {
-      AppStorage.Set<Number>(ACHIEVEMENT_LEVEL_KEY, Number(achievements[achievements.length - 1]));
+  httpRequest({
+    url : `/users/achievements/${userId}`,
+  }).then(res=>{
+    if(res.errno === -1){
+      let achievementStr = res.data.achievements??'';
+      let achievements = achievementStr.split(',');
+      if (achievements.length > 0) {
+        AppStorage.Set<Number>(ACHIEVEMENT_LEVEL_KEY, Number(achievements[achievements.length - 1]));
+      }
     }
   })
+}
 
+export function resetAchievementLevel(){
+  AppStorage.Set<Number>(ACHIEVEMENT_LEVEL_KEY,0);
 }
 
 export function isReachNewAchievement(globalInfo: GlobalInfo): boolean {
