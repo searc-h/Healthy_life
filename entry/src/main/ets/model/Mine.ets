@@ -28,12 +28,14 @@ export class UserInfo {
   userName?: string;
   isLogin? : boolean;
   token? : string;
+  level? : number;
 
-  constructor(_id? : string ,userName?:string, isLogin?:boolean , token?:string) {
+  constructor(_id? : string ,userName?:string, isLogin?:boolean ,level?:number, token?:string) {
     this._id = _id;
     this.userId = _id;
     this.userName = userName;
     this.isLogin = isLogin;
     this.token = token;
+    this.level = level;
   }
 }

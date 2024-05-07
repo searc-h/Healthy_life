@@ -27,6 +27,7 @@ import { BroadCast, BroadCastType } from '../common/utils/BroadCast';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
 import AchievementInfo from '../viewmodel/AchievementInfo';
 
+
 const WHITE_COLOR_0X = 255;
 
 @Styles
@@ -59,12 +60,14 @@ export struct HomeIndex {
   private scroller: Scroller = new Scroller();
   private yOffset: number = 0;
 
+
   taskChange() {
     this.homeStore.updateTaskInfoList(this.editedTaskInfo);
   }
 
   taskItemAction(item: UserTaskType, isClick: boolean): void {
-    if (!this.homeStore.checkCurrentDay()) {
+    // 不当当天日期或者该任务已经完成了，do nothing
+    if (!this.homeStore.checkCurrentDay() || item.isDone) {
       return;
     }
 
@@ -100,9 +103,10 @@ export struct HomeIndex {
   onConfirm(task: UserTaskType) {
     this.homeStore.taskClock(task).then((res: AchievementInfo) => {
       if (res.showAchievement) {
-        let achievementLevel = res.achievementLevel;
-        if (achievementLevel) {
-          this.broadCast.emit(BroadCastType.SHOW_ACHIEVEMENT_DIALOG, achievementLevel);
+        let achievements = res.achievements;
+        let level = 1;
+        if (achievements) {
+          this.broadCast.emit(BroadCastType.SHOW_ACHIEVEMENT_DIALOG, [achievements ,level]);
         } else {
           this.broadCast.emit(BroadCastType.SHOW_ACHIEVEMENT_DIALOG);
         }
@@ -142,7 +146,7 @@ export struct HomeIndex {
                     this.taskItemAction(item, isClick)
                   }
                 })
-                  .margin({ bottom: Const.DEFAULT_12 })
+                  .margin({ bottom: Const.DEFAULT_2 })
                   .height($r('app.float.default_64'))
               }, (item: UserTaskType) => JSON.stringify(item))
             }

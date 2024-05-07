@@ -23,17 +23,11 @@ export struct MineIndex {
   @State signature: string = Const.SIGNATURE;
   @Consume userInfo : UserInfo;
 
-  aboutToAppear(){
-
-  }
-
-  loginOut(){
-    router.pushUrl({url : 'pages/LoginPage'})
-  }
 
   build() {
     Column() {
       UserBaseInfo({
+        level: `LV.${JSON.stringify(this.userInfo?.level??0)}`,
         userName: "",
         signature: this.userInfo.isLogin?"已经登陆":"未登陆"
       });

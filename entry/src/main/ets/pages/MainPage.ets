@@ -133,15 +133,17 @@ struct Index {
 
   @Builder TabBuilder(index: number) {
     Column() {
-      Image(index === this.currentTab ? NavList[index].icon_selected : NavList[index].icon)
-        .width($r('app.float.default_24'))
-        .height($r('app.float.default_24'))
-        .objectFit(ImageFit.Contain);
-      Text(NavList[index].text)
-        .fontSize(this.changeFontSize || $r('app.float.default_10'))
-        .fontWeight(Const.FONT_WEIGHT_500)
-        .fontColor(this.currentTab === index ? $r('app.color.blueColor') : $r('app.color.tabTitleColor'))
-        .margin({ top: $r('app.float.default_4') })
+        Image(index === this.currentTab ? NavList[index].icon_selected : NavList[index].icon)
+          .width($r('app.float.default_28'))
+          .height($r('app.float.default_28'))
+          .objectFit(ImageFit.Contain);
+
+        Text(NavList[index].text)
+          .fontSize(this.changeFontSize || $r('app.float.default_10'))
+          .fontWeight(Const.FONT_WEIGHT_500)
+          .fontColor(this.currentTab === index ? $r('app.color.blueColor') : $r('app.color.tabTitleColor'))
+          .margin({ top: $r('app.float.default_1') })
+
     }.justifyContent(FlexAlign.Center).allSize()
   }
 

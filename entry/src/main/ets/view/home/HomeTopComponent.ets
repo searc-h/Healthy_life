@@ -41,12 +41,14 @@ export default struct HomeTopComponent {
           title: this.homeStore.getDonePercent(),
           fontSize: $r('app.float.default_72'),
           fontFamily: $r('app.string.HarmonyHeiTi_Bold'),
-          fontWeight: Const.FONT_WEIGHT_700
+          fontWeight: Const.FONT_WEIGHT_700,
+          fontColor : $r('app.color.blueColor')
         })
         Text('%')
           .titleTextStyle()
           .fontSize($r('app.float.default_40'))
           .margin({ top: $r('app.float.default_12'), left: $r('app.float.default_8') })
+          .fontColor($r('app.color.blueColor'))
       }
       .width(Const.THOUSANDTH_1000)
       .padding({ left: $r('app.float.default_24') })
@@ -55,7 +57,7 @@ export default struct HomeTopComponent {
     }
     .height(Const.THOUSANDTH_500)
     .backgroundImagePosition({x: 0, y: 0})
-    .backgroundImage($r('app.media.ic_home_bg'))
+    .backgroundImage($r('app.media.ic_home_bg_2'))
     .backgroundImageSize({ width: Const.THOUSANDTH_1000, height: Const.THOUSANDTH_900 })
     .justifyContent(FlexAlign.End)
   }

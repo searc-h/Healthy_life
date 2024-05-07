@@ -28,7 +28,8 @@ export class CustomDialogCallback<T = any> {
 @Component
 export struct CustomDialogView {
   @State isShow: boolean = false;
-  @Provide achievementLevel: number = 0;
+  @Provide level : number = 0;
+  @Provide achievements: number = 0;
   @Consume broadCast: BroadCast;
   @Provide currentTask: Partial<UserTaskType> = {};
   @Provide dialogCallBack: CustomDialogCallback = new CustomDialogCallback();
@@ -50,9 +51,10 @@ export struct CustomDialogView {
   aboutToAppear() {
     Logger.debug('CustomDialogView', 'aboutToAppear');
     // achievement dialog
-    this.broadCast.on(BroadCastType.SHOW_ACHIEVEMENT_DIALOG, (achievementLevel: number) => {
+    this.broadCast.on(BroadCastType.SHOW_ACHIEVEMENT_DIALOG, (achievements: number , level : number) => {
       Logger.debug('CustomDialogView', 'SHOW_ACHIEVEMENT_DIALOG');
-      this.achievementLevel = achievementLevel;
+      this.achievements = achievements;
+      this.level = level;
       this.achievementDialog.open();
     });
 

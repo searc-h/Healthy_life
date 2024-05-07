@@ -17,6 +17,7 @@
 export struct UserBaseInfo {
   @Prop userName: string;
   @Prop signature: string;
+  @Prop level : string;
 
   build() {
     Column() {
@@ -28,7 +29,7 @@ export struct UserBaseInfo {
         .margin({ top: $r('app.float.default_71') })
 
       Column() {
-        Text('LV.7')
+        Text(this.level)
           .fontSize($r('app.float.default_12'))
           .fontWeight(FontWeight.Bolder)
           .fontColor($r('app.color.leveColor'))

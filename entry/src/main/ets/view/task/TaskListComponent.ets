@@ -15,7 +15,6 @@
 
 import router from '@ohos.router';
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
-import { formatParams } from '../../viewmodel/TaskViewModel';
 import { ITaskItem } from '../../model/TaskInitList';
 
 @Component

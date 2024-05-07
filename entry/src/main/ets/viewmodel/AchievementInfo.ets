@@ -17,6 +17,7 @@
  * Achievement info
  */
 export default class AchievementInfo {
-  achievementLevel: number = 0;
+  achievements: number = 0;
+  level : number = 0;
   showAchievement: boolean = false;
 }

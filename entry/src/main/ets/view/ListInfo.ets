@@ -18,6 +18,10 @@ import { GlobalContext } from '../common/utils/GlobalContext';
 import router from '@ohos.router';
 import { AlertDialogService } from '../service/AlertDialogService'
 import { CustomConfirmDialog } from '../view/dialog/ConfirmDialog'
+import { resetAchievementLevel } from '../model/AchieveModel';
+
+
+
 @Component
 export struct ListInfo {
   @Prop userId : string;
@@ -36,7 +40,9 @@ export struct ListInfo {
   onCancel() {
 
   }
+
   onAccept() {
+    resetAchievementLevel()
     GlobalContext.getContext().setObject("User_Info" , {})
     router.pushUrl({url:"pages/LoginPage"})
   }

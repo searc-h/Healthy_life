@@ -4,12 +4,15 @@ import { httpRequest } from '../common/utils/httpUtils'
 import { AlertDialogService } from '../service/AlertDialogService'
 import http from '@ohos.net.http';
 import { GlobalContext } from '../common/utils/GlobalContext';
+import {CustomDialogExample} from '../pages/LoginPage'
 
 interface LoginResDataType{
     token : string,
     userInfo: {
       _id : string,
       username: string,
+      level : number,
+      achievements : number
     }
 }
 /**
@@ -21,6 +24,14 @@ export struct LoginComponent {
   @State userName: string = '';
   @State password: string = '';
   @State submitProgress : "uploading" | "finished" = "finished";
+
+
+  private dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogExample(),
+    alignment: DialogAlignment.Center,  // 可设置dialog的对齐方式，设定显示在底部或中间等，默认为底部显示
+    autoCancel : false
+  })
+
 
   loginConfirm = ()=>{
     if(this.userName.trim() == '' || this.password.trim() == ''){
@@ -45,38 +56,14 @@ export struct LoginComponent {
       }else if(res.errno === -1){
         GlobalContext.getContext().setObject("User_Info" , {
           token: res.data.token,
-          usename: res.data.userInfo.username,
+          username: res.data.userInfo.username,
           userId : res.data.userInfo._id,
+          level : res.data.userInfo.level,
           isLogin: true
         })
         AlertDialogService({
           message: res.message,
           action:()=>router.back()
-        })
-      }
-    }).finally(()=>{
-      this.submitProgress = "finished"
-    })
-  }
-
-  registerConfirm = ()=>{
-    if(this.userName.trim() == '' || this.password.trim() == ''){
-      AlertDialogService({  title:"注册提示" , message: '用户名或者密码不能为空'})
-      return
-    }
-    this.submitProgress = "uploading"
-
-    httpRequest({
-      url: "/users/register",
-      method: http.RequestMethod.POST,
-      extraData:{
-        username: this.userName,
-        password: this.password
-      }
-    }).then(res=>{
-      if(res.errno === -1 || res.errno === 0){
-        AlertDialogService({
-          message: res.message
         })
       }
     }).finally(()=>{
@@ -185,7 +172,7 @@ export struct LoginComponent {
           lg: CommonConstants.BUTTON_OFFSET_LG
         }
       }) {
-        Button("注册")
+        Button("去注册")
           .width(CommonConstants.BUTTON_WIDTH_PERCENT)
           .height($r('app.float.login_btn_height'))
           .fontSize($r('app.float.text_input_font_size'))
@@ -194,7 +181,34 @@ export struct LoginComponent {
           .margin({ top: $r('app.float.register_btn_margin_top') })
           .fontColor($r('app.color.register_font_clickable'))
           .backgroundColor($r('app.color.register_btn_clickable'))
-          .onClick(this.registerConfirm)
+          .onClick(()=>{
+            router.pushUrl({url:"pages/RegisterPage"})
+          })
+      }
+
+      GridCol({
+        span: {
+          sm: CommonConstants.BUTTON_SPAN_SM,
+          md: this.isMinHeight ? CommonConstants.BUTTON_SPAN_MD_SMALL : CommonConstants.BUTTON_SPAN_MD_BIG,
+          lg: CommonConstants.BUTTON_SPAN_LG
+        },
+        offset: {
+          sm: CommonConstants.BUTTON_OFFSET_SM,
+          md: this.isMinHeight ? CommonConstants.BUTTON_OFFSET_SM : CommonConstants.BUTTON_OFFSET_MD,
+          lg: CommonConstants.BUTTON_OFFSET_LG
+        }
+      }) {
+        Column(){
+          Text("邮箱验证码登陆")
+            .margin({ top: $r('app.float.register_btn_margin_top') })
+            .fontColor($r('app.color.register_font_clickable'))
+            .fontStyle(FontStyle.Italic)
+            .onClick(()=>{
+                this.dialogController.open()
+            })
+        }
+        .width('100%')
+        .alignItems(HorizontalAlign.End)
       }
 
       GridCol({

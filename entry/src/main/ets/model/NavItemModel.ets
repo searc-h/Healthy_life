@@ -37,7 +37,7 @@ export const NavList: NavItem[] = [
     id: TabId.HOME
   },
   {
-    icon: $r('app.media.ic_tabs_achievement_normal'),
+    icon: $r('app.media.ic_tabs_achievements_normal'),
     icon_selected: $r('app.media.ic_tabs_achievement_sel'),
     text: $r('app.string.tab_achievement'),
     id: TabId.ACHIEVEMENT
@@ -49,14 +49,14 @@ export const NavList: NavItem[] = [
     id: TabId.MINE
   },
   {
-    icon: $r('app.media.ic_tabs_history'),
-    icon_selected: $r('app.media.ic_tabs_history_active'),
-    text: "历史",
+    icon: $r('app.media.ic_tabs_history_normal'),
+    icon_selected: $r('app.media.ic_tabs_history_sel'),
+    text: "日志",
     id: TabId.HISTORY
   },
   {
-    icon: $r('app.media.ic_tabs_mine_normal'),
-    icon_selected: $r('app.media.ic_tabs_mine_sel'),
+    icon: $r('app.media.ic_tabs_ai_normal'),
+    icon_selected: $r('app.media.ic_tabs_ai_sel'),
     text: "智评",
     id: TabId.AI
   },

@@ -14,7 +14,7 @@
  */
 
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
-import { isReachNewAchievement, ACHIEVEMENT_LEVEL_KEY } from '../model/AchieveModel';
+import { isReachNewAchievement, ACHIEVEMENT_LEVEL_KEY, getAchievementLevel } from '../model/AchieveModel';
 import { ITaskItem, ACHIEVEMENT_LEVEL_LIST } from '../model/TaskInitList';
 import TaskInfo from './TaskInfo';
 import DayInfo from './DayInfo';
@@ -34,6 +34,7 @@ import {httpRequest} from '../common/utils/httpUtils'
 import {GlobalContext} from '../common/utils/GlobalContext'
 import { UserInfo } from '../model/Mine';
 import { AlertDialogService } from '../service/AlertDialogService';
+import http from '@ohos.net.http';
 
 @Observed
 export class HomeStore {
@@ -99,6 +100,7 @@ export class HomeStore {
     }
   }
 
+  // 设置选择的日期
   public setSelectedShowDate(showDateTime: number) {
     if (showDateTime > new Date().getTime()) {
       return;
@@ -112,6 +114,7 @@ export class HomeStore {
     Logger.info('dateTitle', this.dateTitle);
   }
 
+  // 获取当前完成百分比
   public getDonePercent(): string {
     let dayInfo = this.selectedDayInfo?.dayInfo;
     Logger.debug("dayInfo", JSON.stringify(dayInfo));
@@ -124,6 +127,7 @@ export class HomeStore {
     return '0';
   }
 
+  // 获取用户的当日任务列表
   public getTaskListOfDay() {
     let userInfo = GlobalContext.getContext().getObject("User_Info") as UserInfo
     if(userInfo?.userId){
@@ -145,55 +149,77 @@ export class HomeStore {
 
   }
 
+  // 打卡
   public async taskClock(taskInfo: UserTaskType) {
     let taskItem = await this.updateTask(taskInfo);
-    let dateStr = this.selectedDayInfo?.dateStr;
+
     if (!taskItem) {
       return {
-        achievementLevel: 0,
+        achievements: 0,
+        level : 0,
         showAchievement: false
       } as AchievementInfo;
     }
 
-    let achievementLevel: number = 0;
-    if (taskItem.isDone) {
-      let dayInfo = await this.updateDayInfo();
-      if (dayInfo && dayInfo?.finTaskNum === dayInfo?.targetTaskNum) {
-        achievementLevel = await this.updateAchievement(this.selectedDayInfo.dayInfo);
-      }
-    }
+    // let achievementLevel: number = 0;
+    // if (taskItem.isDone) {
+    //   let dayInfo = await this.updateDayInfo();
+    //   if (dayInfo && dayInfo?.finTaskNum === dayInfo?.targetTaskNum) {
+    //     achievementLevel = await this.updateAchievement(this.selectedDayInfo.dayInfo);
+    //   }
+    // }
     // this.dateArr = this.dateArr.map((item: WeekDateModel) => dateStr === item.dateStr ? this.selectedDayInfo : item);
     return {
-      achievementLevel: achievementLevel,
-      showAchievement: ACHIEVEMENT_LEVEL_LIST.includes(achievementLevel)
+      achievements: 3,
+      level : 1,
+      showAchievement: true,
     } as AchievementInfo;
   }
 
-
-  updateTask(task: UserTaskType): Promise<TaskInfo> {
+  // 更新任务
+  updateTask(task: UserTaskType): Promise<UserTaskType> {
     return new Promise((resolve, reject) => {
-      let taskID = task.taskId.taskId;
-      let targetValue = task.taskId.targetValue;
-      let finValue = task.currentValue;
-      let updateTask = new TaskInfo(task.taskId._id, task.date, taskID, targetValue, task.isAlarm, task.startTime,
-        task.endTime, task.frequency, task.isDone, finValue, task.isOpen);
+      let userId = task.userId._id;
+      let taskId = task.taskId._id;
+      let isDone = task.isDone;
+      let currentValue = task.currentValue;
       let step = task.taskId.step;
-      let hasExceed = updateTask.isDone;
+
       if (step === 0) {
-        updateTask.isDone = true;
-        updateTask.finValue = targetValue;
+        isDone = true;
+        currentValue = task.targetValue;
       } else {
-        let value = Number(finValue) + step;
-        updateTask.isDone = updateTask.isDone || value >= Number(targetValue);
-        updateTask.finValue = updateTask.isDone ? targetValue : `${value}`;
+        let value = Number(currentValue) + step;
+        isDone = isDone || value >= Number(task.targetValue);
+        currentValue = task.isDone ? task.targetValue : `${value}`;
       }
-      TaskInfoTableApi.updateDataByDate(updateTask, (res: number) => {
-        if (!res || hasExceed) {
-          Logger.error('taskClock-updateTask', JSON.stringify(res));
-          reject(res);
+      // 更新任务
+      httpRequest<UserTaskType>({
+        url : "/tasks/user",
+        method : http.RequestMethod.POST,
+        extraData : {
+          ...task,
+          isDone,
+          currentValue,
+          taskId: taskId,
+          userId : userId,
         }
-        resolve(updateTask);
+      }).then((res)=>{
+        if(res.errno === 0){
+          AlertDialogService({message:res.message})
+        }else{
+          resolve(res.data)
+        }
+      }).catch(err=>{
+        Logger.error('taskClock-updateTask', JSON.stringify(err));
+        reject(err);
+      }).finally(()=>{
+        // 更新任务列表
+        this.getTaskListOfDay()
+        // 重新获取用户成就
+        getAchievementLevel(userId)
       })
+
     })
   }
 

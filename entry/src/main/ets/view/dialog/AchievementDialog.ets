@@ -21,31 +21,41 @@ const ANGLE_LARGE = 360;
 @CustomDialog
 export struct AchievementDialog {
   controller: CustomDialogController = new CustomDialogController({ builder: 0 });
-  @Consume achievementLevel: number;
+  @Consume level : number;
+  @Consume achievements: number;
   @State private opacityValue: number = 0;
   @State private angle: number = 0;
   @State private scaleValue: number = 0;
   @State achievementMapValue: Resource = $r('app.string.empty');
 
   aboutToAppear() {
-    switch (this.achievementLevel) {
-      case 3:
+    switch (this.level) {
+      case 1:
         this.achievementMapValue = AchievementMap.on_3;
         break;
-      case 7:
+      case 2:
         this.achievementMapValue = AchievementMap.on_7;
         break;
-      case 30:
+      case 3:
+        this.achievementMapValue = AchievementMap.on_14;
+        break;
+      case 4:
         this.achievementMapValue = AchievementMap.on_30;
         break;
-      case 50:
+      case 5:
         this.achievementMapValue = AchievementMap.on_50;
         break;
-      case 73:
+      case 6:
         this.achievementMapValue = AchievementMap.on_73;
         break;
-      case 99:
+      case 7:
         this.achievementMapValue = AchievementMap.on_99;
+        break;
+      case 8:
+        this.achievementMapValue = AchievementMap.on_120;
+        break;
+      case 9:
+        this.achievementMapValue = AchievementMap.on_180;
         break;
       default:
         break;
@@ -60,7 +70,7 @@ export struct AchievementDialog {
         .height(Const.THOUSANDTH_400)
         .objectFit(ImageFit.Contain)
 
-      Text($r('app.string.task_achievement_level', this.achievementLevel))
+      Text(`累计打卡${this.achievements}次`)
         .fontSize($r('app.float.default_24'))
         .fontWeight(Const.FONT_WEIGHT_500)
         .fontColor($r('app.color.white'))

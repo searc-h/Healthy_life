@@ -31,10 +31,9 @@ export function getAchievementLevel(userId : string) {
     url : `/users/achievements/${userId}`,
   }).then(res=>{
     if(res.errno === -1){
-      let achievementStr = res.data.achievements??'';
-      let achievements = achievementStr.split(',');
-      if (achievements.length > 0) {
-        AppStorage.Set<Number>(ACHIEVEMENT_LEVEL_KEY, Number(achievements[achievements.length - 1]));
+      let achievements = res.data.achievements??0;
+      if (achievements) {
+        AppStorage.Set<Number>(ACHIEVEMENT_LEVEL_KEY, Number(achievements));
       }
     }
   })

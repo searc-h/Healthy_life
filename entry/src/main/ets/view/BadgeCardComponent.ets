@@ -27,7 +27,7 @@ export struct BadgeCard {
         .width(Const.FULL_WIDTH)
         .height(Const.ACHIEVE_CARD_IMG_HEIGHT)
         .objectFit(ImageFit.Contain)
-      Text(`累计打卡${Number(this.content)}天`)
+      Text(`累计打卡${Number(this.content)}次`)
         .lineHeight($r('app.float.default_16'))
         .fontSize($r('app.float.default_12'))
         .fontColor($r('app.color.white'))
