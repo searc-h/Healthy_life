@@ -30,7 +30,7 @@ struct AdvertisingPage {
   aboutToAppear() {
     this.intervalId = setInterval(() => {
       if (this.duration > 0) {
-        this.duration += 1;
+        this.duration -= 1;
       } else {
         this.goToHomePage();
       }

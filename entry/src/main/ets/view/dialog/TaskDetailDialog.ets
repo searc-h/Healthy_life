@@ -19,28 +19,41 @@ import { UserTaskType } from '../../model/TaskInitList';
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
 import { GlobalContext } from '../../common/utils/GlobalContext';
 
-@Extend(Text) function textStyle () {
-  .fontColor($r('app.color.white'))
-  .fontFamily($r('app.string.HarmonyHeiTi'))
-}
-
-@Extend(Text) function taskTextStyle () {
-  .fontColor($r('app.color.white'))
-  .width('100%')
-}
-
 @CustomDialog
 export struct TaskDetailDialog {
   controller: CustomDialogController = new CustomDialogController({ builder: '' });
   @Consume currentTask: UserTaskType;
-  @State showButton: boolean = true;
   @Consume dialogCallBack: CustomDialogCallback;
 
   build() {
-    Column() {
-      TaskBaseInfo({
-        taskName: JSON.stringify(this.currentTask?.taskId.taskName)
-      });
+    Column(){
+      Row(){
+        TaskBaseInfo({
+          taskName: `${this.currentTask?.taskId.taskName}`,
+          targetValue : `${this.currentTask.targetValue}`
+        });
+      }
+      .borderRadius({topLeft:"24vp",topRight:"24vp"})
+      .padding({left:"10vp",right:"10vp"})
+      .height("40vp")
+      .backgroundColor("#fff")
+
+      Row(){
+        Column() {
+
+        }
+        .height("400vp")
+        .width($r('app.float.default_316'))
+        .backgroundImage(Const.SERVER + "/" + this.currentTask?.taskId.dialogBg, ImageRepeat.NoRepeat)
+        .backgroundImageSize({
+          width: '100%',
+          height: '100%'
+        })
+        .justifyContent(FlexAlign.End)
+        .padding({
+          left: $r('app.float.default_20')
+        })
+      }
 
       TaskClock({
         confirm: () => {
@@ -50,38 +63,45 @@ export struct TaskDetailDialog {
         cancel: () => {
           this.controller.close();
         },
-        showButton: this.showButton
-      })
+        share : ()=>{
+
+        },
+        showButton: this.currentTask.isDone as boolean
+      }).borderRadius({bottomLeft:"24vp",bottomRight:"24vp"})
+        .height("59vp")
+      .backgroundColor("#fff")
     }
-    .height($r('app.float.default_451'))
+    .height("499vp")
     .width($r('app.float.default_316'))
-    .backgroundImage(Const.SERVER + "/" + this.currentTask?.taskId.dialogBg, ImageRepeat.NoRepeat)
-    .backgroundImageSize({
-      width: '100%',
-      height: '100%'
-    })
-    .justifyContent(FlexAlign.End)
-    .padding({
-      bottom: $r('app.float.default_12'),
-      left: $r('app.float.default_20')
-    })
+    .backgroundColor("#d2ffffff")
+    .borderRadius("24vp")
   }
 }
 
 @Component
 struct TaskBaseInfo {
   taskName: string | Resource = '';
+  targetValue : string;
 
   build() {
     Column({ space: Const.DEFAULT_8 }) {
-      Text(this.taskName)
-        .fontSize($r('app.float.default_22'))
-        .fontWeight(FontWeight.Bold)
-        .fontFamily($r('app.string.HarmonyHeiTi_Bold'))
-        .taskTextStyle()
-        .margin({left: $r('app.float.default_12')})
+      Row(){
+        Text(this.taskName)
+          .fontSize($r('app.float.default_22'))
+          .fontWeight(FontWeight.Bold)
+          .fontFamily($r('app.string.HarmonyHeiTi_Bold'))
+          .fontColor("000")
+          .margin({left: $r('app.float.default_12')})
+
+        Text(`目标值：${this.targetValue}`)
+          .fontSize($r('app.float.default_22'))
+          .fontFamily($r('app.string.HarmonyHeiTi_Bold'))
+          .fontColor("000")
+          .margin({left: $r('app.float.default_12')})
+      }
+      .width("100%")
+      .justifyContent(FlexAlign.SpaceBetween)
     }
-    .position({ y: $r('app.float.default_267') })
   }
 }
 
@@ -89,34 +109,44 @@ struct TaskBaseInfo {
 struct TaskClock {
   confirm: Function = () => {};
   cancel: Function = () => {};
-  showButton: boolean = false;
+  share: Function = ()=>{};
+  showButton: boolean = true;
 
   build() {
-    Column({ space: Const.DEFAULT_12 }) {
-      Button() {
-        Text($r('app.string.clock_in'))
-          .height($r('app.float.default_42'))
-          .fontSize($r('app.float.default_20'))
-          .fontWeight(FontWeight.Normal)
-          .textStyle()
-      }
-      .width($r('app.float.default_220'))
-      .borderRadius($r('app.float.default_24'))
-      .backgroundColor('rgba(255,255,255,0.40)')
-      .onClick(() => {
-        GlobalContext.getContext().setObject('taskListChange', true);
-        this.confirm();
-      })
-      .visibility(!this.showButton ? Visibility.None : Visibility.Visible)
+    Row() {
+      Button($r('app.string.clock_in'))
+        .width($r('app.float.default_100'))
+        .borderRadius($r('app.float.default_24'))
+        .backgroundColor('#dde96666')
+        .onClick(() => {
+          GlobalContext.getContext().setObject('taskListChange', true);
+          this.confirm();
+        })
+        .visibility(!this.showButton ? Visibility.Visible:Visibility.None )
 
-      Text($r('app.string.got_it'))
+      Button("分享")
+        .width($r('app.float.default_100'))
         .fontSize($r('app.float.default_14'))
         .fontWeight(FontWeight.Regular)
-        .textStyle()
+        .fontFamily($r('app.string.HarmonyHeiTi'))
+        .onClick(() => {
+          this.share();
+        })
+        .visibility(this.showButton ? Visibility.Visible:Visibility.None)
+
+      Button("取消")
+        .width($r('app.float.default_72'))
+        .fontSize($r('app.float.default_14'))
+        .fontWeight(FontWeight.Regular)
+        .backgroundColor('#ffa4a4a4')
+        .fontFamily($r('app.string.HarmonyHeiTi'))
         .onClick(() => {
           this.cancel();
         })
     }
+    .width("100%")
+    .padding({top:"12vp"})
+    .justifyContent(FlexAlign.SpaceAround)
   }
 }
 

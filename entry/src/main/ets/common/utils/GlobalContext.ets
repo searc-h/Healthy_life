@@ -25,11 +25,11 @@ export class GlobalContext {
     return GlobalContext.instance;
   }
 
-  getObject(value: string): Object | undefined {
-    return this._objects.get(value);
+  getObject<T =Object>(value: string): T | undefined {
+    return this._objects.get(value) as T;
   }
 
-  setObject(key: string, objectClass: Object): void {
+  setObject<T =Object>(key: string, objectClass: T): void {
     this._objects.set(key, objectClass);
   }
 }

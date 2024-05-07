@@ -67,7 +67,7 @@ export struct HomeIndex {
 
   taskItemAction(item: UserTaskType, isClick: boolean): void {
     // 不当当天日期或者该任务已经完成了，do nothing
-    if (!this.homeStore.checkCurrentDay() || item.isDone) {
+    if (!this.homeStore.checkCurrentDay()) {
       return;
     }
 

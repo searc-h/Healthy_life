@@ -5,6 +5,7 @@ import { AlertDialogService } from '../service/AlertDialogService'
 import http from '@ohos.net.http';
 import { GlobalContext } from '../common/utils/GlobalContext';
 import {CustomDialogExample} from '../pages/LoginPage'
+import { UserInfo } from '../model/Mine';
 
 interface LoginResDataType{
     token : string,
@@ -54,9 +55,9 @@ export struct LoginComponent {
           message: res.message
         })
       }else if(res.errno === -1){
-        GlobalContext.getContext().setObject("User_Info" , {
+        GlobalContext.getContext().setObject<UserInfo>("User_Info" , {
           token: res.data.token,
-          username: res.data.userInfo.username,
+          userName: res.data.userInfo.username,
           userId : res.data.userInfo._id,
           level : res.data.userInfo.level,
           isLogin: true

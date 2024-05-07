@@ -5,6 +5,7 @@ import { AlertDialogService } from '../service/AlertDialogService'
 import { LoginComponent } from '../view/LoginComponent';
 import { GlobalContext } from '../common/utils/GlobalContext'
 import http from '@ohos.net.http';
+import { UserInfo } from '../model/Mine';
 
 /**
  * This template implements the Login function.
@@ -110,9 +111,9 @@ export struct CustomDialogExample {
           message: res.message
         })
       }else if(res.errno === -1){
-        GlobalContext.getContext().setObject("User_Info" , {
+        GlobalContext.getContext().setObject<UserInfo>("User_Info" , {
           token: res.data.token,
-          username: res.data.userInfo.username,
+          userName: res.data.userInfo.username,
           userId : res.data.userInfo._id,
           level : res.data.userInfo.level,
           isLogin: true
@@ -153,7 +154,7 @@ export struct CustomDialogExample {
           }) {
             Column() {
               TextInput({ placeholder: "请输入邮箱"})
-                .width("95%")
+                .width("90%")
                 .height($r('app.float.text_input_height'))
                 .placeholderColor($r('app.color.text_input_place_holder'))
                 .placeholderFont({ size: $r('app.float.text_input_font_size') })
@@ -189,7 +190,7 @@ export struct CustomDialogExample {
                   })
 
                 Button(this.isWaiting ? `${this.count}秒`: "获取验证码")
-                  .width("40%")
+                  .width("30%")
                   .height($r('app.float.login_btn_height'))
                   .fontSize($r('app.float.text_input_font_size'))
                   .fontWeight(CommonConstants.BUTTON_FONT_WEIGHT)
@@ -222,7 +223,7 @@ export struct CustomDialogExample {
               this.controller.close()
               this.confirm()
             }).backgroundColor(0xffffff).fontColor(Color.Red)
-        }.margin({ bottom: 10 })
+        }.margin({top:10, bottom: 10 })
       }
     }
 }
