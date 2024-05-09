@@ -178,11 +178,11 @@
     },
     {
       "name": "privacy_title",
-      "value": "请在“健康生活”权限管理中开启“XX”权限"
+      "value": "请在“健康生活小帮手”权限管理中开启“存储”权限"
     },
     {
       "name": "privacy_desc",
-      "value": "该功能支持XX…（功能介绍）"
+      "value": "该功能支持将数据存储到你的手机中"
     },
     {
       "name": "jump_ad",

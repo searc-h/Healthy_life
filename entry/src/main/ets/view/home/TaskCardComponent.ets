@@ -40,19 +40,20 @@ export struct TaskCard {
   }
 
   @Builder targetValueBuilder() {
-    if (this.taskInfo.isDone) {
-      HealthText({ title: '', titleResource: $r('app.string.task_done') })
-    } else {
-      Row() {
+    Row() {
+      if(this.taskInfo.isDone){
+        HealthText({ title: '', titleResource: $r('app.string.task_done') })
+      }else{
         HealthText({
           title: this.taskInfo.currentValue || `--`,
           fontSize: $r('app.float.default_24')
         })
-        Text(` / ${this.taskInfo.targetValue} ${this.taskInfo.taskId.unit}`)
-          .labelTextStyle()
-          .fontWeight(Const.FONT_WEIGHT_400)
       }
+      Text(` / ${this.taskInfo.targetValue} ${this.taskInfo.taskId.unit}`)
+        .labelTextStyle()
+        .fontWeight(Const.FONT_WEIGHT_400)
     }
+
   }
 
   build() {

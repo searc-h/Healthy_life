@@ -9,6 +9,7 @@
     "pages/AppSetting",
     "pages/WebPage",
     "pages/RegisterPage",
-    "pages/PersonPage"
+    "pages/PersonPage",
+    "pages/SharePage"
   ]
 }

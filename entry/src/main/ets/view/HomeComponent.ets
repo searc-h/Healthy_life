@@ -26,6 +26,8 @@ import { HealthDataSrcMgr } from '../common/utils/HealthDataSrcMgr';
 import { BroadCast, BroadCastType } from '../common/utils/BroadCast';
 import { CommonConstants as Const } from '../common/constants/CommonConstants';
 import AchievementInfo from '../viewmodel/AchievementInfo';
+import { httpRequest } from '../common/utils/httpUtils';
+import http from '@ohos.net.http';
 
 
 const WHITE_COLOR_0X = 255;
@@ -184,7 +186,9 @@ export struct HomeIndex {
         })
       }
 
-      CustomDialogView()
+      CustomDialogView({
+        date : this.homeStore.selectedLocalString,
+      })
     }
     .allSize()
     .backgroundColor($r('app.color.primaryBgColor'))

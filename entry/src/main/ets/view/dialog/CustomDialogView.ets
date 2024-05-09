@@ -23,6 +23,7 @@ import Logger from '../../common/utils/Logger';
 export class CustomDialogCallback<T = any> {
   confirmCallback: Function = (item:T) => {};
   cancelCallback: Function = () => {};
+  shareCallback? : Function = ()=>{};
 }
 
 @Component
@@ -33,6 +34,7 @@ export struct CustomDialogView {
   @Consume broadCast: BroadCast;
   @Provide currentTask: Partial<UserTaskType> = {};
   @Provide dialogCallBack: CustomDialogCallback = new CustomDialogCallback();
+  @Prop date : string
 
   // achievement dialog
   achievementDialog: CustomDialogController = new CustomDialogController({
@@ -43,7 +45,7 @@ export struct CustomDialogView {
 
   // task clock dialog
   taskDialog: CustomDialogController = new CustomDialogController({
-    builder: TaskDetailDialog(),
+    builder: TaskDetailDialog({date: this.date}),
     autoCancel: true,
     customStyle: true
   });

@@ -18,12 +18,20 @@ import TaskInfo from '../../viewmodel/TaskInfo';
 import { UserTaskType } from '../../model/TaskInitList';
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
 import { GlobalContext } from '../../common/utils/GlobalContext';
+import router from '@ohos.router';
+import { UserInfo } from '../../model/Mine';
 
 @CustomDialog
 export struct TaskDetailDialog {
   controller: CustomDialogController = new CustomDialogController({ builder: '' });
   @Consume currentTask: UserTaskType;
   @Consume dialogCallBack: CustomDialogCallback;
+  @Consume userInfo : UserInfo
+  @Prop date : string;
+
+  aboutToAppear(){
+    console.log("TaskDetailDialog",this.date)
+  }
 
   build() {
     Column(){
@@ -64,7 +72,15 @@ export struct TaskDetailDialog {
           this.controller.close();
         },
         share : ()=>{
-
+          router.pushUrl(
+            {
+              url:"pages/SharePage",
+              params: {
+                params: this.currentTask,
+                date : this.date
+              }
+            }
+          )
         },
         showButton: this.currentTask.isDone as boolean
       }).borderRadius({bottomLeft:"24vp",bottomRight:"24vp"})

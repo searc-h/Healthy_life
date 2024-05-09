@@ -79,7 +79,7 @@ struct AdvertisingPage {
       .justifyContent(FlexAlign.Center)
 
       Row() {
-        Image($r('app.media.logo'))
+        Image($r('app.media.logo_1'))
           .width($r('app.float.default_56'))
           .height($r('app.float.default_56'))
           .objectFit(ImageFit.Contain)

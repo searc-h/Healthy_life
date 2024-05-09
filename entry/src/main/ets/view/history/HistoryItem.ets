@@ -27,6 +27,7 @@ export default struct HistoryItem {
           .textOverflow({ overflow: TextOverflow.Ellipsis })
           .fontWeight(Const.NewsTitle_TEXT_FONT_WEIGHT)
       }
+      .width("97%")
       .margin({top : '5vp'})
       .height("22vp")
 
@@ -48,19 +49,31 @@ export default struct HistoryItem {
       })
         .margin({ bottom: Const.DEFAULT_12 })
         .height($r('app.float.default_36'))
-        .width(Const.NewsSource_WIDTH)
+        .width("95%")
 
 
       Row(){
-        Text("打卡日期："  + this.data.date.split("T")[0] + "  " + this.data.date.split("T")[1].split(".")[0])
+        Row(){
+          Text("心情：")
+            .fontSize("14vp")
+            .margin({left:"5vp"})
+          Image(`${Const.SERVER}/images/media/emotion_${this.data.emoLevel}.png`)
+            .width(Const.NewsTitle_IMAGE_WIDTH)
+            .height("30vp")
+            .objectFit(ImageFit.Contain)
+        }
+
+        Text(""  + this.data.date.split("T")[0] + "  " + this.data.date.split("T")[1].split(".")[0])
           .fontSize(Const.NewsSource_FONT_SIZE)
           .fontColor("FF989898")
-          .height(Const.NewsSource_HEIGHT)
-          .width(Const.NewsSource_WIDTH)
+          // .width("80%")
           .maxLines(Const.NewsSource_MAX_LINES)
-          .margin({ left: Const.NewsSource_MARGIN_LEFT, top: Const.NewsSource_MARGIN_TOP })
+          .margin({ left: Const.NewsSource_MARGIN_LEFT })
           .textOverflow({ overflow: TextOverflow.None })
       }
+      .width("90%")
+      .height("30vp")
+      .justifyContent(FlexAlign.SpaceBetween)
     }
     .alignItems(HorizontalAlign.Center)
   }

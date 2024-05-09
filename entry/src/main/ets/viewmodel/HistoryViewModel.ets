@@ -20,6 +20,7 @@ export interface ClockHistoryType{
   content: string,
   date: string,
   userTaskId: string,
+  emoLevel : string,
   userTaskDetails : Partial<UserTaskType>,
   task: Partial<ITaskItem>
 }

@@ -69,6 +69,7 @@ struct SplashIndex {
     preferences.then((res) => {
       res.get(IS_PRIVACY, false).then((isPrivate) => {
         if (isPrivate === true) {
+          this.dialogController.open();
           this.jumpAdPage();
         } else {
           this.dialogController.open();
@@ -83,7 +84,7 @@ struct SplashIndex {
 
   build() {
     Column() {
-      Image($r('app.media.logo'))
+      Image($r('app.media.logo_1'))
         .width($r('app.float.default_120'))
         .aspectRatio(1)
         .margin({ top: $r('app.float.default_120') });

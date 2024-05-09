@@ -31,9 +31,9 @@
         "orientation": "portrait",
         "srcEntry": "./ets/entryability/EntryAbility.ets",
         "description": "$string:EntryAbility_desc",
-        "icon": "$media:logo",
+        "icon": "$media:logo_1",
         "label": "$string:EntryAbility_label",
-        "startWindowIcon": "$media:logo",
+        "startWindowIcon": "$media:logo_1",
         "startWindowBackground": "$color:white",
         "exported": true,
         "skills": [

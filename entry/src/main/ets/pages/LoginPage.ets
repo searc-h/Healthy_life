@@ -154,7 +154,7 @@ export struct CustomDialogExample {
           }) {
             Column() {
               TextInput({ placeholder: "请输入邮箱"})
-                .width("90%")
+                .width("95%")
                 .height($r('app.float.text_input_height'))
                 .placeholderColor($r('app.color.text_input_place_holder'))
                 .placeholderFont({ size: $r('app.float.text_input_font_size') })
@@ -190,7 +190,7 @@ export struct CustomDialogExample {
                   })
 
                 Button(this.isWaiting ? `${this.count}秒`: "获取验证码")
-                  .width("30%")
+                  .width("40%")
                   .height($r('app.float.login_btn_height'))
                   .fontSize($r('app.float.text_input_font_size'))
                   .fontWeight(CommonConstants.BUTTON_FONT_WEIGHT)
