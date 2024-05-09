@@ -62,11 +62,15 @@ const useReminder = (params: ITaskItem, context: Context) => {
   try {
     let publishReminderInfo = new PublishReminderInfo();
     publishReminderInfo.hour = Number(params?.startTime.split(':')[0]);
+    console.log("hour :" ,publishReminderInfo.hour )
     publishReminderInfo.minute = Number(params?.startTime.split(':')[1]);
+    console.log("minute :" ,publishReminderInfo.minute )
     publishReminderInfo.daysOfWeek = params?.frequency.split(',').map(item => Number(item));
-    publishReminderInfo.title = RemindContentMap[params?.taskId as number - 1].title;
-    publishReminderInfo.content = RemindContentMap[params?.taskId as number - 1].content;
+    console.log("daysOfWeek :" ,publishReminderInfo.daysOfWeek )
+    publishReminderInfo.title = params?.title;
+    publishReminderInfo.content = params?.title + "时间到 - 来自健康生活小帮手App";
     publishReminderInfo.notificationId = params?.taskId as number;
+    console.log("useRemainder:",JSON.stringify(publishReminderInfo))
     publishReminder(publishReminderInfo, context);
   } catch (error) {
     Logger.error('publishReminder', JSON.stringify(error));
@@ -104,8 +108,9 @@ export const addTask = async  (params: ITaskItem, context: Context)  => {
     return Promise.reject("params is null!")
   }
 
-  if (params?.isOpen) {
+  if (params?.isInit) {
     if (params?.isAlarm) {
+      console.log("params is:" , JSON.stringify(params.taskId))
       useReminder(params, context);
     } else {
       isHasNotificationId(params?.taskId).then((flag: boolean) => {

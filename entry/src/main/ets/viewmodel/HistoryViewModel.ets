@@ -3,6 +3,8 @@ import { CommonConstants as Const } from '../common/constants/CommonConstants';
 import { httpRequest } from '../common/utils/httpUtils';
 import { ITaskItem, UserTaskType } from '../model/TaskInitList';
 import { AlertDialogService } from '../service/AlertDialogService';
+import http from '@ohos.net.http';
+
 
 export interface  ResultType {
   date : ResultListType[]
