@@ -23,6 +23,7 @@ export struct UserBaseInfo {
   @Prop signature: string;
   @Prop level : string;
   @Provide imgUrl : string | undefined = undefined;
+  myself : boolean = true
   urls = null;
 
   private dialogController : CustomDialogController = new CustomDialogController({
@@ -80,7 +81,7 @@ export struct UserBaseInfo {
         .height($r('app.float.default_66'))
         .width($r('app.float.default_66'))
         .margin({ top: $r('app.float.default_71') })
-        .onClick(this.selectFile)
+        .onClick(this.myself && this.selectFile)
 
       Column() {
         Text(this.level)

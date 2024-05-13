@@ -29,13 +29,16 @@ export class UserInfo {
   isLogin? : boolean;
   token? : string;
   level? : number;
+  achievements? : number
 
-  constructor(_id? : string ,userName?:string, isLogin?:boolean ,level?:number, token?:string) {
+  constructor(props : {_id? : string ,userName?:string, isLogin?:boolean ,level?:number, token?:string , achievements?:number}) {
+    let {_id , userName , isLogin, token , level,achievements} = props
     this._id = _id;
     this.userId = _id;
     this.userName = userName;
     this.isLogin = isLogin;
     this.token = token;
     this.level = level;
+    this.achievements = achievements
   }
 }

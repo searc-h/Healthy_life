@@ -20,14 +20,6 @@ let agencyStorage = new LocalStorage();
 struct AgencyCard {
   @LocalStorageProp('taskList') taskList: AgencyCardInfo[] = [];
   @LocalStorageProp('showWidget') showWidget: boolean = false;
-  private iconList = {
-    getup: $r('app.media.ic_task_morning'),
-    drink: $r('app.media.ic_task_water'),
-    apple: $r('app.media.ic_task_apple'),
-    smile: $r('app.media.ic_task_smile'),
-    clean: $r('app.media.ic_task_brush'),
-    sleep: $r('app.media.ic_task_night')
-  } as iconInfo;
   /*
    * The action type.
    */
@@ -116,24 +108,24 @@ struct AgencyCard {
   getIconByCardTaskType(key?: string): Resource {
     let result: Resource = $r('app.string.empty');
     switch (key) {
-      case 'getup':
-        result = $r('app.media.ic_task_morning');
-        break;
-      case 'drink':
-        result = $r('app.media.ic_task_water');
-        break;
-      case 'apple':
-        result = $r('app.media.ic_task_apple');
-        break;
-      case 'smile':
-        result = $r('app.media.ic_task_smile');
-        break;
-      case 'clean':
-        result = $r('app.media.ic_task_brush');
-        break;
-      case 'sleep':
-        result = $r('app.media.ic_task_night');
-        break;
+      // case 'getup':
+      //   result = $r('app.media.ic_task_morning');
+      //   break;
+      // case 'drink':
+      //   result = $r('app.media.ic_task_water');
+      //   break;
+      // case 'apple':
+      //   result = $r('app.media.ic_task_apple');
+      //   break;
+      // case 'smile':
+      //   result = $r('app.media.ic_task_smile');
+      //   break;
+      // case 'clean':
+      //   result = $r('app.media.ic_task_brush');
+      //   break;
+      // case 'sleep':
+      //   result = $r('app.media.ic_task_night');
+      //   break;
       default:
         break;
     }

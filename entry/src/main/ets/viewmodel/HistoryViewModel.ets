@@ -24,7 +24,14 @@ export interface ClockHistoryType{
   userTaskId: string,
   emoLevel : string,
   userTaskDetails : Partial<UserTaskType>,
-  task: Partial<ITaskItem>
+  task: Partial<ITaskItem>,
+  user : UserType
+}
+
+interface UserType{
+  username : string,
+  _id : string,
+  level : number,
 }
 
 class HistoryViewModel {
@@ -33,10 +40,7 @@ class HistoryViewModel {
    *
    * @return NewsTypeBean[] newsTypeList
    */
-   getHistoryList(userId: string): Promise<ResultListType[]> {
-    if(!userId) {
-      AlertDialogService({ message : "没有用户唯一标识"})
-    }
+   getHistoryList(userId?: string): Promise<ResultListType[]> {
 
      return new Promise(res=>{
        httpRequest<ResultType>({

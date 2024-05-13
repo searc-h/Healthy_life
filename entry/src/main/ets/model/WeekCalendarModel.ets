@@ -26,7 +26,7 @@ export class WeekDateModel {
   weekTitle: string;
   dateStr: string;
   date: Date;
-  dayInfo: DayInfo = new DayInfo('', 0, 0);
+  dayInfo: DayInfo = new DayInfo("",0, 0);
 
 
   constructor(weekTitle: string, dateStr: string, date: Date) {

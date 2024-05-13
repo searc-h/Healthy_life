@@ -38,7 +38,7 @@ export default struct HomeTopComponent {
         .padding({ left: $r('app.float.default_24') })
       Row() {
         HealthText({
-          title: this.homeStore.getDonePercent(),
+          title: this.homeStore.todayPercent,
           fontSize: $r('app.float.default_72'),
           fontFamily: $r('app.string.HarmonyHeiTi_Bold'),
           fontWeight: Const.FONT_WEIGHT_700,

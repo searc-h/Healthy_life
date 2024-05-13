@@ -46,7 +46,7 @@ export default struct TaskDetail {
   @Provide broadCast: BroadCast = HealthDataSrcMgr.getInstance().getBroadCast();
   @Provide @Watch('onParamsChanged') settingParams: ITaskItem = this.parseRouterParams();
   @Provide frequency: string = initFrequencyString(this.settingParams?.frequency);
-  private isChanged: boolean = false;
+  @State isChanged: boolean = false;
 
   // 从路径参数中拿到 可编辑任务
   parseRouterParams() {
@@ -145,18 +145,30 @@ export default struct TaskDetail {
         }
         .width(Const.THOUSANDTH_940)
 
-        Button() {
-          Text("完成").fontSize($r('app.float.default_20')).fontColor($r('app.color.blueColor'))
+        Button("完成")
+          .width(Const.THOUSANDTH_800)
+          .height(Const.DEFAULT_48)
+          .enabled(this.isChanged)
+          .fontColor(this.isChanged? Color.White : $r('app.color.login_font_normal'))
+          .backgroundColor(this.isChanged ? $r('app.color.login_btn_enabled') : $r('app.color.login_btn_normal'))
+          .onClick(() => {
+            this.finishTaskEdit();
+          })
+          .position({
+            x: Const.THOUSANDTH_100,
+            y: Const.THOUSANDTH_800
+          })
+
+        Row(){
+          Text("修改任务后解锁按钮")
+            .fontSize("15vp")
+            .fontColor("#d7333333")
         }
-        .width(Const.THOUSANDTH_800)
-        .height(Const.DEFAULT_48)
-        .backgroundColor($r('app.color.borderColor'))
-        .onClick(() => {
-          this.finishTaskEdit();
-        })
+        .justifyContent(FlexAlign.Center)
+        .width("100%")
         .position({
-          x: Const.THOUSANDTH_100,
-          y: Const.THOUSANDTH_800
+          x: 0,
+          y: Const.THOUSANDTH_880
         })
 
         TaskDialogView()

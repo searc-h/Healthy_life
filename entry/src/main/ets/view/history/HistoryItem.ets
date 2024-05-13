@@ -1,8 +1,10 @@
 
 
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
+import { AlertDialogService } from '../../service/AlertDialogService';
 import { ClockHistoryType, ResultListType } from '../../viewmodel/HistoryViewModel';
 import { TaskCard } from '../home/TaskCardComponent';
+import router from '@ohos.router';
 
 /**
  * The news list item component.
@@ -11,21 +13,52 @@ import { TaskCard } from '../home/TaskCardComponent';
 export default struct HistoryItem {
   private data: Partial<ClockHistoryType> = {};
 
+  clickAvatar = ()=>{
+    router.pushUrl({
+      url:"pages/PersonPage",
+      params : {
+        userInfo : {
+          username : this.data.user.username,
+          level : this.data.user.level,
+          userId : this.data.user._id
+        }
+      }
+    })
+  }
+
   build() {
     Column() {
       Row() {
-        Image($r('app.media.daka'))
-          .width(Const.NewsTitle_IMAGE_WIDTH)
-          .height("22vp")
-          .objectFit(ImageFit.Contain)
-        Text(this.data.title)
-          .fontSize(20)
-          .fontColor("#000000")
-          .width(Const.NewsTitle_TEXT_WIDTH)
-          .maxLines(1)
-          .margin({ left: Const.NewsTitle_TEXT_MARGIN_LEFT })
-          .textOverflow({ overflow: TextOverflow.Ellipsis })
-          .fontWeight(Const.NewsTitle_TEXT_FONT_WEIGHT)
+        Column(){
+          Row(){
+            Image($r('app.media.daka'))
+              .width(Const.NewsTitle_IMAGE_WIDTH)
+              .height("22vp")
+              .objectFit(ImageFit.Contain)
+            Text(this.data.title)
+              .fontSize(20)
+              .fontColor("#000000")
+              .width(Const.NewsTitle_TEXT_WIDTH)
+              .maxLines(1)
+              .margin({ left: Const.NewsTitle_TEXT_MARGIN_LEFT })
+              .textOverflow({ overflow: TextOverflow.Ellipsis })
+              .fontWeight(Const.NewsTitle_TEXT_FONT_WEIGHT)
+          }
+          .margin({left :"5vp"})
+        }
+        .width("80%")
+
+        Column(){
+          Row(){
+            Image($r('app.media.ic_user'))
+              .objectFit(ImageFit.Contain)
+              .onClick(this.clickAvatar)
+          }
+          .height("30vp")
+          .margin({right :"5vp"})
+          .padding({left:"5vp",right:"5vp"})
+        }
+        .width("20%")
       }
       .width("97%")
       .margin({top : '5vp'})

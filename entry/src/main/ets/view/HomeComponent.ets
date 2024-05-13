@@ -28,6 +28,8 @@ import { CommonConstants as Const } from '../common/constants/CommonConstants';
 import AchievementInfo from '../viewmodel/AchievementInfo';
 import { httpRequest } from '../common/utils/httpUtils';
 import http from '@ohos.net.http';
+import { UserInfo } from '../model/Mine';
+import { AlertDialogService } from '../service/AlertDialogService';
 
 
 const WHITE_COLOR_0X = 255;
@@ -57,15 +59,9 @@ export struct HomeIndex {
   @Provide broadCast: BroadCast = HealthDataSrcMgr.getInstance().getBroadCast();
   @State naviAlpha: number = 0;
   @Link homeStore: HomeStore;
-  @Link editedTaskInfo: ITaskItem;
-  @Link @Watch('taskChange') editedTaskID: string;
+  @Consume userInfo : UserInfo
   private scroller: Scroller = new Scroller();
   private yOffset: number = 0;
-
-
-  taskChange() {
-    this.homeStore.updateTaskInfoList(this.editedTaskInfo);
-  }
 
   taskItemAction(item: UserTaskType, isClick: boolean): void {
     // 不当当天日期或者该任务已经完成了，do nothing
@@ -105,13 +101,20 @@ export struct HomeIndex {
   onConfirm(task: UserTaskType) {
     this.homeStore.taskClock(task).then((res: AchievementInfo) => {
       if (res.showAchievement) {
+        this.userInfo.level = res.level
+        this.userInfo.achievements = res.achievements
         let achievements = res.achievements;
-        let level = 1;
+        let level = res.level;
         if (achievements) {
           this.broadCast.emit(BroadCastType.SHOW_ACHIEVEMENT_DIALOG, [achievements ,level]);
         } else {
           this.broadCast.emit(BroadCastType.SHOW_ACHIEVEMENT_DIALOG);
         }
+      }else{
+        AlertDialogService({
+          message: "打卡成功，继续加油",
+          confirmValue: "好滴"
+        })
       }
     })
   }
@@ -181,9 +184,24 @@ export struct HomeIndex {
       .align(Alignment.TopStart)
 
       if(this.homeStore.checkCurrentDay()){
+        Button({ type: ButtonType.Circle, stateEffect: false }) {
+          Image($r('app.media.user_guide'))
+            .allSize()
+            .borderRadius(Const.BORDER_RADIUS_PERCENT_50)
+        }
+        .onClick(()=>{router.pushUrl({
+          url:"pages/UserGuidePage"
+        })})
+        .zIndex(Const.HOME_BTN_Z)
+        .position({ x: Const.THOUSANDTH_830, y: Const.THOUSANDTH_800 })
+        .width($r('app.float.default_48'))
+        .height($r('app.float.default_48'))
+        .backgroundColor("#fff")
+
         AddBtn({
           clickAction: () => { this.editTaskAction() } ,
         })
+
       }
 
       CustomDialogView({

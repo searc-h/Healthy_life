@@ -67,8 +67,8 @@ const useReminder = (params: ITaskItem, context: Context) => {
     console.log("minute :" ,publishReminderInfo.minute )
     publishReminderInfo.daysOfWeek = params?.frequency.split(',').map(item => Number(item));
     console.log("daysOfWeek :" ,publishReminderInfo.daysOfWeek )
-    publishReminderInfo.title = params?.title;
-    publishReminderInfo.content = params?.title + "时间到 - 来自健康生活小帮手App";
+    publishReminderInfo.title = params?.taskName as string;
+    publishReminderInfo.content = params?.taskName + "时间到 - 来自健康生活小帮手App";
     publishReminderInfo.notificationId = params?.taskId as number;
     console.log("useRemainder:",JSON.stringify(publishReminderInfo))
     publishReminder(publishReminderInfo, context);

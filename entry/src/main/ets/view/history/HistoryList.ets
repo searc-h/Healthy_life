@@ -47,23 +47,22 @@ export struct HistoryList {
   }
   changeCategory() {
     this.newsModel.currentPage = 1;
-    if(this.userInfo && this.userInfo.isLogin){
-      HistoryViewModel.getHistoryList(this.userInfo.userId)
-        .then((data: ResultListType[]) => {
-          this.newsModel.pageState = PageState.Success;
 
-          this.newsModel.hasMore = false;
+    HistoryViewModel.getHistoryList(this.userInfo.userId)
+      .then((data: ResultListType[]) => {
+        this.newsModel.pageState = PageState.Success;
 
-          this.newsModel.newsData = data;
-        })
-        .catch((err: string | Resource) => {
-          promptAction.showToast({
-            message: err,
-            duration: 2000
-          });
-          this.newsModel.pageState = PageState.Fail;
+        this.newsModel.hasMore = false;
+
+        this.newsModel.newsData = data;
+      })
+      .catch((err: string | Resource) => {
+        promptAction.showToast({
+          message: err,
+          duration: 2000
         });
-    }
+        this.newsModel.pageState = PageState.Fail;
+      });
   }
 
   aboutToAppear() {
@@ -73,12 +72,10 @@ export struct HistoryList {
 
   build() {
     Column() {
-      if (this.newsModel.pageState === PageState.Success && this.userInfo.isLogin) {
-        this.ListLayout()
-      } else if (this.newsModel.pageState === PageState.Loading && this.userInfo.isLogin) {
+      if (this.newsModel.pageState === PageState.Loading) {
         this.LoadingLayout()
       } else {
-        this.FailLayout()
+        this.ListLayout()
       }
     }
     .width(Const.FULL_WIDTH)
@@ -107,11 +104,13 @@ export struct HistoryList {
         })
       }
       //
-      ForEach(this.newsModel.newsData, (item: ResultListType) => {
-        ListItem() {
-          HistoryGroup({ data: item })
-        }
-      }, (item: ResultListType, index?: number) => JSON.stringify(item) + index)
+      if(this.newsModel.newsData.length > 0){
+        ForEach(this.newsModel.newsData, (item?: ResultListType) => {
+          ListItem() {
+            HistoryGroup({ data: item })
+          }
+        }, (item: ResultListType, index?: number) => JSON.stringify(item) + index)
+      }
 
       ListItem() {
         if (this.newsModel.hasMore) {

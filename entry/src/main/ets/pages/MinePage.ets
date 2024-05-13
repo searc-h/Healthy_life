@@ -28,7 +28,7 @@ export struct MineIndex {
     Column() {
       UserBaseInfo({
         level: `LV.${JSON.stringify(this.userInfo?.level??0)}`,
-        userName: "",
+        userName: ``,
         signature: this.userInfo.isLogin?`${this.userInfo.userName}`:"未登陆"
       });
 

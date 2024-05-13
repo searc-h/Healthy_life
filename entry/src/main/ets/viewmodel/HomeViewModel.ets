@@ -62,6 +62,9 @@ export class HomeStore {
 
   public userTaskList: UserTaskType[] = [];
 
+  public todayPercent :string = "0";
+  public selectDayPercent : string = "0";
+
   /**
    * 选择日期的信息
    */
@@ -76,7 +79,7 @@ export class HomeStore {
   }
 
   public initData() {
-    this.getTaskListOfDay()
+    this.getTaskListOfDay("AddTask")
   }
 
   // check selected day is current day
@@ -84,21 +87,6 @@ export class HomeStore {
     return dateToStr(this.currentDate) === new Date(this.selectedDate).toDateString();
   }
 
-
-  public updateTaskInfoList(editedTaskInfo: ITaskItem) {
-    if (editedTaskInfo?.taskId) {
-      // edited task
-      let taskID = editedTaskInfo.taskId;
-      let targetValue = editedTaskInfo.targetValue;
-      let isAlarm = editedTaskInfo.isAlarm;
-      let frequency = editedTaskInfo.frequency;
-      let startTime = editedTaskInfo.startTime;
-      let endTime = editedTaskInfo.endTime;
-      let isOpen = editedTaskInfo.isOpen;
-      let task = new TaskInfo(0, dateToStr(new Date()), taskID, targetValue, isAlarm,
-        startTime, endTime, frequency, true, targetValue, isOpen);
-    }
-  }
 
   // 设置选择的日期
   public setSelectedShowDate(showDateTime: number) {
@@ -115,20 +103,20 @@ export class HomeStore {
   }
 
   // 获取当前完成百分比
-  public getDonePercent(): string {
-    let dayInfo = this.selectedDayInfo?.dayInfo;
-    Logger.debug("dayInfo", JSON.stringify(dayInfo));
-    if (dayInfo && (dayInfo?.finTaskNum || 0) > 0) {
-      if (dayInfo.finTaskNum > dayInfo.targetTaskNum) {
-        return `${Const.DEFAULT_100}`;
-      }
-      return `${Math.ceil(dayInfo.finTaskNum / dayInfo.targetTaskNum * Const.DEFAULT_100)}`;
+  public getDonePercent() :string {
+    let havDone = 0
+    if(this.userTaskList.length > 0){
+      this.userTaskList.forEach(item=>{
+        if(item.isDone) havDone+=1;
+      })
+      return  `${Math.floor(havDone/this.userTaskList.length * 100)}`
+    }else{
+      return "0"
     }
-    return '0';
   }
 
   // 获取用户的当日任务列表
-  public getTaskListOfDay() {
+  public getTaskListOfDay(from:"AddTask" | "ChangeDate" = "AddTask") {
     let userInfo = GlobalContext.getContext().getObject("User_Info") as UserInfo
     if(userInfo?.userId){
       httpRequest<any[]>({
@@ -139,6 +127,11 @@ export class HomeStore {
       }).then(res=>{
         if(res.errno === -1){
           this.userTaskList = res.data
+          if(from === "AddTask"){
+           this.selectDayPercent = this.todayPercent = this.getDonePercent()
+          }else{
+            this.selectDayPercent = this.getDonePercent()
+          }
         }else{
           AlertDialogService({message:res.message})
         }
@@ -151,33 +144,23 @@ export class HomeStore {
 
   // 打卡
   public async taskClock(taskInfo: UserTaskType) {
-    let taskItem = await this.updateTask(taskInfo);
-
-    if (!taskItem) {
+    let taskItem :AchievementInfo = await this.updateTask(taskInfo);
+    if (taskItem.level) {
       return {
-        achievements: 0,
-        level : 0,
-        showAchievement: false
+        achievements: taskItem.achievements,
+        level : taskItem.level,
+        showAchievement: taskItem.showAchievement,
+      } as AchievementInfo;
+    }else{
+      return {
+        showAchievement: false,
       } as AchievementInfo;
     }
 
-    // let achievementLevel: number = 0;
-    // if (taskItem.isDone) {
-    //   let dayInfo = await this.updateDayInfo();
-    //   if (dayInfo && dayInfo?.finTaskNum === dayInfo?.targetTaskNum) {
-    //     achievementLevel = await this.updateAchievement(this.selectedDayInfo.dayInfo);
-    //   }
-    // }
-    // this.dateArr = this.dateArr.map((item: WeekDateModel) => dateStr === item.dateStr ? this.selectedDayInfo : item);
-    return {
-      achievements: 3,
-      level : 1,
-      showAchievement: true,
-    } as AchievementInfo;
   }
 
   // 更新任务
-  updateTask(task: UserTaskType): Promise<UserTaskType> {
+  updateTask(task: UserTaskType): Promise<AchievementInfo> {
     return new Promise((resolve, reject) => {
       let userId = task.userId._id;
       let taskId = task.taskId._id;
@@ -194,7 +177,7 @@ export class HomeStore {
         currentValue = task.isDone ? task.targetValue : `${value}`;
       }
       // 更新任务
-      httpRequest<UserTaskType>({
+      httpRequest<AchievementInfo>({
         url : "/tasks/user",
         method : http.RequestMethod.POST,
         extraData : {
@@ -215,62 +198,11 @@ export class HomeStore {
         reject(err);
       }).finally(()=>{
         // 更新任务列表
-        this.getTaskListOfDay()
+        this.getTaskListOfDay("AddTask")
         // 重新获取用户成就
         getAchievementLevel(userId)
       })
 
     })
-  }
-
-  updateDayInfo(): Promise<DayInfo> {
-    let dayInfo: DayInfo = this.selectedDayInfo.dayInfo;
-    dayInfo.finTaskNum += 1;
-    return new Promise((resolve, reject) => {
-      DayInfoApi.updateData(dayInfo, (res: number) => {
-        if (!res) {
-          Logger.error('taskClock-updateDayInfo', JSON.stringify(res));
-          reject(res);
-        }
-        Logger.info('taskClock-updateDayInfo', JSON.stringify(dayInfo));
-        // 同步界面数据
-        let dayInfoStr = JSON.stringify(dayInfo);
-        this.selectedDayInfo.dayInfo = JSON.parse(dayInfoStr);
-        resolve(dayInfo);
-      });
-    });
-  }
-
-  updateAchievement(dayInfo: DayInfo): Promise<number> {
-    Logger.debug('taskClock-updateAchievement', JSON.stringify(dayInfo));
-    return new Promise((resolve, reject) => {
-      let preDay = new Date();
-      preDay.setDate(preDay.getDate() - 1);
-      preDay = new Date(preDay);
-      let preDayStr = dateToStr(preDay);
-      Logger.info('taskClock-updateAchievement-1', `${preDayStr}`);
-      DayInfoApi.query(preDayStr, (res: DayInfo) => {
-        Logger.info('taskClock-updateAchievement-2', JSON.stringify(res));
-        let isReset = res?.date === '' || res?.targetTaskNum > res?.finTaskNum;
-        GlobalInfoApi.query((res: GlobalInfo) => {
-          Logger.info('taskClock-globalInfoApi', JSON.stringify(res));
-          let achievementInfo = res;
-            isReset ? (achievementInfo.checkInDays = 1) : (achievementInfo.checkInDays += 1);
-          let isNewAchieve = isReachNewAchievement(achievementInfo);
-          if (isNewAchieve) {
-            AppStorage.SetOrCreate(ACHIEVEMENT_LEVEL_KEY, achievementInfo.checkInDays);
-            achievementInfo.achievements = achievementInfo.achievements + ',' + achievementInfo.checkInDays;
-          }
-          GlobalInfoApi.updateData(achievementInfo, (res: number) => {
-            if (!res) {
-              Logger.error('taskClock-updateAchievement', JSON.stringify(res));
-              reject(res);
-            }
-            Logger.debug('taskClock-updateAchievement', JSON.stringify(achievementInfo));
-              isNewAchieve ? resolve(achievementInfo.checkInDays) : resolve(0);
-          });
-        });
-      })
-    });
   }
 }

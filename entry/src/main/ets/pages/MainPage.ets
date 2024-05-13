@@ -23,6 +23,7 @@ import { NavList, TabId } from '../model/NavItemModel';
 import { HomeIndex } from '../view/HomeComponent';
 import { AchievementIndex } from '../view/AchievementComponent';
 import { MineIndex } from './MinePage';
+import { AIComments } from '../view/comments/AIComments'
 import { HomeStore } from '../viewmodel/HomeViewModel';
 import GlobalInfoApi from '../common/database/tables/GlobalInfoApi';
 import GlobalInfo from '../viewmodel/GlobalInfo';
@@ -47,9 +48,6 @@ struct Index {
    *
    * @description 当前编辑的任务
    */
-  @State editedTaskInfo: ITaskItem = router.getParams() ? (router.getParams() as Record<string, Object>).editTask as ITaskItem : {} as ITaskItem;
-
-  @State editedTaskID: string = '0';
   /**
    * Home页面的整体状态机
    */
@@ -60,7 +58,11 @@ struct Index {
   // 有bug,
   @State settingTab : Record<string, boolean> = undefined
 
-  @Provide userInfo : UserInfo = new UserInfo();
+  @Provide userInfo : UserInfo = new UserInfo({
+    level:0,
+    achievements : 0,
+    isLogin : false,
+  });
 
   private tabController: TabsController = new TabsController();
 
@@ -85,11 +87,6 @@ struct Index {
     let params = (router.getParams() ? router.getParams() : {}) as Record<string, Object>;
     console.log("MainPage Show , params is : ",JSON.stringify(params))
 
-    let result = params.editTask ? params.editTask as string : '{}';
-
-    this.editedTaskInfo = JSON.parse(result);
-    this.editedTaskID = JSON.stringify(this.editedTaskInfo);
-
     if ((GlobalContext.getContext().getObject('isForeground') as boolean)) {
       GlobalContext.getContext().setObject('isForeground', false);
       if (this.homeStore.currentDate.getDate() !== (new Date()).getDate()) {
@@ -101,34 +98,7 @@ struct Index {
   }
 
   checkCurrentTime() {
-    GlobalInfoApi.query((result: GlobalInfo) => {
-      let predate = new Date(result.lastDate);
-      let date = new Date();
-      if (result && date.getTime() < predate.getTime()) {
-        AlertDialog.show(
-          {
-            title: $r('app.string.alert'),
-            message: $r('app.string.alert_message'),
-            autoCancel: false,
-            alignment: DialogAlignment.Bottom,
-            offset: { dx: 0, dy: -20 },
-            gridCount: 3,
-            confirm: {
-              value: $r('app.string.alert_button'),
-              action: () => {
-                (getContext(this) as common.UIAbilityContext).terminateSelf();
-                console.info('Button-clicking callback');
-              }
-            },
-            cancel: () => {
-              console.info('Closed callbacks');
-            }
-          });
-      } else {
-        this.homeStore.initData();
-
-      }
-    });
+    this.homeStore.initData();
   }
 
   @Builder TabBuilder(index: number) {
@@ -152,7 +122,7 @@ struct Index {
     Tabs({ barPosition: BarPosition.End, controller: this.tabController }) {
 
         TabContent() {
-          HomeIndex({ homeStore: $homeStore, editedTaskInfo: $editedTaskInfo, editedTaskID: $editedTaskID })
+          HomeIndex({ homeStore: $homeStore })
             .borderWidth({ bottom: 1 })
             .borderColor($r('app.color.primaryBgColor'))
         }
@@ -180,7 +150,7 @@ struct Index {
 
       if( !this.settingTab || this.settingTab["AI"]){
         TabContent(){
-          Text("AI")
+          AIComments()
         }
         .tabBar(this.TabBuilder(4))
       }

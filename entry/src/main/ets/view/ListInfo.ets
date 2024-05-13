@@ -59,9 +59,13 @@ export struct ListInfo {
 
   checkUserInfo = ()=>{
     if(this.isLogin){
-      AlertDialogService({
-        title:"个人信息",
-        message:"TBD"
+      router.pushUrl({
+        url:"pages/PersonPage",
+        params : {
+          userInfo : {
+            userId : this.userId
+          }
+        }
       })
     }else{
       AlertDialogService({

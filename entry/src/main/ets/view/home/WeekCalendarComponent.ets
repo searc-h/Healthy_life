@@ -57,7 +57,7 @@ export struct WeekCalendar {
     this.homeStore.setSelectedShowDate(this.selectDate.getTime());
     // 更新任务列表数据
 
-    this.homeStore.getTaskListOfDay()
+    this.homeStore.getTaskListOfDay("ChangeDate")
   }
 
   getProgressImg(item: WeekDateModel): Resource {
@@ -119,7 +119,7 @@ export struct WeekCalendar {
         .justifyContent(FlexAlign.Center)
         Row() {
           Text($r("app.string.current_progress"))
-          Text("70")
+          Text(this.homeStore.selectDayPercent)
             .margin({ left: $r('app.float.default_8') })
             .fontColor(Color.Green)
           Text('%').margin({ left: $r('app.float.default_8') })

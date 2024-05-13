@@ -10,6 +10,7 @@
     "pages/WebPage",
     "pages/RegisterPage",
     "pages/PersonPage",
-    "pages/SharePage"
+    "pages/SharePage",
+    "pages/UserGuidePage"
   ]
 }
