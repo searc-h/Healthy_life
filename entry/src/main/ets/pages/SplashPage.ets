@@ -70,7 +70,6 @@ struct SplashIndex {
       res.get(IS_PRIVACY, false).then((isPrivate) => {
         if (isPrivate === true) {
           this.dialogController.open();
-          this.jumpAdPage();
         } else {
           this.dialogController.open();
         }
@@ -88,7 +87,7 @@ struct SplashIndex {
         .width($r('app.float.default_120'))
         .aspectRatio(1)
         .margin({ top: $r('app.float.default_120') });
-      Text($r('app.string.EntryAbility_label'))
+      Text("健康生活小帮手")
         .fontFamily($r('app.string.HarmonyHeiTi_Bold'))
         .fontSize($r('app.float.default_24'))
         .fontColor($r('app.color.titleColor'))
@@ -97,7 +96,7 @@ struct SplashIndex {
         .margin({
           top: $r('app.float.default_20'),
           bottom: $r('app.float.default_8') })
-      Text($r('app.string.EntryAbility_desc'))
+      Text("健康生活每一天，从记录开始")
         .fontFamily($r('app.string.HarmonyHeiTi'))
         .fontColor($r('app.color.titleColor'))
         .fontWeight(Const.FONT_WEIGHT_400)

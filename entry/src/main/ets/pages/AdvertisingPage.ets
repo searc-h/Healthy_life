@@ -84,7 +84,7 @@ struct AdvertisingPage {
           .height($r('app.float.default_56'))
           .objectFit(ImageFit.Contain)
         Column({ space: Const.SPACE_4 }) {
-          Text($r('app.string.EntryAbility_label'))
+          Text("健康生活小帮手")
             .fontFamily($r('app.string.HarmonyHeiTi_Bold'))
             .fontSize($r('app.float.default_26'))
             .fontColor($r('app.color.titleColor'))

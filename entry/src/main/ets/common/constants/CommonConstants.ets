@@ -62,7 +62,7 @@ export class CommonConstants {
   /**
    * The http timeout duration.
    */
-  static readonly HTTP_READ_TIMEOUT: number = 10000;
+  static readonly HTTP_READ_TIMEOUT: number = 15000;
 
   // THOUSANDTH
   static readonly THOUSANDTH_15: string = '1.5%'; // ‘1.5%’

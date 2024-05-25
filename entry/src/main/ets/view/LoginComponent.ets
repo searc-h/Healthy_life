@@ -60,7 +60,8 @@ export struct LoginComponent {
           userName: res.data.userInfo.username,
           userId : res.data.userInfo._id,
           level : res.data.userInfo.level,
-          isLogin: true
+          isLogin: true,
+          _id : res.data.userInfo._id
         })
         AlertDialogService({
           message: res.message,

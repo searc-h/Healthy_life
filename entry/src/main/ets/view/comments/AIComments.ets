@@ -14,34 +14,138 @@
  */
 
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
+import { httpRequest } from '../../common/utils/httpUtils';
+import { UserInfo } from '../../model/Mine';
+import { AlertDialogService } from '../../service/AlertDialogService';
+import http from '@ohos.net.http';
 
-
+interface ResType{
+  role: "user"|"AI",
+  content  : string
+}
 
 @Component
 export struct AIComments {
 
   @State chooseValue : number  = 0;
-
+  @Consume userInfo : UserInfo
+  @State comments : ResType[] = []
+  @State isWaiting : boolean = false;
+  scroller: Scroller = new Scroller()
 
   startComment = ()=>{
-
-    console.log(this.chooseValue + "")
+    if(this.userInfo.userId){
+      this.isWaiting = true;
+      httpRequest<ResType[]>({
+        url: "/chat",
+        method : http.RequestMethod.POST,
+        extraData : {
+          userId : this.userInfo.userId,
+          fromDays : this.chooseValue === 0 ? 7 : this.chooseValue * 30
+        }
+      }).then(res=>{
+        if(res.errno == -1){
+          this.comments = res.data
+        }else{
+          AlertDialogService({
+            message : res.message
+          })
+        }
+      }).catch((error)=>{
+        AlertDialogService({
+          message : JSON.stringify(error)
+        })
+      }).finally(()=>{
+        this.isWaiting = false;
+      })
+    }else{
+      AlertDialogService({
+        message:"请先登录哦"
+      })
+    }
   }
 
   build() {
     Column() {
-      Row(){
+      Column(){
+        Stack({alignContent: Alignment.TopStart }){
+          Scroll(this.scroller){
+            Column(){
+              ForEach(this.comments , (item : ResType)=>{
+                if(item.role === "user"){
+                  Row(){
+                    Column(){
+                      Text(item.role + ":")
+                        .fontWeight(FontWeight.Bold)
+                        .fontSize(17)
+                        .lineHeight(20)
 
+                      Text(item.content)
+                    }
+                    .alignItems(HorizontalAlign.Start)
+                  }
+                  .margin({
+                    top:"10vp",
+                    bottom : "10vp"
+                  })
+                }else{
+                  Row(){
+                    Column(){
+                      Text( ":" + item.role)
+                        .fontWeight(FontWeight.Bold)
+                        .fontSize(17)
+                        .lineHeight(20)
+
+                      Text(item.content)
+                    }
+                    .alignItems(HorizontalAlign.End)
+                  }
+                  .margin({
+                    top:"10vp",
+                    bottom : "10vp"
+                  })
+                }
+
+              } , (item) =>JSON.stringify(item))
+
+              if(this.comments.length === 0){
+                Row(){
+                  Column(){
+                    Text("请先选择周期再点击输出评价")
+                  }
+                  .alignItems(HorizontalAlign.End)
+                }
+              }
+            }
+            .justifyContent(FlexAlign.Start)
+          }
+          .scrollBar(BarState.On)
+          .scrollBarWidth("1vp")
+          .scrollable(ScrollDirection.Vertical)  // 滚动方向纵向
+          .width(Const.THOUSANDTH_1000)
+          .height(Const.THOUSANDTH_1000)
+          .padding({bottom : "20vp"})
+
+          if(this.isWaiting){
+            Column({ space: 5 }) {
+              LoadingProgress()
+                .color(Color.Blue)
+            }
+            .margin({ top: 0 })
+          }
+        }
+        .width(Const.THOUSANDTH_1000)
+        .height(Const.THOUSANDTH_1000)
       }
       .padding(Const.DEFAULT_10)
       .width(Const.FULL_WIDTH)
-      .height("85%")
-      .border({width:"1vp" , radius:"10vp"})
+      .height("90%")
+      .border({width:"1vp" , radius:"10vp" , color: "#ffbfbfbf" })
        // 底部按钮
       Row(){
-        Select([{ value: '最近一周',},
-                { value: '最近一个月' },
-                { value: '最近三个月'},
+        Select([{ value: '最近7天',},
+                { value: '最近30天' },
+                { value: '最近90天'},
           ])
           .selected(0)
           .value('选择周期')
@@ -55,14 +159,16 @@ export struct AIComments {
 
           Button('输出评价')
             .onClick(this.startComment)
+            .enabled(!this.isWaiting)
+            .backgroundColor(!this.isWaiting ? $r('app.color.login_btn_enabled') : $r('app.color.login_btn_normal'))
       }
       .height("10%")
       .width(Const.FULL_WIDTH)
-      .backgroundColor("#f3eeeeee")
+      .backgroundColor("#fff6f6f6")
       .justifyContent(FlexAlign.SpaceAround)
+      .padding(Const.DEFAULT_10)
 
     }
-    .padding(Const.DEFAULT_10)
     .height(Const.FULL_HEIGHT)
     .width(Const.FULL_WIDTH)
     .backgroundColor($r('app.color.white'))

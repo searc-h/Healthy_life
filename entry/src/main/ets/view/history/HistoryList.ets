@@ -34,21 +34,18 @@ import router from '@ohos.router';
  */
 @Component
 export struct HistoryList {
-  @Prop @Watch("changeTab") currentTab : number;
+  @Prop currentTab : number;
   @State newsModel: NewsModel = new NewsModel();
   @Watch('changeCategory') @Link currentIndex: number;
   @Consume userInfo : UserInfo;
+  @State @Watch("changeValue") chooseValue : number = 0;
 
   // 当切换到历史Tab的时候发请求获取list
-  changeTab(){
-    if(this.currentTab === 3){
-      this.changeCategory()
-    }
-  }
-  changeCategory() {
+
+  changeCategory(userId? : string) {
     this.newsModel.currentPage = 1;
 
-    HistoryViewModel.getHistoryList(this.userInfo.userId)
+    HistoryViewModel.getHistoryList(userId)
       .then((data: ResultListType[]) => {
         this.newsModel.pageState = PageState.Success;
 
@@ -65,9 +62,26 @@ export struct HistoryList {
       });
   }
 
+  changeValue(){
+    // 选择查看我的
+    if(this.chooseValue === 1){
+      // 必须要登陆
+      if(this.userInfo.userId && this.userInfo.isLogin){
+        this.changeCategory(this.userInfo.userId)
+      }else{
+        AlertDialogService({
+          message: "请先登录"
+        })
+      }
+    }else{
+      this.changeCategory()
+    }
+  }
+
+
   aboutToAppear() {
     // Request news data.
-    this.changeCategory();
+    this.changeCategory(this.userInfo.userId);
   }
 
   build() {
@@ -96,68 +110,78 @@ export struct HistoryList {
   }
 
   @Builder ListLayout() {
-    List() {
-      ListItem() {
-        RefreshLayout({
-          refreshLayoutClass: new CustomRefreshLoadLayoutClass(this.newsModel.isVisiblePullDown, this.newsModel.pullDownRefreshImage,
-            this.newsModel.pullDownRefreshText, this.newsModel.pullDownRefreshHeight)
-        })
-      }
-      //
-      if(this.newsModel.newsData.length > 0){
-        ForEach(this.newsModel.newsData, (item?: ResultListType) => {
-          ListItem() {
-            HistoryGroup({ data: item })
-          }
-        }, (item: ResultListType, index?: number) => JSON.stringify(item) + index)
-      }
-
-      ListItem() {
-        if (this.newsModel.hasMore) {
-          LoadMoreLayout({
-            loadMoreLayoutClass: new CustomRefreshLoadLayoutClass(this.newsModel.isVisiblePullUpLoad, this.newsModel.pullUpLoadImage,
-              this.newsModel.pullUpLoadText, this.newsModel.pullUpLoadHeight)
+    Column(){
+      Row(){
+        Select([{ value: '全部'},
+          { value: '我的' },
+        ])
+          .selected(0)
+          .value('切换查看')
+          .font({ size: 16, weight: 500 })
+          .fontColor('#182431')
+          .selectedOptionFont({ size: 16, weight: 500 })
+          .optionFont({ size: 16, weight: 400 })
+          .onSelect((index: number) => {
+              this.chooseValue = index
           })
-        } else {
-          NoMoreLayout()
+
+        Button("刷新")
+          .type(ButtonType.Normal)
+          .backgroundColor("#fff")
+          .fontColor("#000")
+
+      }
+      .width("100%")
+      .backgroundColor("#fff")
+      .padding({left: 10 , right : 10})
+      .justifyContent(FlexAlign.SpaceBetween)
+      .zIndex(99)
+
+
+      List() {
+        ListItem() {
+          RefreshLayout({
+            refreshLayoutClass: new CustomRefreshLoadLayoutClass(this.newsModel.isVisiblePullDown, this.newsModel.pullDownRefreshImage,
+              this.newsModel.pullDownRefreshText, this.newsModel.pullDownRefreshHeight)
+          })
+        }
+        //
+        if(this.newsModel.newsData.length > 0){
+          ForEach(this.newsModel.newsData, (item?: ResultListType) => {
+            ListItem() {
+              HistoryGroup({ data: item })
+            }
+          }, (item: ResultListType, index?: number) => JSON.stringify(item) + index)
+        }
+
+        ListItem() {
+          if (this.newsModel.hasMore) {
+            LoadMoreLayout({
+              loadMoreLayoutClass: new CustomRefreshLoadLayoutClass(this.newsModel.isVisiblePullUpLoad, this.newsModel.pullUpLoadImage,
+                this.newsModel.pullUpLoadText, this.newsModel.pullUpLoadHeight)
+            })
+          } else {
+            NoMoreLayout()
+          }
         }
       }
+      .width(Const.FULL_WIDTH)
+      .height(Const.FULL_HEIGHT)
+      .margin({ left: Const.NewsListConstant_LIST_MARGIN_LEFT, right: Const.NewsListConstant_LIST_MARGIN_RIGHT })
+      .backgroundColor("#F1F3F5")
+      .divider({
+        color: "#E2E2E2",
+        strokeWidth: Const.NewsListConstant_LIST_DIVIDER_STROKE_WIDTH,
+        endMargin: Const.NewsListConstant_LIST_MARGIN_RIGHT
+      })
+      // Remove the rebound effect.
+      .edgeEffect(EdgeEffect.None)
+      .offset({ x: 0, y: `${this.newsModel.offsetY}${'px'}` })
+      .onScrollIndex((start: number, end: number) => {
+        // Listen to the first index of the current list.
+        this.newsModel.startIndex = start;
+        this.newsModel.endIndex = end;
+      })
     }
-    .width(Const.FULL_WIDTH)
-    .height(Const.FULL_HEIGHT)
-    .margin({ left: Const.NewsListConstant_LIST_MARGIN_LEFT, right: Const.NewsListConstant_LIST_MARGIN_RIGHT })
-    .backgroundColor("#F1F3F5")
-    .divider({
-      color: "#E2E2E2",
-      strokeWidth: Const.NewsListConstant_LIST_DIVIDER_STROKE_WIDTH,
-      endMargin: Const.NewsListConstant_LIST_MARGIN_RIGHT
-    })
-    // Remove the rebound effect.
-    .edgeEffect(EdgeEffect.None)
-    .offset({ x: 0, y: `${this.newsModel.offsetY}${'px'}` })
-    .onScrollIndex((start: number, end: number) => {
-      // Listen to the first index of the current list.
-      this.newsModel.startIndex = start;
-      this.newsModel.endIndex = end;
-    })
-  }
-
-  @Builder FailLayout() {
-    Text("Network loading failure")
-      .opacity(Const.NewsListConstant_NONE_TEXT_opacity)
-      .fontSize(Const.NewsListConstant_NONE_TEXT_size)
-      .fontColor("#182431")
-      .margin({ top: Const.NewsListConstant_NONE_TEXT_margin })
-    Text("or maybe you have no login")
-      .opacity(Const.NewsListConstant_NONE_TEXT_opacity)
-      .fontSize(Const.NewsListConstant_NONE_TEXT_size)
-      .fontColor("#182431")
-      .margin({ top: Const.NewsListConstant_NONE_TEXT_margin })
-      .fontColor("blue")
-    Text("please login")
-      .opacity(Const.NewsListConstant_NONE_TEXT_opacity)
-      .fontSize(Const.NewsListConstant_NONE_TEXT_size)
-      .fontColor("#182431")
-      .margin({ top: Const.NewsListConstant_NONE_TEXT_margin })
   }
 }
