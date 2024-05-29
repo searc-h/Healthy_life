@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { TargetSettingDialog, RemindTimeDialog, FrequencyDialog } from './TaskSettingDialog';
+import { TargetSettingDialog, RemindTimeDialog, FrequencyDialog , RingDuringDialog , TargetSettingDialog_Timing} from './TaskSettingDialog';
 import { BroadCast, BroadCastType } from '../../common/utils/BroadCast';
 import Logger from '../../common/utils/Logger';
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
@@ -35,6 +35,14 @@ export struct TaskDialogView {
     alignment: DialogAlignment.Bottom,
     offset: { dx: Const.ZERO, dy: Const.MINUS_20 }
   });
+
+  targetSettingDialog_Timing : CustomDialogController = new CustomDialogController({
+    builder: TargetSettingDialog_Timing(),
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: Const.ZERO, dy: Const.MINUS_20 }
+  })
+
   // remind time dialog
   RemindTimeDialogController: CustomDialogController = new CustomDialogController({
     builder: RemindTimeDialog(),
@@ -45,6 +53,13 @@ export struct TaskDialogView {
   // frequency dialog
   FrequencyDialogController: CustomDialogController = new CustomDialogController({
     builder: FrequencyDialog(),
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: Const.ZERO, dy: Const.MINUS_20 }
+  });
+
+  RingDuringDialogController : CustomDialogController = new CustomDialogController({
+    builder : RingDuringDialog(),
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     offset: { dx: Const.ZERO, dy: Const.MINUS_20 }
@@ -64,6 +79,14 @@ export struct TaskDialogView {
     // frequency dialog
     this.broadCast.on(BroadCastType.SHOW_FREQUENCY_DIALOG, () => {
       this.FrequencyDialogController.open();
+    })
+
+    this.broadCast.on(BroadCastType.SHOW_RING_DURING_DIALOG, () => {
+      this.RingDuringDialogController.open();
+    })
+
+    this.broadCast.on(BroadCastType.SHOW_TIMING_PICKER_DIALOG, () => {
+      this.targetSettingDialog_Timing.open();
     })
   }
 

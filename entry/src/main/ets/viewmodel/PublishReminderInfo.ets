@@ -19,6 +19,7 @@
 export default class PublishReminderInfo {
   hour: number = 0;
   minute: number = 0;
+  during : number = 2;
   daysOfWeek: Array<number> = [];
   title: string = '';
   content: string = '';

@@ -29,7 +29,10 @@ export struct AIComments {
 
   @State chooseValue : number  = 0;
   @Consume userInfo : UserInfo
-  @State comments : ResType[] = []
+  @State comments : ResType[] = [
+    {role : "user", content : "hello"},
+    {role : "AI", content : "hello"},
+  ]
   @State isWaiting : boolean = false;
   scroller: Scroller = new Scroller()
 
@@ -145,6 +148,7 @@ export struct AIComments {
       Row(){
         Select([{ value: '最近7天',},
                 { value: '最近30天' },
+                { value: '最近60天'},
                 { value: '最近90天'},
           ])
           .selected(0)

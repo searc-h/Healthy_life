@@ -15,7 +15,7 @@
 
 import prompt from '@system.prompt';
 import { ITaskItem } from '../../model/TaskInitList';
-import { frequencyRange } from '../../common/utils/Utils';
+import { frequencyRange, RingDuringRadioType , ringDuringRadio } from '../../common/utils/Utils';
 import { returnTimeStamp, createAppleRange, createDrinkRange, formatTime } from '../../viewmodel/TaskViewModel';
 import { taskType } from '../../viewmodel/TaskInfo';
 import { CommonConstants as Const } from '../..//common/constants/CommonConstants';
@@ -115,6 +115,63 @@ export struct TargetSettingDialog {
   }
 }
 
+// 适用于min单位的任务
+@CustomDialog
+export struct TargetSettingDialog_Timing {
+  @Consume settingParams: ITaskItem;
+  controller: CustomDialogController = new CustomDialogController({ builder: '' });
+  currentValue: string = this.settingParams.targetValue;
+  minRange : string[] = ["15 min" , "30 min" , "45 min" , "60 min"]
+
+  setTargetValue(){
+    this.settingParams.targetValue = this.currentValue
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Text($r('app.string.target_setting')).fontSize(Const.DEFAULT_20).margin({ right: Const.DEFAULT_12 })
+        Text(this.settingParams?.taskId === taskType.getup ?
+        Const.GET_UP_TIME_RANGE :
+            this.settingParams?.taskId === taskType.sleepEarly ?
+          Const.SLEEP_TIME_RANGE : '')
+          .fontSize(Const.DEFAULT_16)
+      }
+      .width(Const.THOUSANDTH_1000)
+      .justifyContent(FlexAlign.Start)
+
+      TextPicker({ range: this.minRange })
+        .width(Const.THOUSANDTH_900,)
+        .height(Const.THOUSANDTH_800,)
+        .onChange((value) => {
+          this.currentValue = value?.split(' ')[0];
+        })
+
+
+      Row() {
+        Text($r('app.string.cancel')).fontSize(Const.DEFAULT_20).fontColor($r('app.color.blueColor'))
+          .onClick(() => {
+            this.currentValue = '';
+            this.controller.close();
+          })
+
+        Text($r('app.string.confirm')).fontSize(Const.DEFAULT_20).fontColor($r('app.color.blueColor'))
+          .onClick(() => {
+            this.setTargetValue();
+            this.controller.close();
+          })
+      }
+      .justifyContent(FlexAlign.SpaceAround)
+      .width(Const.THOUSANDTH_1000)
+      .height(Const.DEFAULT_28)
+      .margin({ bottom: Const.DEFAULT_20 })
+    }
+    .justifyContent(FlexAlign.Center)
+    .height(Const.THOUSANDTH_560)
+    .padding(Const.DEFAULT_12)
+  }
+}
+
 @CustomDialog
 export struct RemindTimeDialog {
   @Consume settingParams: ITaskItem;
@@ -170,11 +227,13 @@ export struct FrequencyDialog {
   @Consume settingParams: ITaskItem;
   @Consume frequency: string;
   private controller: CustomDialogController = new CustomDialogController({ builder: '' });
-  private currentFrequency: string = Const.EVERYDAY;
-  private frequencyChooseRange: FrequencyContentType[] = frequencyRange();
+  @State currentFrequency: string = this.settingParams.frequency || Const.EVERYDAY;
+  @State frequencyChooseRange: FrequencyContentType[] = frequencyRange(this.settingParams.frequency);
+
 
   setFrequency() {
     const checkedArr = this.frequencyChooseRange.filter((item) => item?.isChecked)
+    // 全选或者全不选
     if (checkedArr.length === this.frequencyChooseRange.length || checkedArr.length === Const.NO_LENGTH) {
       this.currentFrequency = Const.EVERYDAY;
       this.settingParams.frequency = Const.INIT_WEEK_IDS;
@@ -204,7 +263,7 @@ export struct FrequencyDialog {
           ListItem() {
             Row() {
               Text(item?.label).fontSize(Const.DEFAULT_20)
-              Toggle({ type: ToggleType.Checkbox })
+              Toggle({ type: ToggleType.Checkbox  ,isOn : item.isChecked })
                 .onChange((isOn) => {
                   item.isChecked = isOn;
                 })
@@ -233,6 +292,79 @@ export struct FrequencyDialog {
           .onClick(() => {
             this.setFrequency();
             this.frequency = this.currentFrequency;
+            this.controller.close();
+          })
+      }
+      .justifyContent(FlexAlign.SpaceAround)
+      .width(Const.THOUSANDTH_900)
+      .height(Const.DEFAULT_28)
+      .margin({ bottom: Const.DEFAULT_16 })
+    }
+    .justifyContent(FlexAlign.Center)
+    .height(Const.THOUSANDTH_900)
+    .padding(Const.DEFAULT_12)
+  }
+}
+
+@CustomDialog
+export struct RingDuringDialog {
+  @Consume settingParams: ITaskItem;
+  @Consume frequency: string;
+  private controller: CustomDialogController = new CustomDialogController({ builder: '' });
+
+  @State ringDuringArr : RingDuringRadioType[] = ringDuringRadio(this.settingParams.ringDuring || 1)
+
+  setRingDuring() {
+    this.settingParams.ringDuring = this.ringDuringArr.filter(i=>{
+      return i.isChecked
+    })[0].value
+  }
+
+  build() {
+    Column() {
+      Column() {
+        Text("请设置您的响铃时间")
+          .fontSize(Const.DEFAULT_20)
+          .margin({ top: Const.DEFAULT_10 })
+          .width(Const.THOUSANDTH_1000)
+          .textAlign(TextAlign.Start)
+      }
+      .width(Const.THOUSANDTH_900)
+
+      List() {
+        ForEach(this.ringDuringArr, (item: RingDuringRadioType) => {
+          ListItem() {
+            Row() {
+              Text(item?.label).fontSize(Const.DEFAULT_20)
+              Radio({value: item.value + '' , group : "radioGroup"})
+                .checked(item.isChecked)
+                .onChange((isOn) => {
+                  item.isChecked = isOn;
+                })
+            }
+            .width(Const.THOUSANDTH_1000)
+            .justifyContent(FlexAlign.SpaceBetween)
+            .height(Const.DEFAULT_60)
+          }
+        }, (item: RingDuringRadioType) => JSON.stringify(item))
+      }
+      .divider({
+        strokeWidth: Const.DEFAULT_2,
+        color: $r('app.color.btnBgColor')
+      })
+      .flexGrow(1)
+      .padding(Const.DEFAULT_12)
+      .width(Const.THOUSANDTH_1000)
+
+      Row() {
+        Text($r('app.string.cancel')).fontSize(Const.DEFAULT_20).fontColor($r('app.color.blueColor'))
+          .onClick(() => {
+            this.controller.close();
+          })
+
+        Text($r('app.string.confirm')).fontSize(Const.DEFAULT_20).fontColor($r('app.color.blueColor'))
+          .onClick(() => {
+            this.setRingDuring();
             this.controller.close();
           })
       }

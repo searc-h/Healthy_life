@@ -26,7 +26,8 @@ import {
   TargetSetItem,
   OpenRemindItem,
   RemindTimeItem,
-  FrequencyItem
+  FrequencyItem,
+  RingDuringItem
 } from './TaskEditListItem';
 import { BroadCast, BroadCastType } from '../../common/utils/BroadCast';
 import { HealthDataSrcMgr } from '../../common/utils/HealthDataSrcMgr';
@@ -94,6 +95,7 @@ export default struct TaskDetail {
     this.broadCast.off(BroadCastType.SHOW_TARGET_SETTING_DIALOG, () => {});
     this.broadCast.off(BroadCastType.SHOW_REMIND_TIME_DIALOG, () => {});
     this.broadCast.off(BroadCastType.SHOW_FREQUENCY_DIALOG, () => {});
+    this.broadCast.off(BroadCastType.SHOW_RING_DURING_DIALOG , ()=>{});
   }
 
   build() {
@@ -115,7 +117,10 @@ export default struct TaskDetail {
             && this.settingParams?.taskId !== taskType.brushTeeth
           )
           .onClick(() => {
-            this.broadCast.emit(BroadCastType.SHOW_TARGET_SETTING_DIALOG);
+            if(this.settingParams.taskId <= taskType.sleepEarly)
+              this.broadCast.emit(BroadCastType.SHOW_TARGET_SETTING_DIALOG);
+            else
+              this.broadCast.emit(BroadCastType.SHOW_TIMING_PICKER_DIALOG)
           })
 
           ListItem() {
@@ -133,13 +138,22 @@ export default struct TaskDetail {
             this.broadCast.emit(BroadCastType.SHOW_REMIND_TIME_DIALOG);
           })
 
+          // ListItem() {
+          //   FrequencyItem()
+          // }
+          // .listItemStyle()
+          // .enabled(this.settingParams?.isOpen && this.settingParams?.isAlarm)
+          // .onClick(() => {
+          //   this.broadCast.emit(BroadCastType.SHOW_FREQUENCY_DIALOG);
+          // })
+
           ListItem() {
-            FrequencyItem()
+            RingDuringItem()
           }
           .listItemStyle()
           .enabled(this.settingParams?.isOpen && this.settingParams?.isAlarm)
           .onClick(() => {
-            this.broadCast.emit(BroadCastType.SHOW_FREQUENCY_DIALOG);
+            this.broadCast.emit(BroadCastType.SHOW_RING_DURING_DIALOG);
           })
 
         }

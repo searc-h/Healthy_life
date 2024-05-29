@@ -43,6 +43,12 @@ export class BroadCast {
       case BroadCastType.SHOW_FREQUENCY_DIALOG:
         this.callBackArray.showFrequencyDialog = callback;
         break;
+      case BroadCastType.SHOW_RING_DURING_DIALOG:
+        this.callBackArray.showRingDuringDialog = callback;
+        break;
+      case BroadCastType.SHOW_TIMING_PICKER_DIALOG:
+        this.callBackArray.showTimingDialog = callback;
+        break;
       default:
         break;
     }
@@ -75,6 +81,12 @@ export class BroadCast {
         case BroadCastType.SHOW_FREQUENCY_DIALOG:
           this.callBackArray.showFrequencyDialog = () => {};
           break;
+        case BroadCastType.SHOW_RING_DURING_DIALOG:
+          this.callBackArray.showRingDuringDialog = () => {};
+          break;
+        case BroadCastType.SHOW_TIMING_PICKER_DIALOG:
+          this.callBackArray.showTimingDialog = () => {};
+          break;
         default:
           break;
       }
@@ -86,7 +98,7 @@ export class BroadCast {
       Logger.info(FILE_TAG, 'emit broadcast failed for no callback');
       return;
     }
-    Logger.info(FILE_TAG, 'emit broadcast with type '+ event);
+
     let cbs: Array<Function> = [];
     switch (event) {
       case BroadCastType.SHOW_ACHIEVEMENT_DIALOG:
@@ -103,6 +115,12 @@ export class BroadCast {
         break;
       case BroadCastType.SHOW_FREQUENCY_DIALOG:
         cbs = [this.callBackArray.showFrequencyDialog];
+        break;
+      case BroadCastType.SHOW_RING_DURING_DIALOG:
+        cbs = [this.callBackArray.showRingDuringDialog];
+        break;
+      case BroadCastType.SHOW_TIMING_PICKER_DIALOG:
+        cbs = [this.callBackArray.showTimingDialog];
         break;
       default:
         break;
@@ -125,9 +143,32 @@ export class BroadCast {
 }
 
 export enum BroadCastType {
+  // 打卡任务
   SHOW_ACHIEVEMENT_DIALOG = 'showAchievementDialog',
   SHOW_TASK_DETAIL_DIALOG = 'showTaskDetailDialog',
+
+  // 修改任务
   SHOW_TARGET_SETTING_DIALOG = 'showTargetSettingDialog',
+
+  // 提醒时间Picker
   SHOW_REMIND_TIME_DIALOG = 'showRemindTimeDialog',
-  SHOW_FREQUENCY_DIALOG = 'showFrequencyDialog'
+
+  // 频率Picker
+  SHOW_FREQUENCY_DIALOG = 'showFrequencyDialog',
+
+  // 响铃持续时间Picker
+  SHOW_RING_DURING_DIALOG = 'showRingDuringDialog',
+
+  // 早起Picker
+  SHOW_GETUP_PICKER_DIALOG = 'showGetUpDialog',
+
+  // 喝水Picker
+  SHOW_DRINK_PICKER_DIALOG = 'showDrinkDialog',
+
+  // 吃苹果Picker
+  SHOW_APPLE_PICKER_DIALOG = 'showAppleDialog',
+
+  // 时间Picker
+  SHOW_TIMING_PICKER_DIALOG = 'showTimingDialog'
+
 }

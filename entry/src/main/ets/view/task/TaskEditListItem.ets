@@ -144,3 +144,20 @@ export struct FrequencyItem {
     .justifyContent(FlexAlign.SpaceBetween)
   }
 }
+
+@Component
+export struct RingDuringItem {
+  @Consume settingParams: ITaskItem;
+
+  build() {
+    Row() {
+      Text("响铃持续").fontSize(Const.DEFAULT_20).fontWeight(FontWeight.Medium)
+      Text(this.settingParams.ringDuring + "s")
+        .targetSetCommon()
+        .frequencyStyle(this.settingParams?.isOpen, this.settingParams?.isAlarm)
+      Image($r('app.media.ic_right_grey')).width(Const.DEFAULT_8).height(Const.DEFAULT_16)
+    }
+    .width(Const.THOUSANDTH_1000)
+    .justifyContent(FlexAlign.SpaceBetween)
+  }
+}

@@ -73,16 +73,45 @@ export function ratio2percent(ratio: number): string {
     return `${ratio * 100}%`;
 }
 
-export const frequencyRange = () => {
+export const frequencyRange = (frequencyArr ? : string) : FrequencyContentType[] => {
     const frequencyRangeArr: FrequencyContentType[] = [];
+    let checkedArr : string[] = []
+    if(frequencyArr) {
+        checkedArr = frequencyArr.split(",").map((item) => {
+            return CHINESE_OF_WEEK[parseInt(item) - 1]
+        })
+    }
+
     CHINESE_OF_WEEK.forEach((item, index) => {
         frequencyRangeArr.push({
             id: (index + 1),
             label: `${WEEK}${item}`,
-            isChecked: false
+            isChecked: checkedArr.includes(item)
         } as FrequencyContentType)
     });
+
     return frequencyRangeArr;
+}
+
+export interface RingDuringRadioType{
+    id : number,
+    label : string,
+    value : number,
+    isChecked : boolean,
+}
+export const ringDuringRadio = (during? : number) : RingDuringRadioType[] =>{
+
+
+    const ringDuringRadioArr: RingDuringRadioType[] = [1 , 2 , 5 , 10].map((i , index)=>{
+        return {
+            id : index,
+            label : `持续${i}s`,
+            value : i,
+            isChecked : during ?  during==i : false
+        }
+    })
+
+    return ringDuringRadioArr
 }
 
 export const oneWeekDictFunc = () => {

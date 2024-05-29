@@ -114,6 +114,7 @@ function fetchData(params: PublishReminderInfo): reminderAgent.ReminderRequestAl
     reminderType: reminderAgent.ReminderType.REMINDER_TYPE_ALARM,
     hour: params.hour || 0,
     minute: params.minute || 0,
+    ringDuration : params.during || 2,
     daysOfWeek: params.daysOfWeek || [],
     wantAgent: {
       pkgName: Const.PACKAGE_NAME,

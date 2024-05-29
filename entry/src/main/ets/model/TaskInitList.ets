@@ -50,6 +50,10 @@ export interface ITaskItem {
   endTime: string;
   // 提醒频率
   frequency: string;
+
+  // 响铃时间
+  ringDuring : number;
+
   // 是否初始化
   isInit: boolean;
   // 打卡递增值
