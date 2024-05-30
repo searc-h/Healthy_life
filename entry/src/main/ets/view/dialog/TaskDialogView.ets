@@ -13,7 +13,14 @@
  * limitations under the License.
  */
 
-import { TargetSettingDialog, RemindTimeDialog, FrequencyDialog , RingDuringDialog , TargetSettingDialog_Timing} from './TaskSettingDialog';
+import {
+  TargetSettingDialog,
+  RemindTimeDialog,
+  FrequencyDialog ,
+  RingDuringDialog ,
+  TargetSettingDialog_Timing,
+  TargetSettingDialog_Count
+} from './TaskSettingDialog';
 import { BroadCast, BroadCastType } from '../../common/utils/BroadCast';
 import Logger from '../../common/utils/Logger';
 import { CommonConstants as Const } from '../../common/constants/CommonConstants';
@@ -43,6 +50,14 @@ export struct TaskDialogView {
     offset: { dx: Const.ZERO, dy: Const.MINUS_20 }
   })
 
+  // ringDuring dialog
+  CountDialogController : CustomDialogController = new CustomDialogController({
+    builder : TargetSettingDialog_Count(),
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+    offset: { dx: Const.ZERO, dy: Const.MINUS_20 }
+  });
+
   // remind time dialog
   RemindTimeDialogController: CustomDialogController = new CustomDialogController({
     builder: RemindTimeDialog(),
@@ -58,12 +73,15 @@ export struct TaskDialogView {
     offset: { dx: Const.ZERO, dy: Const.MINUS_20 }
   });
 
+  // ringDuring dialog
   RingDuringDialogController : CustomDialogController = new CustomDialogController({
     builder : RingDuringDialog(),
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
     offset: { dx: Const.ZERO, dy: Const.MINUS_20 }
   });
+
+
 
   aboutToAppear() {
     Logger.debug('CustomDialogView', 'aboutToAppear');
@@ -87,6 +105,10 @@ export struct TaskDialogView {
 
     this.broadCast.on(BroadCastType.SHOW_TIMING_PICKER_DIALOG, () => {
       this.targetSettingDialog_Timing.open();
+    })
+
+    this.broadCast.on(BroadCastType.SHOW_COUNT_PICKER_DIALOG , (textArr : string[])=>{
+      this.CountDialogController.open();
     })
   }
 

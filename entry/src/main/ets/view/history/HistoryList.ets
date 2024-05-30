@@ -128,7 +128,11 @@ export struct HistoryList {
         Button("刷新")
           .type(ButtonType.Normal)
           .backgroundColor("#fff")
-          .fontColor("#000")
+          .fontColor("#000").
+          onClick(()=> {
+            this.newsModel.pageState = PageState.Loading
+            this.changeCategory()
+          })
 
       }
       .width("100%")

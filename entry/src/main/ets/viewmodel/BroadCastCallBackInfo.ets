@@ -25,4 +25,5 @@ export default class BroadCastCallBackInfo {
    showRingDuringDialog : Function = ()=>{};
 
    showTimingDialog : Function = ()=>{};
+   showCountDialog : Function = ()=>{}
 }

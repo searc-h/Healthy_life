@@ -246,7 +246,7 @@ export class CommonConstants {
 
   static readonly TIMES_100: number = 100;
 
-  static readonly EAT_APPLE_RANGE: number = 100;
+  static readonly EAT_APPLE_RANGE: number = 5;
 
 
   // letter spacing

@@ -14,6 +14,7 @@
  */
 import picker from '@ohos.file.picker';
 import { AlertDialogService } from '../service/AlertDialogService';
+import { CommonConstants as Const} from '../common/constants/CommonConstants'
 import fs from '@ohos.file.fs';
 
 
@@ -76,7 +77,7 @@ export struct UserBaseInfo {
   build() {
     Column() {
       // userIcon
-      Image(this.imgUrl || $r('app.media.ic_user'))
+      Image(`${Const.SERVER}/avatar/${this.userName}.png`)
         .objectFit(ImageFit.Contain)
         .height($r('app.float.default_66'))
         .width($r('app.float.default_66'))

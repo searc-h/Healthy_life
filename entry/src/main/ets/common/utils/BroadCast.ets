@@ -49,6 +49,9 @@ export class BroadCast {
       case BroadCastType.SHOW_TIMING_PICKER_DIALOG:
         this.callBackArray.showTimingDialog = callback;
         break;
+      case BroadCastType.SHOW_COUNT_PICKER_DIALOG:
+        this.callBackArray.showCountDialog = callback;
+        break;
       default:
         break;
     }
@@ -87,6 +90,9 @@ export class BroadCast {
         case BroadCastType.SHOW_TIMING_PICKER_DIALOG:
           this.callBackArray.showTimingDialog = () => {};
           break;
+        case BroadCastType.SHOW_COUNT_PICKER_DIALOG:
+          this.callBackArray.showCountDialog = () => {};
+          break;
         default:
           break;
       }
@@ -121,6 +127,9 @@ export class BroadCast {
         break;
       case BroadCastType.SHOW_TIMING_PICKER_DIALOG:
         cbs = [this.callBackArray.showTimingDialog];
+        break;
+      case BroadCastType.SHOW_COUNT_PICKER_DIALOG:
+        cbs = [this.callBackArray.showCountDialog];
         break;
       default:
         break;
@@ -165,8 +174,8 @@ export enum BroadCastType {
   // 喝水Picker
   SHOW_DRINK_PICKER_DIALOG = 'showDrinkDialog',
 
-  // 吃苹果Picker
-  SHOW_APPLE_PICKER_DIALOG = 'showAppleDialog',
+  // 次数 Picker
+  SHOW_COUNT_PICKER_DIALOG = 'showCountDialog',
 
   // 时间Picker
   SHOW_TIMING_PICKER_DIALOG = 'showTimingDialog'

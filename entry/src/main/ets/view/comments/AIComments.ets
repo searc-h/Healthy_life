@@ -18,6 +18,7 @@ import { httpRequest } from '../../common/utils/httpUtils';
 import { UserInfo } from '../../model/Mine';
 import { AlertDialogService } from '../../service/AlertDialogService';
 import http from '@ohos.net.http';
+import router from '@ohos.router';
 
 interface ResType{
   role: "user"|"AI",
@@ -29,10 +30,7 @@ export struct AIComments {
 
   @State chooseValue : number  = 0;
   @Consume userInfo : UserInfo
-  @State comments : ResType[] = [
-    {role : "user", content : "hello"},
-    {role : "AI", content : "hello"},
-  ]
+  @State comments : ResType[] = []
   @State isWaiting : boolean = false;
   scroller: Scroller = new Scroller()
 
@@ -63,7 +61,10 @@ export struct AIComments {
       })
     }else{
       AlertDialogService({
-        message:"请先登录哦"
+        message:"请先登录哦",
+        action : ()=>router.pushUrl({
+          url  : "pages/LoginPage"
+        })
       })
     }
   }
@@ -80,8 +81,9 @@ export struct AIComments {
                     Column(){
                       Text(item.role + ":")
                         .fontWeight(FontWeight.Bold)
-                        .fontSize(17)
+                        .fontSize(20)
                         .lineHeight(20)
+                        .fontColor($r("app.color.numerator_text_color"))
 
                       Text(item.content)
                     }
@@ -96,8 +98,9 @@ export struct AIComments {
                     Column(){
                       Text( ":" + item.role)
                         .fontWeight(FontWeight.Bold)
-                        .fontSize(17)
+                        .fontSize(20)
                         .lineHeight(20)
+                        .fontColor($r("app.color.leveColor"))
 
                       Text(item.content)
                     }
@@ -122,8 +125,7 @@ export struct AIComments {
             }
             .justifyContent(FlexAlign.Start)
           }
-          .scrollBar(BarState.On)
-          .scrollBarWidth("1vp")
+          .scrollBar(BarState.Off)
           .scrollable(ScrollDirection.Vertical)  // 滚动方向纵向
           .width(Const.THOUSANDTH_1000)
           .height(Const.THOUSANDTH_1000)
@@ -146,13 +148,13 @@ export struct AIComments {
       .border({width:"1vp" , radius:"10vp" , color: "#ffbfbfbf" })
        // 底部按钮
       Row(){
-        Select([{ value: '最近7天',},
+        Select([{ value: '最近7天'},
                 { value: '最近30天' },
                 { value: '最近60天'},
                 { value: '最近90天'},
           ])
           .selected(0)
-          .value('选择周期')
+          .value('最近7天')
           .font({ size: 16, weight: 500 })
           .fontColor('#182431')
           .selectedOptionFont({ size: 16, weight: 500 })

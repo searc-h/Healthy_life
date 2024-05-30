@@ -25,7 +25,7 @@ import { taskType } from '../../viewmodel/TaskInfo';
 }
 
 @Extend(Text) function targetSettingStyle(isOpen: boolean, taskID: number) {
-  .fontColor(isOpen && taskID !== taskType.smile && taskID !== taskType.brushTeeth ?
+  .fontColor(isOpen ?
   $r('app.color.titleColor') :
   $r('app.color.disabledColor'))
 }

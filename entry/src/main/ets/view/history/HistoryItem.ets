@@ -50,7 +50,7 @@ export default struct HistoryItem {
 
         Column(){
           Row(){
-            Image($r('app.media.ic_user'))
+            Image(`${Const.SERVER}/avatar/${this.data.user.username}.png`)
               .objectFit(ImageFit.Contain)
               .onClick(this.clickAvatar)
           }

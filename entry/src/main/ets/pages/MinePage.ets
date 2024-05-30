@@ -28,8 +28,8 @@ export struct MineIndex {
     Column() {
       UserBaseInfo({
         level: `LV.${JSON.stringify(this.userInfo?.level??0)}`,
-        userName: ``,
-        signature: this.userInfo.isLogin?`${this.userInfo.userName}`:"未登陆"
+        userName: `${this.userInfo.userName||""}`,
+        signature: this.userInfo.isLogin?`${""}`:"未登陆"
       });
 
       ListInfo({isLogin:this.userInfo.isLogin as boolean , userId : this.userInfo.userId as string});

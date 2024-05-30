@@ -113,14 +113,15 @@ export default struct TaskDetail {
           .listItemStyle()
           .enabled(
             this.settingParams?.isOpen
-            && this.settingParams?.taskId !== taskType.smile
-            && this.settingParams?.taskId !== taskType.brushTeeth
           )
           .onClick(() => {
-            if(this.settingParams.taskId <= taskType.sleepEarly)
-              this.broadCast.emit(BroadCastType.SHOW_TARGET_SETTING_DIALOG);
-            else
+            if(this.settingParams.unit == '次'){
+              this.broadCast.emit(BroadCastType.SHOW_COUNT_PICKER_DIALOG)
+            }else if(this.settingParams.unit == 'min') {
               this.broadCast.emit(BroadCastType.SHOW_TIMING_PICKER_DIALOG)
+            }else{
+              this.broadCast.emit(BroadCastType.SHOW_TARGET_SETTING_DIALOG);
+            }
           })
 
           ListItem() {

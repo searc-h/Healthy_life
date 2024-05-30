@@ -121,7 +121,7 @@ export struct TargetSettingDialog_Timing {
   @Consume settingParams: ITaskItem;
   controller: CustomDialogController = new CustomDialogController({ builder: '' });
   currentValue: string = this.settingParams.targetValue;
-  minRange : string[] = ["15 min" , "30 min" , "45 min" , "60 min"]
+  minRange : string[] = ["10 min" , "15 min" , "20 min" , "30 min" , "45 min" , "60 min"]
 
   setTargetValue(){
     this.settingParams.targetValue = this.currentValue
@@ -140,7 +140,64 @@ export struct TargetSettingDialog_Timing {
       .width(Const.THOUSANDTH_1000)
       .justifyContent(FlexAlign.Start)
 
-      TextPicker({ range: this.minRange })
+      TextPicker({ range: this.minRange ,selected : this.minRange.indexOf(this.settingParams.targetValue + " min")})
+        .width(Const.THOUSANDTH_900,)
+        .height(Const.THOUSANDTH_800,)
+        .onChange((value) => {
+          this.currentValue = value?.split(' ')[0];
+        })
+
+
+      Row() {
+        Text($r('app.string.cancel')).fontSize(Const.DEFAULT_20).fontColor($r('app.color.blueColor'))
+          .onClick(() => {
+            this.currentValue = '';
+            this.controller.close();
+          })
+
+        Text($r('app.string.confirm')).fontSize(Const.DEFAULT_20).fontColor($r('app.color.blueColor'))
+          .onClick(() => {
+            this.setTargetValue();
+            this.controller.close();
+          })
+      }
+      .justifyContent(FlexAlign.SpaceAround)
+      .width(Const.THOUSANDTH_1000)
+      .height(Const.DEFAULT_28)
+      .margin({ bottom: Const.DEFAULT_20 })
+    }
+    .justifyContent(FlexAlign.Center)
+    .height(Const.THOUSANDTH_560)
+    .padding(Const.DEFAULT_12)
+  }
+}
+
+
+@CustomDialog
+export struct TargetSettingDialog_Count {
+  @Consume settingParams: ITaskItem;
+  controller: CustomDialogController = new CustomDialogController({ builder: '' });
+  currentValue: string = this.settingParams.targetValue;
+  countRange : string[] = ["1 次" , "2 次" , "3 次" , "4 次"]
+
+  setTargetValue(){
+    this.settingParams.targetValue = this.currentValue
+  }
+
+  build() {
+    Column() {
+      Row() {
+        Text($r('app.string.target_setting')).fontSize(Const.DEFAULT_20).margin({ right: Const.DEFAULT_12 })
+        Text(this.settingParams?.taskId === taskType.getup ?
+        Const.GET_UP_TIME_RANGE :
+            this.settingParams?.taskId === taskType.sleepEarly ?
+          Const.SLEEP_TIME_RANGE : '')
+          .fontSize(Const.DEFAULT_16)
+      }
+      .width(Const.THOUSANDTH_1000)
+      .justifyContent(FlexAlign.Start)
+
+      TextPicker({ range: this.countRange ,selected : this.countRange.indexOf(this.settingParams.targetValue + " 次")})
         .width(Const.THOUSANDTH_900,)
         .height(Const.THOUSANDTH_800,)
         .onChange((value) => {
@@ -178,6 +235,10 @@ export struct RemindTimeDialog {
   controller: CustomDialogController = new CustomDialogController({ builder: '' });
   currentTime: string = Const.DEFAULT_TIME;
 
+  aboutToAppear(){
+    console.log(this.settingParams.startTime)
+  }
+
   build() {
     Column() {
       Column() {
@@ -190,7 +251,7 @@ export struct RemindTimeDialog {
       .width(Const.THOUSANDTH_900)
 
       TimePicker({
-        selected: new Date(`${new Date().toDateString()} 8:00:00`),
+        selected: new Date(`${new Date().toDateString()} ${this.settingParams.startTime}`),
       })
         .height(Const.THOUSANDTH_800)
         .useMilitaryTime(true)
